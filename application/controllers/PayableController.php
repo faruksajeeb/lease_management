@@ -1,0 +1,487 @@
+<?php
+if (!defined('BASEPATH')) exit('No direct script access allowed');
+
+class PayableController extends CI_Controller
+{
+    public $urlPrefix;
+    function __construct()
+    {
+        parent::__construct();
+        $this->urlPrefix = $this->webspice->settings()->site_url_prefix;
+    }
+    public $tableName = 'tbl_payment';
+
+    public function createPayable($data = NULL)
+    {
+        $this->webspice->user_verify($this->urlPrefix . 'login', $this->urlPrefix . 'create_payable');
+        $this->webspice->permission_verify('create_payable');
+        if (!isset($data['edit'])) {
+            $data['edit'] = array(
+                'VENDOR_ID' => null,
+                'LEASE_ID' => null,
+                'PERIOD' => null,
+                'AMOUNT' => null,
+                'PAYMENT_METHOD_ID' => null,
+                'PAYMENT_DATE' => null,
+                'REFERENCE_NUMBER' => null,
+                'REMARKS' => null,
+                'PAID_BY' => null,
+                'ATTACHMENT' => null
+            );
+        }
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('VENDOR_ID', 'Vendor Name', 'required|trim');
+        $this->form_validation->set_rules('LEASE_ID', 'LEASE_ID', 'required|trim');
+        $this->form_validation->set_rules('PERIOD', 'PERIOD', 'required');
+        $this->form_validation->set_rules('AMOUNT', 'AMOUNT', 'required|trim');
+        $this->form_validation->set_rules('PAYMENT_METHOD_ID', 'PAYMENT_METHOD_ID', 'trim');
+        $this->form_validation->set_rules('PAYMENT_DATE', 'PAYMENT_DATE', 'required');
+
+        if (!$this->form_validation->run()) {
+            # for ajax call
+            if (validation_errors()) {
+                exit("Submit Error:\n" . strip_tags(validation_errors()));
+            }
+
+            $data['vendors'] = $this->db->query("SELECT * FROM tbl_vendor WHERE STATUS=7")->result();
+            $data['leases'] = $this->db->query("SELECT * FROM tbl_lease_onboarding WHERE STATUS=7")->result();
+
+            $this->load->view('payable/create_payable', $data);
+            return FALSE;
+        }
+
+        # get input post
+        $input = $this->webspice->get_input('user_id');
+        if($input->AMOUNT<= 0){
+            exit("Submit Error:\n Amount should be greater then 0" );
+        }
+
+        $period = $input->PERIOD;
+        $periodSlice = explode("/",$period);
+        $periodMonth = $periodSlice[0];
+        $periodYear = $periodSlice[1];
+        $customePeriod = date("Y-m-d",strtotime("$periodYear-$periodMonth-01"));
+        
+        # update process
+        if ($input->key) {
+            $updateData = array(
+                'VENDOR_ID' => $input->VENDOR_ID,
+                'LEASE_ID' => $input->LEASE_ID,
+                'PERIOD' => $customePeriod,
+                'PAYMENT_DATE' => $input->PAYMENT_DATE,
+                'PAYMENT_METHOD_ID' => $input->PAYMENT_METHOD_ID,
+                'REFERENCE_NUMBER' => $input->REFERENCE_NUMBER,
+                'AMOUNT' => $input->AMOUNT,
+                'REMARKS' => $input->REMARKS,
+                'UPDATED_BY' => $this->webspice->get_user_id(),
+                'UPDATED_DATE' => $this->webspice->now('datetime24')
+            );
+            $this->db->where('ID', $input->key);
+            $this->db->update('tbl_payable', $updateData);
+            $this->webspice->log_me('Payable_updated - ' . $input->key); # log activities
+            exit('update_success');
+        }
+
+        # INSERT
+        $insertData = array(
+            'VENDOR_ID' => $input->VENDOR_ID,
+            'LEASE_ID' => $input->LEASE_ID,
+            'PERIOD' => $customePeriod,
+            'PAYMENT_DATE' => $input->PAYMENT_DATE,
+            'PAYMENT_METHOD_ID' => $input->PAYMENT_METHOD_ID,
+            'REFERENCE_NUMBER' => $input->REFERENCE_NUMBER,
+            'AMOUNT' => $input->AMOUNT,
+            'REMARKS' => $input->REMARKS,
+            'PAID_BY' => $this->webspice->get_user_id(),
+            'CREATED_BY' => $this->webspice->get_user_id(),
+            'CREATED_DATE' => $this->webspice->now('datetime24')
+        );
+
+        # dd($insertData);
+        try {
+            $this->db->insert('tbl_payable', $insertData);
+            if ($this->db->insert_id()) {
+                exit('insert_success');
+            }
+        } catch (Exception $e) {
+            echo 'Message: ' . $e->getMessage();
+        }
+    }
+    public function managePayable()
+    {
+        $this->webspice->user_verify($this->urlPrefix . 'login', $this->urlPrefix . 'manage_payable');
+        $this->webspice->permission_verify('manage_payable');
+
+        $this->load->database();
+        $orderby = ' ORDER BY tbl_payable.ID DESC';
+        $groupby = null;
+        $where = ' WHERE tbl_payable.STATUS !=-1';
+        $additional_where = ' tbl_payable.STATUS !=-1';
+        $page_index = 0;
+        $no_of_record = 10;
+        $limit = ' LIMIT ' . $no_of_record;
+        $filter_by = 'Last Created';
+        $data['pager'] = null;
+        $data['url_prefix'] = $this->urlPrefix;
+        $criteria = $this->uri->segment(2);
+        $key = $this->uri->segment(3);
+
+        if ($criteria == 'page') {
+            $page_index = (int)$key;
+            $page_index < 0 ? $page_index = 0 : $page_index = $page_index;
+        }
+
+        $initialSQL = "
+		SELECT tbl_payable.*,tbl_lease_onboarding.LEASE_NAME,tbl_vendor.VENDOR_NAME 
+		FROM tbl_payable 
+        LEFT JOIN tbl_vendor ON tbl_vendor.ID=tbl_payable.vendor_id
+        LEFT JOIN tbl_lease_onboarding ON tbl_lease_onboarding.ID = tbl_payable.lease_id
+		";
+
+        $countSQL = "
+		SELECT COUNT(*) AS TOTAL_RECORD
+		FROM tbl_payable
+		";
+
+        # filtering records
+        if ($this->input->get('filter')) {
+            $temp_filter = '';
+            if ($this->input->get('date_from') && $this->input->get('date_to')) {
+                $DateFrom = $this->input->get('date_from');
+                $DateTo = $this->input->get('date_to');
+                $additional_where .= " AND tbl_payable.PAYMENT_DATE BETWEEN '{$DateFrom}' AND '{$DateTo}'";
+                $temp_filter = "PAYMENT_DATE Between - '" . $DateFrom . "' and '" . $DateTo . "'";
+            } elseif ($this->input->get('date_from')) {
+                $DateFrom = $this->input->get('date_from');
+                $additional_where .= " AND tbl_payable.PAYMENT_DATE LIKE '%" . $DateFrom . "%'";
+                $temp_filter = "PAYMENT_DATE - " . $DateFrom . "";
+            } elseif ($this->input->get('date_to')) {
+                $DateTo = $this->input->get('date_to');
+                $additional_where .= " AND tbl_payable.PAYMENT_DATE LIKE '%" . $DateTo . "%'";
+                $temp_filter = "PAYMENT_DATE - " . $DateTo . "";
+            }
+
+            $result = $this->webspice->filter_generator(
+                $TableName = 'tbl_payable',
+                $InputField = array('VENDOR_ID'),
+                $Keyword = array('VENDOR_ID', 'LEASE_ID', 'PERIOD', 'AMOUNT'),
+                $AdditionalWhere = $additional_where,
+                $DateBetween = array()
+            );
+
+            $result['where'] ? $where = $result['where'] : $where = $where;
+            if ($temp_filter == '') {
+                $custom_filter_by = $filter_by;
+            } elseif ($filter_by == 'Last Created' && $temp_filter != '') {
+                $custom_filter_by = $temp_filter;
+            } elseif ($temp_filter != '') {
+                $custom_filter_by = $filter_by . ' ' . $temp_filter;
+            }
+
+            $result['filter'] ? $filter_by = $result['filter'] : $filter_by = $filter_by;
+            $limit = null;
+        }
+
+        # action area
+        switch ($criteria) {
+            case 'print':
+            case 'csv':
+                if (!isset($_SESSION['sql']) || !$_SESSION['sql']) {
+                    $_SESSION['sql'] = $initialSQL . $where . $groupby . $orderby . $limit;
+                    $_SESSION['filter_by'] = $filter_by;
+                }
+
+                $record = $this->db->query($_SESSION['sql']); # print all record in the query
+                $data['get_record'] = $record->result();
+                $data['filter_by'] = $_SESSION['filter_by'];
+
+                $this->load->view('payable/print_payable', $data);
+                return false;
+                break;
+
+            case 'edit':
+
+                $this->webspice->edit_generator($TableName = 'tbl_payable', $KeyField = 'ID', $key, $RedirectController = 'PayableController', $RedirectFunction = 'createPayable', $PermissionName = 'craete_payable,manage_payable', $StatusCheck = null, $Log = 'edit_payable');
+
+                return false;
+                break;
+
+            case 'inactive':
+                $this->webspice->action_executer($TableName = 'tbl_payable', $KeyField = 'ID', $key, $RedirectURL = 'manage_payable', $PermissionName = 'manage_payable', $StatusCheck = 7, $ChangeStatus = -7, $RemoveCache = 'payable', $Log = 'inactive_payable');
+                return false;
+                break;
+
+            case 'active':
+                $this->webspice->action_executer($TableName = 'tbl_payable', $KeyField = 'ID', $key, $RedirectURL = 'manage_payable', $PermissionName = 'manage_payable', $StatusCheck = -7, $ChangeStatus = 7, $RemoveCache = 'payable', $Log = 'active_payable');
+                return false;
+                break;
+            case 'delete':
+                $this->webspice->action_executer($TableName = 'tbl_payable', $KeyField = 'ID', $key, $RedirectURL = 'manage_payable', $PermissionName = 'manage_payable', $StatusCheck = 1, $ChangeStatus = -1, $RemoveCache = 'payable', $Log = 'delete_payable');
+                return false;
+                break;
+        }
+
+        # default
+        $sql = $initialSQL . $where . $groupby . $orderby . $limit;
+
+        # start: only for pager -- mysql
+        if ($criteria == 'page' && !$this->input->get('filter')) {
+            if (!isset($_SESSION['sql']) || !$_SESSION['sql']) {
+                $sql = $sql;
+            }
+            $limit = sprintf("LIMIT %d, %d", $page_index, $no_of_record); # this is to avoid SQL Injection
+            $sql = substr($_SESSION['sql'], 0, strpos($_SESSION['sql'], 'LIMIT'));
+            $sql = $sql . $limit;
+        }
+
+        # load all records
+        if (!$this->input->get('filter')) {
+            $count_data = $this->db->query($countSQL)->row();
+            $data['pager'] = $this->webspice->pager($count_data->TOTAL_RECORD, $no_of_record, $page_index, $this->urlPrefix . 'manage_payable/page/', 10);
+        }
+        # end: only for pager -- mysql
+
+        $_SESSION['sql'] = $sql;
+        $_SESSION['filter_by'] = $filter_by;
+        $result = $this->db->query($sql)->result();
+
+        $data['get_record'] = $result;
+        $data['filter_by'] = $filter_by;
+
+        $this->webspice->log_me('viewed_option_list'); # log
+        $data['vendors'] = $this->db->query("SELECT * FROM tbl_vendor WHERE STATUS=7")->result();
+        $data['leases'] = $this->db->query("SELECT * FROM tbl_lease_onboarding WHERE STATUS=7")->result();
+
+        $this->load->view('payable/manage_payable', $data);
+    }
+
+    // public function getLeaseIdByVendor()
+    // {
+    //     $postData = $this->input->post();
+    //     $response = array();
+    //     // Select record
+    //     $this->db->select('ID,LEASE_NAME');
+    //     $this->db->where('VENDOR_ID', $postData['vendor_id']);
+    //     $this->db->where('LEASE_TYPE', 'payable');
+    //     $q = $this->db->get('tbl_lease_onboarding');
+    //     $response = $q->result_array();
+    //     echo json_encode($response);
+    // }
+
+    public function getLeaseIdByVendor()
+    {
+        $postData = $this->input->post();
+        $monthYear = $postData['month_year'];
+        $Slice = explode("/",$monthYear);
+        $Month = $Slice[0];
+        $Year = $Slice[1];
+        # Select record
+        $this->db->select('tbl_lease_onboarding.ID,tbl_lease_onboarding.LEASE_NAME,tbl_lease_agreement.DATE_FROM,tbl_lease_agreement.DATE_TO,tbl_lease_agreement.AMOUNT');        
+        $this->db->from('tbl_lease_agreement');
+        $this->db->join('tbl_lease_onboarding','tbl_lease_onboarding.ID=tbl_lease_agreement.LEASE_ID','LEFT');
+        $this->db->where('tbl_lease_onboarding.VENDOR_ID', $postData['vendor_id']);
+        $this->db->where('tbl_lease_onboarding.LEASE_TYPE', 'payable');
+        $this->db->where('tbl_lease_agreement.TYPE', 'rent');
+        $q = $this->db->get();
+        $q = $this->db->query("SELECT LO.ID,
+        LO.LEASE_NAME,LA.DATE_FROM,
+        LA.DATE_TO,LA.AMOUNT,
+        (SELECT IFNULL(SUM(AMOUNT),0) as Advance FROM tbl_lease_agreement WHERE LEASE_ID=LO.ID AND `TYPE`='advance') as Advance
+        FROM tbl_lease_agreement LA
+        LEFT JOIN tbl_lease_onboarding LO ON LO.ID=LA.LEASE_ID
+        WHERE 
+        LO.VENDOR_ID=? AND 
+        LO.LEASE_TYPE='payable' AND
+        LA.TYPE='rent' ",array($postData['vendor_id']));
+        $response = $q->result();
+
+        $html = "";
+        $html .="<from>";
+            $html .="<table class='table table-brodered'>";
+            $html .="<thead>";
+                $html .="<th>Lease ID</th>";
+                $html .="<th>Lease Name</th>";
+                $html .="<th>Date From</th>";
+                $html .="<th>Date To</th>";
+                $html .="<th>Rent</th>";
+                $html .="<th>Advance</th>";
+                $html .="<th>Paid</th>";
+                $html .="<th>Payable</th>";
+                $html .="<th style='width:200px'>Pay</th>";
+            $html .="</thead>";
+            $html .="<tbody>";
+            foreach($response as $key => $val):
+                $html .="<tr>";
+                    $html .="<td>".$val->ID."</td>";
+                    $html .="<td>".$val->LEASE_NAME."</td>";
+                    $html .="<td>".$val->DATE_FROM."</td>";
+                    $html .="<td>".$val->DATE_TO."</td>";
+                    $html .="<td>".$val->AMOUNT."</td>";
+                    $html .="<td>".$val->Advance."</td>";
+                    $html .="<td></td>";
+                    $html .="<td></td>";
+                    $html .="<td><input type='text' name='pay_amount' class='form-control'></td>";
+                $html .="</tr>";
+            endforeach;
+            $html .="</tbody>";
+            $html .="</table";
+        $html .="</from";
+
+       echo $html;
+    }
+
+    public function getOutstanding()
+    {
+        $postData = $this->input->post();
+        $RENT_TOTAL = $this->db->query("SELECT SUM(AMOUNT) as RENT_TOTAL FROM tbl_lease_agreement WHERE LEASE_ID=? AND `TYPE`=?", array($postData['lease_id'], 'rent'))->row('RENT_TOTAL');
+        $ADVANCE_TOTAL = $this->db->query("SELECT SUM(AMOUNT) as ADVANCE_TOTAL FROM tbl_lease_agreement WHERE LEASE_ID=? AND `TYPE`=?", array($postData['lease_id'], 'advance'))->row('ADVANCE_TOTAL');
+        $PAID_TOTAL = $this->db->query("SELECT SUM(AMOUNT) as PAID_TOTAL FROM tbl_payable WHERE LEASE_ID=?", array($postData['lease_id']))->row('PAID_TOTAL');
+        $TOTAL_OUTSTANDING = $RENT_TOTAL - ($ADVANCE_TOTAL + $PAID_TOTAL);
+        echo $TOTAL_OUTSTANDING;
+    }
+    public function getAdvanceAndPaymentInfoByLeaseId()
+    {
+        $postData = $this->input->post();
+        $leaseID = $postData['LEASE_ID'];
+        $leaseRentSlabs = $this->db->query("SELECT * 
+        FROM tbl_lease_agreement 
+        WHERE LEASE_ID=? AND `TYPE`=?", array($leaseID, 'rent'))->result();
+       
+        $advanceSlabs = $this->db->query("SELECT * FROM tbl_lease_agreement WHERE LEASE_ID=? AND `TYPE`=?", array($leaseID, 'advance'))->result();
+        $payments = $this->db->query("SELECT * FROM tbl_payable WHERE LEASE_ID=?", array($leaseID))->result();
+
+        $html = '<table class="table table-bordered">
+        <thead>
+            <tr>
+                <th colspan="6"><h5 style="padding:5px;">Rent Slabs</h5></th>
+            </tr>
+            <tr>
+                <th style="text-align:center">Sl No.</th>
+                <th style="text-align:center">From </th>
+                <th style="text-align:center">To</th>
+                <th style="text-align:right">Amount</th>
+                <th style="text-align:right">Amount With Tax</th>
+                <th style="text-align:right">Amount With Vat</th>
+            </tr>
+        </thead>
+        <tbody>';
+        $rentSladAmountTotal =
+            $rentSladAmountWithTaxTotal =
+            $rentSladAmountWithVatTotal = 0;
+        foreach ($leaseRentSlabs as $k => $val) :
+            $html .= '<tr>
+                <td style="text-align:center">' . ++$k . '</td>
+                <td style="text-align:center">' . $val->DATE_FROM . '</td>
+                <td style="text-align:center">' . $val->DATE_TO . '</td>
+                <td style="text-align:right">' . number_format($val->AMOUNT) . '</td>
+                <td style="text-align:right">' . number_format($val->AMOUNT_WITH_TAX) . '</td>
+                <td style="text-align:right">' . number_format($val->AMOUNT_WITH_VAT) . '</td>
+            </tr>';
+            $rentSladAmountTotal += $val->AMOUNT;
+            $rentSladAmountWithTaxTotal += $val->AMOUNT_WITH_TAX;
+            $rentSladAmountWithVatTotal += $val->AMOUNT_WITH_VAT;
+        endforeach;
+        $html .= '<tfoot>
+            <tr>
+                <td colspan="3" style="text-align:left; font-weight:bold">TOTAL</td>
+                <td style="text-align:right; font-weight:bold">' . number_format($rentSladAmountTotal) . '</td>
+                <td style="text-align:right; font-weight:bold">' . number_format($rentSladAmountWithTaxTotal) . '</td>
+                <td style="text-align:right; font-weight:bold">' . number_format($rentSladAmountWithVatTotal) . '</td>
+            </tr>
+        </tfoot>';
+
+
+        $html .= '</tbody>
+    </table>';
+        $html .= '<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th colspan="6"><h5 style="padding:5px;">Advance</h5></th>
+        </tr>
+        <tr>
+            <th style="text-align:center" >Sl No.</th>
+            <th style="text-align:center" >From </th>
+            <th style="text-align:center" >To</th>
+            <th style="text-align:right">Amount</th>
+            <th style="text-align:right">Amount With Tax</th>
+            <th style="text-align:right">Amount With Vat</th>
+        </tr>
+    </thead>
+    <tbody>';
+        $advanceSladAmountTotal =
+            $advanceSladAmountWithTaxTotal =
+            $advanceSladAmountWithVatTotal = 0;
+        foreach ($advanceSlabs as $k => $val) :
+            $html .= '<tr>
+            <td style="text-align:center">' . ++$k . '</td>
+            <td style="text-align:center">' . $val->DATE_FROM . '</td>
+            <td style="text-align:center">' . $val->DATE_TO . '</td>
+            <td style="text-align:right">' . number_format($val->AMOUNT) . '</td>
+            <td style="text-align:right">' . number_format($val->AMOUNT_WITH_TAX) . '</td>
+            <td style="text-align:right">' . number_format($val->AMOUNT_WITH_VAT) . '</td>
+        </tr>';
+            $advanceSladAmountTotal += $val->AMOUNT;
+            $advanceSladAmountWithTaxTotal += $val->AMOUNT_WITH_TAX;
+            $advanceSladAmountWithVatTotal += $val->AMOUNT_WITH_VAT;
+        endforeach;
+        $html .= '<tfoot>
+        <tr>
+            <td colspan="3" style="text-align:left; font-weight:bold">TOTAL</td>
+            <td style="text-align:right; font-weight:bold">' . number_format($advanceSladAmountTotal) . '</td>
+            <td style="text-align:right; font-weight:bold">' . number_format($advanceSladAmountWithTaxTotal) . '</td>
+            <td style="text-align:right; font-weight:bold">' . number_format($advanceSladAmountWithVatTotal) . '</td>
+        </tr>
+    </tfoot>';
+
+        $html .= '</tbody>
+</table>';
+
+        $html .= '<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th colspan="6"><h5 style="padding:5px;">Payments</h5></th>
+        </tr>
+        <tr>
+            <th style="text-align:center" >Sl No.</th>
+            <th style="text-align:center" >Period </th>            
+            <th style="text-align:center">Payment Method</th>
+            <th style="text-align:center" >Amount </th>
+            <th style="text-align:right">Received Date</th>
+            <th style="text-align:right">Referance Number</th>
+        </tr>
+    </thead>
+    <tbody>';
+        $paymentAmountTotal =  0;
+        foreach ($payments as $k => $val) :
+            $paymentMethod = ($val->PAYMENT_METHOD_ID == 1) ? 'Cash' : (($val->PAYMENT_METHOD_ID == 2) ? 'Cheque' : 'Card');
+            $html .= '<tr>
+            <td style="text-align:center">' . ++$k . '</td>
+            <td style="text-align:center">' . $val->PERIOD . '</td>            
+            <td style="text-align:center">' . $paymentMethod . '</td>
+            <td style="text-align:right">' . number_format($val->AMOUNT) . '</td>
+            <td style="text-align:right">' . $val->PAYMENT_DATE . '</td>
+            <td style="text-align:right">' . $val->REFERENCE_NUMBER . '</td>
+        </tr>';
+            $paymentAmountTotal += $val->AMOUNT;
+        endforeach;
+        $html .= '<tfoot>
+        <tr>
+            <td colspan="3" style="text-align:left; font-weight:bold">TOTAL</td>
+            <td style="text-align:right; font-weight:bold">' . number_format($paymentAmountTotal) . '</td>
+            <td style="text-align:right; font-weight:bold"></td>
+            <td style="text-align:right; font-weight:bold"></td>
+        </tr>
+        <tr>
+            <td colspan="3" style="text-align:left; font-weight:bold">Total Outstanding</td>
+            <td style="text-align:right; font-weight:bold">' . number_format($rentSladAmountTotal - ($paymentAmountTotal + $advanceSladAmountTotal)) . '</td>
+            <td style="text-align:right; font-weight:bold"></td>
+            <td style="text-align:right; font-weight:bold"></td>
+        </tr>
+    </tfoot>';
+
+        $html .= '</tbody>
+</table>';
+        echo $html;
+    }
+}
