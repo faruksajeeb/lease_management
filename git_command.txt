@@ -1,0 +1,9 @@
+>> git init
+>> git status
+### for all file
+>> git add ./ 
+>> git commit -am "comment here"
+### For push
+>> git push -u origin main
+
+>> git log
