@@ -272,58 +272,87 @@ class PayableController extends CI_Controller
     public function getLeaseIdByVendor()
     {
         $postData = $this->input->post();
+        $vendorId = $postData['vendor_id'];
         $monthYear = $postData['month_year'];
         $Slice = explode("/",$monthYear);
         $Month = $Slice[0];
         $Year = $Slice[1];
+        $dateFrom = date("Y-m-d",strtotime("$Year-$Month-01"));
         # Select record
         $this->db->select('tbl_lease_onboarding.ID,tbl_lease_onboarding.LEASE_NAME,tbl_lease_agreement.DATE_FROM,tbl_lease_agreement.DATE_TO,tbl_lease_agreement.AMOUNT');        
         $this->db->from('tbl_lease_agreement');
         $this->db->join('tbl_lease_onboarding','tbl_lease_onboarding.ID=tbl_lease_agreement.LEASE_ID','LEFT');
-        $this->db->where('tbl_lease_onboarding.VENDOR_ID', $postData['vendor_id']);
+        $this->db->where('tbl_lease_onboarding.VENDOR_ID', $vendorId);
         $this->db->where('tbl_lease_onboarding.LEASE_TYPE', 'payable');
         $this->db->where('tbl_lease_agreement.TYPE', 'rent');
         $q = $this->db->get();
         $q = $this->db->query("SELECT LO.ID,
         LO.LEASE_NAME,LA.DATE_FROM,
         LA.DATE_TO,LA.AMOUNT,
-        (SELECT IFNULL(SUM(AMOUNT),0) as Advance FROM tbl_lease_agreement WHERE LEASE_ID=LO.ID AND `TYPE`='advance') as Advance
+        (SELECT IFNULL(SUM(AMOUNT),0) as Advance FROM tbl_lease_agreement WHERE LEASE_ID=LO.ID AND `TYPE`='advance' AND (`DATE_FROM` BETWEEN LA.DATE_FROM AND LA.DATE_TO) AND (`DATE_TO` BETWEEN LA.DATE_FROM AND LA.DATE_TO)) as Advance,
+        (SELECT IFNULL(SUM(AMOUNT),0) as Paid FROM tbl_payments WHERE (`PERIOD` BETWEEN LA.DATE_FROM AND LA.DATE_TO) AND LEASE_ID=LO.ID AND VENDOR_ID=$vendorId GROUP BY VENDOR_ID,LEASE_ID,`PERIOD`) as Paid
         FROM tbl_lease_agreement LA
         LEFT JOIN tbl_lease_onboarding LO ON LO.ID=LA.LEASE_ID
         WHERE 
         LO.VENDOR_ID=? AND 
-        LO.LEASE_TYPE='payable' AND
-        LA.TYPE='rent' ",array($postData['vendor_id']));
+        LO.LEASE_TYPE='payable' AND 
+        LA.DATE_TO <= ? AND
+        LA.TYPE='rent' ",array($vendorId,$dateFrom));
+        // echo $this->db->last_query();
         $response = $q->result();
-
+        
         $html = "";
-        $html .="<from>";
+        $html .="<from id='payment_form' action='' method='POST'>";
             $html .="<table class='table table-brodered'>";
-            $html .="<thead>";
+            $html .="<thead style='font-weight:bold;background-color:#D5F5E3'>";
                 $html .="<th>Lease ID</th>";
                 $html .="<th>Lease Name</th>";
                 $html .="<th>Date From</th>";
                 $html .="<th>Date To</th>";
-                $html .="<th>Rent</th>";
-                $html .="<th>Advance</th>";
-                $html .="<th>Paid</th>";
-                $html .="<th>Payable</th>";
-                $html .="<th style='width:200px'>Pay</th>";
+                $html .="<th style='text-align:right'>Rent</th>";
+                $html .="<th style='text-align:right'>Advance</th>";
+                $html .="<th style='text-align:right'>Paid</th>";
+                $html .="<th style='width:200px;text-align:right'>Payable</th>";
+                $html .="<th style='width:200px;text-align:right'>Pay</th>";
             $html .="</thead>";
             $html .="<tbody>";
+            $totalPayable = 0;
+            $totalAmount = 0;
+            $totalAdvance = 0;
+            $totalPaid = 0;
             foreach($response as $key => $val):
-                $html .="<tr>";
+                $amount = ($val->AMOUNT) ? $val->AMOUNT : 0;
+                $advance = ($val->Advance) ? $val->Advance : 0;
+                $paid = ($val->Paid) ? $val->Paid : 0;
+                $payable = ($amount- ($advance+$paid));
+                $html .="<tr >";
                     $html .="<td>".$val->ID."</td>";
                     $html .="<td>".$val->LEASE_NAME."</td>";
                     $html .="<td>".$val->DATE_FROM."</td>";
                     $html .="<td>".$val->DATE_TO."</td>";
-                    $html .="<td>".$val->AMOUNT."</td>";
-                    $html .="<td>".$val->Advance."</td>";
-                    $html .="<td></td>";
-                    $html .="<td></td>";
-                    $html .="<td><input type='text' name='pay_amount' class='form-control'></td>";
+                    $html .="<td style='text-align:right'>".$amount."</td>";
+                    $html .="<td style='text-align:right'>".$advance."</td>";
+                    $html .="<td style='text-align:right'>".$paid."</td>";                    
+                    $html .="<td style='text-align:right'><input type='text' name='payable' style='text-align:right' class='form-control payable' readonly value='".$payable."'></td>";
+                    $html .="<td><input type='text' name='pay_amount'  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  class='form-control pay' style='text-align:right'></td>";
                 $html .="</tr>";
+                $totalPayable += $payable;
+                $totalAmount += $amount;
+                $totalAdvance += $advance;
+                $totalPaid += $paid;
             endforeach;
+            $html .="<tr style='font-weight:bold;background-color:#D5F5E3'>
+                <td colspan='4' style='text-align:right;font-weight:bold'>TOTAL</td>
+                <td style='text-align:right;font-weight:bold'>".$totalAmount."</td>
+                <td style='text-align:right;font-weight:bold'>".$totalAdvance."</td>
+                <td style='text-align:right;font-weight:bold'>".$totalPaid."</td>
+                <td style='text-align:right;font-weight:bold'>".$totalPayable."</td>
+                <td id='pay_total'  style='text-align:right;font-weight:bold'></td>
+            </tr>";
+            $html .="<tr style='font-weight:bold'>
+                <td colspan='8' style='text-align:right;font-weight:bold'></td>
+                <td><input type='SUBMIT' value='SUBMIT'class='form-control btn btn-success submit_button' /></td>
+            </tr>";
             $html .="</tbody>";
             $html .="</table";
         $html .="</from";
@@ -342,6 +371,7 @@ class PayableController extends CI_Controller
     }
     public function getAdvanceAndPaymentInfoByLeaseId()
     {
+
         $postData = $this->input->post();
         $leaseID = $postData['LEASE_ID'];
         $leaseRentSlabs = $this->db->query("SELECT * 

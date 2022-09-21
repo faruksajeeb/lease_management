@@ -45,12 +45,13 @@
 						</div>
 					</div>
 					<div class="col-md-3">
-						<button class="btn btn-success">Full Paid</button>
+						<button class="btn btn-success full_paid" type="button">Full Paid</button>
+						<button class="btn btn-default reset" type="button">Reset</button>
 					</div>
 				</div>
 
 				<div class="row">
-					<div class="col-md-12 content_section"  style='padding-top:10px'>
+					<div class="col-md-12 content_section" style='padding-top:10px'>
 
 					</div>
 				</div>
@@ -68,6 +69,56 @@
 	</div>
 	<script type="text/javascript">
 		$(document).ready(function() {
+			
+			$('.full_paid').on('click', function() {
+				$('.payable').each(function() {
+					var payable = Number($(this).val());
+					var tr = $(this).parent().parent();
+					tr.find('.pay').val(payable);
+				});
+				totalPay();
+				
+			});
+			$(".reset").on('click',function() {
+				$('.pay').each(function() {
+					$(this).val("");
+				});
+				$('#pay_total').text(0);
+				$(".submit_button").prop("disabled", true);
+			});
+			$('.content_section').on('keyup', '.pay', function() {				
+                var tr = $(this).parent().parent();
+				var payable = Number(tr.find('.payable').val());
+				var pay = Number($(this).val());
+				totalPay();
+				if(pay>payable){
+					Swal.fire({
+						allowOutsideClick: false,
+						icon: 'warning',
+						title: 'Alert!',
+						text: "Pay must be less than or equal to payable.",
+					});
+					tr.find('.pay').css('border', '1px solid red').focus();
+					$(".submit_button").prop("disabled", true);
+				}else{
+					tr.find('.pay').css('border', '1px solid green');
+					$(".submit_button").prop("disabled", false);
+				}				
+            });
+			function totalPay(){
+				var totalPay =0;
+				var pay;
+				$('.pay').each(function() {
+					pay = Number($(this).val());
+					totalPay += pay;
+				});
+				$('#pay_total').text(totalPay);
+				if(totalPay>0){
+					$(".submit_button").prop("disabled", false);
+				}else{
+					$(".submit_button").prop("disabled", true);
+				}				
+			}
 			$(".monthpicker").MonthPicker({
 				ShowIcon: false,
 				// Button: '<button>...</button>',
@@ -92,6 +143,7 @@
 								// Remove options 
 								// $('#LEASE_ID').find('option').not(':first').remove();
 								$('.content_section').html(response);
+								$(".submit_button").prop("disabled", true);
 							}
 						});
 					}
@@ -116,44 +168,6 @@
 							$('.content_section').html(response);
 						}
 					});
-				}
-			});
-			$('#AMOUNT').on('keyup', function() {
-				$("#submit_button").prop("disabled", false);
-				var VendorId = $('#VENDOR_ID').val();
-				var Amount = $(this).val();
-				var LeaseId = $('#LEASE_ID').val();
-				if (!VendorId || !LeaseId) {
-					Swal.fire('ERROR', 'Please select vendor & lease first then enter amount.', 'warning');
-					return false;
-				}
-				if (Amount) {
-					$.ajax({
-						url: '<?php echo $url_prefix; ?>PayableController/getOutstanding',
-						method: 'post',
-						data: {
-							'<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>',
-							amount: Amount,
-							vendor_id: VendorId,
-							lease_id: LeaseId
-						},
-						dataType: 'text',
-						success: function(response) {
-							if (Number(Amount) > Number(response)) {
-								$("#submit_button").prop("disabled", true);
-								Swal.fire(
-									'Forbidden!',
-									'Amount shoud be less than or equal to outstanding balance (' + response + ')! ',
-									'warning'
-								)
-								//alert('Amount shoud be less than outstanding!');
-							} else {
-								$("#submit_button").prop("disabled", false);
-							}
-						}
-					})
-				} else {
-					alert('Please enter number.');
 				}
 			});
 
