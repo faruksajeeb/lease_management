@@ -1,0 +1,4 @@
+Process: Login_success%3A+admin%40dhakabank.com.bd, User ID: 1, Session ID: , Time: 2022-09-12 01:05:38
+Process: Login_success%3A+admin%40dhakabank.com.bd, User ID: 1, Session ID: , Time: 2022-09-12 02:47:49
+Process: Login_success%3A+admin%40dhakabank.com.bd, User ID: 1, Session ID: , Time: 2022-09-12 04:05:33
+Process: Viewed_accounts_journal, User ID: 1, Session ID: , Time: 2022-09-12 07:13:19

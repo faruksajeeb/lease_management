@@ -1,0 +1,1917 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><style>@charset"UTF-8";details:not([open])>*:not(summary){display:none;}details>summary{display:block;}details>summary::before{content:"►";padding-right:0.3rem;font-size:0.6rem;cursor:default;}details[open]>summary::before{content:"▼";}</style>
+    <meta charset="utf-8">
+  <link rel="dns-prefetch" href="https://assets-cdn.github.com/">
+  <link rel="dns-prefetch" href="https://avatars0.githubusercontent.com/">
+  <link rel="dns-prefetch" href="https://avatars1.githubusercontent.com/">
+  <link rel="dns-prefetch" href="https://avatars2.githubusercontent.com/">
+  <link rel="dns-prefetch" href="https://avatars3.githubusercontent.com/">
+  <link rel="dns-prefetch" href="https://github-cloud.s3.amazonaws.com/">
+  <link rel="dns-prefetch" href="https://user-images.githubusercontent.com/">
+
+
+
+  <link crossorigin="anonymous" media="all" integrity="sha512-eYhUAIv4O/68uoHkCtYXVTxc5Q92+NKMtOryYR5Svt7vDp34XkrggN5j4lrKyiB0B2HUyrAYvAb3tlhmFGhivg==" rel="stylesheet" href="FeatherLight%20Documentation_files/frameworks-592c4aa40e940d1b0607a3cf272916ff.css">
+  <link crossorigin="anonymous" media="all" integrity="sha512-tAb2Jg5owcau6P+YFTlebsFvybAeFaii7FoIIuYEtgu+esY8+SX6Xhyw3fXb+f9QB6wwivUzgoXXwO8ZteApKA==" rel="stylesheet" href="FeatherLight%20Documentation_files/github-fdbbae74da4136fd4258a92eb943be60.css">
+  
+  
+  <link crossorigin="anonymous" media="all" integrity="sha512-d/Z8qkPIypOBvoV6s1ReDDzT0gEGP9MX7VaLPp0MbdP6ev5P0JREdfzCsgvkd70vyrJZW9L5rO+xU/3qDHjD7A==" rel="stylesheet" href="FeatherLight%20Documentation_files/site-348211d27070b0d7bb5d31b1ac3d265b.css">
+  
+
+  <meta name="viewport" content="width=device-width">
+  
+  <title>GitHub - noelboss/featherlight: Featherlight is a very 
+lightweight jQuery lightbox plugin. It's simple yet flexible and easy to
+ use. Featherlight has minimal css and uses no inline styles, everything
+ is name-spaced, it's completely customizable via config object and 
+offers image, ajax and iframe support out of the box. Featherlights 
+small footprint weights about 4kB – in total.</title>
+    <meta name="description" content="GitHub is where people build software. More than 27 million people use GitHub to discover, fork, and contribute to over 80 million projects.">
+  <link rel="search" type="application/opensearchdescription+xml" href="https://github.com/opensearch.xml" title="GitHub">
+  <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+  <meta property="fb:app_id" content="1401488693436528">
+
+    
+    <meta property="og:image" content="https://avatars0.githubusercontent.com/u/114080?s=400&amp;v=4"><meta property="og:site_name" content="GitHub"><meta property="og:type" content="object"><meta property="og:title" content="noelboss/featherlight"><meta property="og:url" content="https://github.com/noelboss/featherlight"><meta property="og:description" content="featherlight - Featherlight is a very lightweight jQuery lightbox plugin. It&amp;#39;s simple yet flexible and easy to use. Featherlight has minimal css and uses no inline styles, everything is name-sp...">
+
+  <link rel="assets" href="https://assets-cdn.github.com/">
+  
+  <meta name="pjax-timeout" content="1000">
+  
+  <meta name="request-id" content="D1C2:7EC8:4033E0:63A38D:5AD7143B" data-pjax-transient="">
+
+
+  
+
+  <meta name="selected-link" value="repo_source" data-pjax-transient="">
+
+    <meta name="google-site-verification" content="KT5gs8h0wvaagLKAVWq8bbeNwnZZK1r1XQysX3xurLU">
+  <meta name="google-site-verification" content="ZzhVyEFwb7w3e0-uOTltm8Jsck2F5StVihD0exw2fsA">
+  <meta name="google-site-verification" content="GXs5KoUUkNCoaAZn7wPN-t01Pywp9M3sEjnt_3_ZWPc">
+    <meta name="google-analytics" content="UA-3769691-2">
+
+<meta name="octolytics-host" content="collector.githubapp.com"><meta name="octolytics-app-id" content="github"><meta name="octolytics-event-url" content="https://collector.githubapp.com/github-external/browser_event"><meta name="octolytics-dimension-request_id" content="D1C2:7EC8:4033E0:63A38D:5AD7143B"><meta name="octolytics-dimension-region_edge" content="sea"><meta name="octolytics-dimension-region_render" content="iad">
+<meta name="analytics-location" content="/&lt;user-name&gt;/&lt;repo-name&gt;" data-pjax-transient="true">
+
+
+
+
+  <meta class="js-ga-set" name="dimension1" content="Logged Out">
+
+
+  
+
+      <meta name="hostname" content="github.com">
+    <meta name="user-login" content="">
+
+      <meta name="expected-hostname" content="github.com">
+    <meta name="js-proxy-site-detection-payload" content="OGE1Mzg4ZjA2MjdkYjFjNDI5YzBhNGU1NTAwMjM5MmU0ODJjNzIyZTFmYjdjNDJkZDAzNjIxZmI3OTdjOTkwNXx7InJlbW90ZV9hZGRyZXNzIjoiMTAzLjI0MC4yNTAuMTE0IiwicmVxdWVzdF9pZCI6IkQxQzI6N0VDODo0MDMzRTA6NjNBMzhEOjVBRDcxNDNCIiwidGltZXN0YW1wIjoxNTI0MDQ0ODY3LCJob3N0IjoiZ2l0aHViLmNvbSJ9">
+
+    <meta name="enabled-features" content="UNIVERSE_BANNER,FREE_TRIALS,MARKETPLACE_INSIGHTS,MARKETPLACE_SELF_SERVE,MARKETPLACE_INSIGHTS_CONVERSION_PERCENTAGES">
+
+  <meta name="html-safe-nonce" content="8cfdf14d5994d131acde301a13921773d79e81fa">
+
+  <meta http-equiv="x-pjax-version" content="2d80109c0c2b8cc548d68aa995e3239a">
+  
+
+      <link href="https://github.com/noelboss/featherlight/commits/master.atom" rel="alternate" title="Recent Commits to featherlight:master" type="application/atom+xml">
+
+  <meta name="description" content="featherlight - Featherlight is a very lightweight jQuery lightbox plugin. It's simple yet flexible and easy to use. Featherlight has minimal css and uses no inline styles, everything is name-spaced, it's completely customizable via config object and offers image, ajax and iframe support out of the box. Featherlights small footprint weights about 4kB – in total.">
+  <meta name="go-import" content="github.com/noelboss/featherlight git https://github.com/noelboss/featherlight.git">
+
+  <meta name="octolytics-dimension-user_id" content="114080"><meta name="octolytics-dimension-user_login" content="noelboss"><meta name="octolytics-dimension-repository_id" content="13804937"><meta name="octolytics-dimension-repository_nwo" content="noelboss/featherlight"><meta name="octolytics-dimension-repository_public" content="true"><meta name="octolytics-dimension-repository_is_fork" content="false"><meta name="octolytics-dimension-repository_network_root_id" content="13804937"><meta name="octolytics-dimension-repository_network_root_nwo" content="noelboss/featherlight"><meta name="octolytics-dimension-repository_explore_github_marketplace_ci_cta_shown" content="false">
+
+
+    <link rel="canonical" href="https://github.com/noelboss/featherlight" data-pjax-transient="">
+
+
+  <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
+
+  <meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
+
+  <link rel="mask-icon" href="https://assets-cdn.github.com/pinned-octocat.svg" color="#000000">
+  <link rel="icon" type="image/x-icon" class="js-site-favicon" href="https://assets-cdn.github.com/favicon.ico">
+
+<meta name="theme-color" content="#1e2327">
+
+
+
+<link rel="manifest" href="https://github.com/manifest.json" crossorigin="use-credentials">
+
+  </head>
+
+  <body class="logged-out env-production">
+    
+
+  <div id="dic_bubble" class="selection_bubble fontSize13 noSelect" style="z-index: 9999; border: 1px solid rgb(74, 174, 222); visibility: hidden;"></div><div class="position-relative js-header-wrapper ">
+    <a href="#start-of-content" tabindex="1" class="px-2 py-4 bg-blue text-white show-on-focus js-skip-to-content">Skip to content</a>
+    <div id="js-pjax-loader-bar" class="pjax-loader-bar"><div class="progress"></div></div>
+
+    
+    
+    
+
+
+
+        <header class="Header header-logged-out  position-relative f4 py-3" role="banner">
+  <div class="container-lg d-flex px-3">
+    <div class="d-flex flex-justify-between flex-items-center">
+      <a class="header-logo-invertocat my-0" href="https://github.com/" aria-label="Homepage" data-ga-click="(Logged out) Header, go to homepage, icon:logo-wordmark">
+        <svg height="32" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+      </a>
+
+    </div>
+
+    <div class="HeaderMenu HeaderMenu--bright d-flex flex-justify-between flex-auto">
+        <nav class="mt-0">
+          <ul class="d-flex list-style-none">
+              <li class="ml-2">
+                <a class="js-selected-navigation-item HeaderNavlink px-0 py-2 m-0" data-ga-click="Header, click, Nav menu - item:features" data-selected-links="/features /features/project-management /features/code-review /features/project-management /features/integrations /features" href="https://github.com/features">
+                  Features
+</a>              </li>
+              <li class="ml-4">
+                <a class="js-selected-navigation-item HeaderNavlink px-0 py-2 m-0" data-ga-click="Header, click, Nav menu - item:business" data-selected-links="/business /business/security /business/customers /business" href="https://github.com/business">
+                  Business
+</a>              </li>
+
+              <li class="ml-4">
+                <a class="js-selected-navigation-item HeaderNavlink px-0 py-2 m-0" data-ga-click="Header, click, Nav menu - item:explore" data-selected-links="/explore /trending /trending/developers /integrations /integrations/feature/code /integrations/feature/collaborate /integrations/feature/ship showcases showcases_search showcases_landing /explore" href="https://github.com/explore">
+                  Explore
+</a>              </li>
+
+              <li class="ml-4">
+                    <a class="js-selected-navigation-item HeaderNavlink px-0 py-2 m-0" data-ga-click="Header, click, Nav menu - item:marketplace" data-selected-links=" /marketplace" href="https://github.com/marketplace">
+                      Marketplace
+</a>              </li>
+              <li class="ml-4">
+                <a class="js-selected-navigation-item HeaderNavlink px-0 py-2 m-0" data-ga-click="Header, click, Nav menu - item:pricing" data-selected-links="/pricing /pricing/developer /pricing/team /pricing/business-hosted /pricing/business-enterprise /pricing" href="https://github.com/pricing">
+                  Pricing
+</a>              </li>
+          </ul>
+        </nav>
+
+      <div class="d-flex">
+          <div class="d-lg-flex flex-items-center mr-3">
+            <div class="header-search scoped-search site-scoped-search js-site-search" role="search">
+  <!-- '"` --><!-- </textarea></xmp> --><form class="js-site-search-form" data-scoped-search-url="/noelboss/featherlight/search" data-unscoped-search-url="/search" action="/noelboss/featherlight/search" accept-charset="UTF-8" method="get"><input name="utf8" value="✓" type="hidden">
+    <label class="form-control header-search-wrapper  js-chromeless-input-container">
+          <a class="header-search-scope no-underline" href="https://github.com/noelboss/featherlight">This repository</a>
+      <input class="form-control header-search-input  js-site-search-focus js-site-search-field is-clearable" data-hotkey="s,/" name="q" placeholder="Search" aria-label="Search this repository" data-unscoped-placeholder="Search GitHub" data-scoped-placeholder="Search" autocapitalize="off" type="text">
+        <input class="js-site-search-type-field" name="type" type="hidden">
+    </label>
+</form></div>
+
+          </div>
+
+        <span class="d-inline-block">
+            <div class="HeaderNavlink px-0 py-2 m-0">
+              <a class="text-bold text-white no-underline" href="https://github.com/login?return_to=%2Fnoelboss%2Ffeatherlight" data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in">Sign in</a>
+                <span class="text-gray">or</span>
+                <a class="text-bold text-white no-underline" href="https://github.com/join?source=header-repo" data-ga-click="(Logged out) Header, clicked Sign up, text:sign-up">Sign up</a>
+            </div>
+        </span>
+      </div>
+    </div>
+  </div>
+</header>
+
+  </div>
+
+  <div id="start-of-content" class="show-on-focus"></div>
+
+    <div id="js-flash-container">
+</div>
+
+
+
+  <div role="main" class="application-main ">
+        <div itemscope="" itemtype="http://schema.org/SoftwareSourceCode" class="">
+    <div id="js-repo-pjax-container" data-pjax-container="">
+      
+
+
+
+
+
+  <div class="pagehead repohead instapaper_ignore readability-menu experiment-repo-nav  ">
+    <div class="repohead-details-container clearfix container">
+
+      <ul class="pagehead-actions">
+  <li>
+      <a href="https://github.com/login?return_to=%2Fnoelboss%2Ffeatherlight" class="btn btn-sm btn-with-count tooltipped tooltipped-n" aria-label="You must be signed in to watch a repository" rel="nofollow">
+    <svg class="octicon octicon-eye" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8.06 2C3 2 0 8 0 8s3 6 8.06 6C13 14 16 8 16 8s-3-6-7.94-6zM8 12c-2.2 0-4-1.78-4-4 0-2.2 1.8-4 4-4 2.22 0 4 1.8 4 4 0 2.22-1.78 4-4 4zm2-4c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"></path></svg>
+    Watch
+  </a>
+  <a class="social-count" href="https://github.com/noelboss/featherlight/watchers" aria-label="88 users are watching this repository">
+    88
+  </a>
+
+  </li>
+
+  <li>
+      <a href="https://github.com/login?return_to=%2Fnoelboss%2Ffeatherlight" class="btn btn-sm btn-with-count tooltipped tooltipped-n" aria-label="You must be signed in to star a repository" rel="nofollow">
+    <svg class="octicon octicon-star" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74z"></path></svg>
+    Star
+  </a>
+
+    <a class="social-count js-social-count" href="https://github.com/noelboss/featherlight/stargazers" aria-label="1665 users starred this repository">
+      1,665
+    </a>
+
+  </li>
+
+  <li>
+      <a href="https://github.com/login?return_to=%2Fnoelboss%2Ffeatherlight" class="btn btn-sm btn-with-count tooltipped tooltipped-n" aria-label="You must be signed in to fork a repository" rel="nofollow">
+        <svg class="octicon octicon-repo-forked" viewBox="0 0 10 16" version="1.1" width="10" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1a1.993 1.993 0 0 0-1 3.72V6L5 8 3 6V4.72A1.993 1.993 0 0 0 2 1a1.993 1.993 0 0 0-1 3.72V6.5l3 3v1.78A1.993 1.993 0 0 0 5 15a1.993 1.993 0 0 0 1-3.72V9.5l3-3V4.72A1.993 1.993 0 0 0 8 1zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3 10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3-10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg>
+        Fork
+      </a>
+
+    <a href="https://github.com/noelboss/featherlight/network" class="social-count" aria-label="253 users forked this repository">
+      253
+    </a>
+  </li>
+</ul>
+
+      <h1 class="public ">
+  <svg class="octicon octicon-repo" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9H3V8h1v1zm0-3H3v1h1V6zm0-2H3v1h1V4zm0-2H3v1h1V2zm8-1v12c0 .55-.45 1-1 1H6v2l-1.5-1.5L3 16v-2H1c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h10c.55 0 1 .45 1 1zm-1 10H1v2h2v-1h3v1h5v-2zm0-10H2v9h9V1z"></path></svg>
+  <span class="author" itemprop="author"><a class="url fn" rel="author" href="https://github.com/noelboss">noelboss</a></span><!--
+--><span class="path-divider">/</span><!--
+--><strong itemprop="name"><a data-pjax="#js-repo-pjax-container" href="https://github.com/noelboss/featherlight">featherlight</a></strong>
+
+</h1>
+
+    </div>
+    
+<nav class="reponav js-repo-nav js-sidenav-container-pjax container" itemscope="" itemtype="http://schema.org/BreadcrumbList" role="navigation" data-pjax="#js-repo-pjax-container">
+
+  <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+    <a class="js-selected-navigation-item selected reponav-item" itemprop="url" data-hotkey="g c" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches repo_packages /noelboss/featherlight" href="https://github.com/noelboss/featherlight">
+      <svg class="octicon octicon-code" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z"></path></svg>
+      <span itemprop="name">Code</span>
+      <meta itemprop="position" content="1">
+</a>  </span>
+
+    <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+      <a itemprop="url" data-hotkey="g i" class="js-selected-navigation-item reponav-item" data-selected-links="repo_issues repo_labels repo_milestones /noelboss/featherlight/issues" href="https://github.com/noelboss/featherlight/issues">
+        <svg class="octicon octicon-issue-opened" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+        <span itemprop="name">Issues</span>
+        <span class="Counter">59</span>
+        <meta itemprop="position" content="2">
+</a>    </span>
+
+  <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+    <a data-hotkey="g p" itemprop="url" class="js-selected-navigation-item reponav-item" data-selected-links="repo_pulls checks /noelboss/featherlight/pulls" href="https://github.com/noelboss/featherlight/pulls">
+      <svg class="octicon octicon-git-pull-request" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M11 11.28V5c-.03-.78-.34-1.47-.94-2.06C9.46 2.35 8.78 2.03 8 2H7V0L4 3l3 3V4h1c.27.02.48.11.69.31.21.2.3.42.31.69v6.28A1.993 1.993 0 0 0 10 15a1.993 1.993 0 0 0 1-3.72zm-1 2.92c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zM4 3c0-1.11-.89-2-2-2a1.993 1.993 0 0 0-1 3.72v6.56A1.993 1.993 0 0 0 2 15a1.993 1.993 0 0 0 1-3.72V4.72c.59-.34 1-.98 1-1.72zm-.8 10c0 .66-.55 1.2-1.2 1.2-.65 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg>
+      <span itemprop="name">Pull requests</span>
+      <span class="Counter">6</span>
+      <meta itemprop="position" content="3">
+</a>  </span>
+
+    <a data-hotkey="g b" class="js-selected-navigation-item reponav-item" data-selected-links="repo_projects new_repo_project repo_project /noelboss/featherlight/projects" href="https://github.com/noelboss/featherlight/projects">
+      <svg class="octicon octicon-project" viewBox="0 0 15 16" version="1.1" width="15" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M10 12h3V2h-3v10zm-4-2h3V2H6v8zm-4 4h3V2H2v12zm-1 1h13V1H1v14zM14 0H1a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1z"></path></svg>
+      Projects
+      <span class="Counter">0</span>
+</a>
+    <a class="js-selected-navigation-item reponav-item" data-hotkey="g w" data-selected-links="repo_wiki /noelboss/featherlight/wiki" href="https://github.com/noelboss/featherlight/wiki">
+      <svg class="octicon octicon-book" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M3 5h4v1H3V5zm0 3h4V7H3v1zm0 2h4V9H3v1zm11-5h-4v1h4V5zm0 2h-4v1h4V7zm0 2h-4v1h4V9zm2-6v9c0 .55-.45 1-1 1H9.5l-1 1-1-1H2c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h5.5l1 1 1-1H15c.55 0 1 .45 1 1zm-8 .5L7.5 3H2v9h6V3.5zm7-.5H9.5l-.5.5V12h6V3z"></path></svg>
+      Wiki
+</a>
+
+  <a class="js-selected-navigation-item reponav-item" data-selected-links="repo_graphs repo_contributors dependency_graph pulse /noelboss/featherlight/pulse" href="https://github.com/noelboss/featherlight/pulse">
+    <svg class="octicon octicon-graph" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M16 14v1H0V0h1v14h15zM5 13H3V8h2v5zm4 0H7V3h2v10zm4 0h-2V6h2v7z"></path></svg>
+    Insights
+</a>
+
+</nav>
+
+
+  </div>
+
+<div class="container new-discussion-timeline experiment-repo-nav  ">
+  <div class="repository-content ">
+
+    
+      <div class="signup-prompt-bg rounded-1">
+      <div class="signup-prompt p-4 text-center mb-4 rounded-1">
+        <div class="position-relative">
+          <!-- '"` --><!-- </textarea></xmp> --><form action="/site/dismiss_signup_prompt" accept-charset="UTF-8" method="post"><input name="utf8" value="✓" type="hidden"><input name="authenticity_token" value="Nt7h3DLF96+wg4afvL5smkWiqnRzFSulrxRmFMk8qIEYFhrxxK6fcQBPolz/BU2uVrIFpqUBDgYzrLDIwWp9qA==" type="hidden">
+            <button type="submit" class="position-absolute top-0 right-0 btn-link link-gray" data-ga-click="(Logged out) Sign up prompt, clicked Dismiss, text:dismiss">
+              Dismiss
+            </button>
+</form>
+          <h3 class="pt-2">Join GitHub today</h3>
+          <p class="col-6 mx-auto">GitHub is home to over 20 million 
+developers working together to host and review code, manage projects, 
+and build software together.</p>
+          <p class="pb-2">
+            <a class="btn btn-blue" href="https://github.com/join?source=prompt-code" data-ga-click="(Logged out) Sign up prompt, clicked Sign up, text:sign-up">Sign up</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+  <div class="js-repo-meta-container">
+  <div class="repository-meta mb-0  js-repo-meta-edit js-details-container ">
+    <div class="repository-meta-content col-11 mb-1">
+          <span class="col-11 text-gray-dark mr-2" itemprop="about">
+            Featherlight is a very lightweight jQuery lightbox plugin. 
+It's simple yet flexible and easy to use. Featherlight has minimal css 
+and uses no inline styles, everything is name-spaced, it's completely 
+customizable via config object and offers image, ajax and iframe support
+ out of the box. Featherlights small footprint weights about 4kB – in 
+total.
+          </span>
+          <span itemprop="url"><a rel="nofollow" href="http://noelboss.github.io/featherlight/">http://noelboss.github.io/featherlight/</a></span>
+    </div>
+
+  </div>
+
+    <div class="mb-3 repository-topics-container js-repository-topics-container js-details-container">
+      <div id="topics-list-container" data-url="/noelboss/featherlight/settings/topics">
+          <div class="list-topics-container f6 mt-1">
+      <a href="https://github.com/topics/lightbox" class="topic-tag topic-tag-link" data-ga-click="Topic, repository page" data-octo-click="topic_click" data-octo-dimensions="topic:lightbox">
+        lightbox
+      </a>
+      <a href="https://github.com/topics/javascript" class="topic-tag topic-tag-link" data-ga-click="Topic, repository page" data-octo-click="topic_click" data-octo-dimensions="topic:javascript">
+        javascript
+      </a>
+      <a href="https://github.com/topics/ajax" class="topic-tag topic-tag-link" data-ga-click="Topic, repository page" data-octo-click="topic_click" data-octo-dimensions="topic:ajax">
+        ajax
+      </a>
+      <a href="https://github.com/topics/jquery" class="topic-tag topic-tag-link" data-ga-click="Topic, repository page" data-octo-click="topic_click" data-octo-dimensions="topic:jquery">
+        jquery
+      </a>
+      <a href="https://github.com/topics/modals" class="topic-tag topic-tag-link" data-ga-click="Topic, repository page" data-octo-click="topic_click" data-octo-dimensions="topic:modals">
+        modals
+      </a>
+      <a href="https://github.com/topics/minimal" class="topic-tag topic-tag-link" data-ga-click="Topic, repository page" data-octo-click="topic_click" data-octo-dimensions="topic:minimal">
+        minimal
+      </a>
+  </div>
+
+
+      </div>
+
+    </div>
+</div>
+
+
+
+  <div class="overall-summary overall-summary-bottomless">
+    <div class="stats-switcher-viewport js-stats-switcher-viewport">
+      <div class="stats-switcher-wrapper">
+      <ul class="numbers-summary">
+        <li class="commits">
+          <a data-pjax="" href="https://github.com/noelboss/featherlight/commits/master">
+              <svg class="octicon octicon-history" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 13H6V6h5v2H8v5zM7 1C4.81 1 2.87 2.02 1.59 3.59L0 2v4h4L2.5 4.5C3.55 3.17 5.17 2.3 7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-.34.03-.67.09-1H.08C.03 7.33 0 7.66 0 8c0 3.86 3.14 7 7 7s7-3.14 7-7-3.14-7-7-7z"></path></svg>
+              <span class="num text-emphasized">
+                633
+              </span>
+              commits
+          </a>
+        </li>
+        <li>
+          <a data-pjax="" href="https://github.com/noelboss/featherlight/branches">
+            <svg class="octicon octicon-git-branch" viewBox="0 0 10 16" version="1.1" width="10" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M10 5c0-1.11-.89-2-2-2a1.993 1.993 0 0 0-1 3.72v.3c-.02.52-.23.98-.63 1.38-.4.4-.86.61-1.38.63-.83.02-1.48.16-2 .45V4.72a1.993 1.993 0 0 0-1-3.72C.88 1 0 1.89 0 3a2 2 0 0 0 1 1.72v6.56c-.59.35-1 .99-1 1.72 0 1.11.89 2 2 2 1.11 0 2-.89 2-2 0-.53-.2-1-.53-1.36.09-.06.48-.41.59-.47.25-.11.56-.17.94-.17 1.05-.05 1.95-.45 2.75-1.25S8.95 7.77 9 6.73h-.02C9.59 6.37 10 5.73 10 5zM2 1.8c.66 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2C1.35 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2zm0 12.41c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm6-8c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg>
+            <span class="num text-emphasized">
+              4
+            </span>
+            branches
+          </a>
+        </li>
+
+        <li>
+          <a href="https://github.com/noelboss/featherlight/releases">
+            <svg class="octicon octicon-tag" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.73 1.73C7.26 1.26 6.62 1 5.96 1H3.5C2.13 1 1 2.13 1 3.5v2.47c0 .66.27 1.3.73 1.77l6.06 6.06c.39.39 1.02.39 1.41 0l4.59-4.59a.996.996 0 0 0 0-1.41L7.73 1.73zM2.38 7.09c-.31-.3-.47-.7-.47-1.13V3.5c0-.88.72-1.59 1.59-1.59h2.47c.42 0 .83.16 1.13.47l6.14 6.13-4.73 4.73-6.13-6.15zM3.01 3h2v2H3V3h.01z"></path></svg>
+            <span class="num text-emphasized">
+              63
+            </span>
+            releases
+          </a>
+        </li>
+
+        <li>
+            <a href="https://github.com/noelboss/featherlight/graphs/contributors">
+  <svg class="octicon octicon-organization" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M16 12.999c0 .439-.45 1-1 1H7.995c-.539 0-.994-.447-.995-.999H1c-.54 0-1-.561-1-1 0-2.634 3-4 3-4s.229-.409 0-1c-.841-.621-1.058-.59-1-3 .058-2.419 1.367-3 2.5-3s2.442.58 2.5 3c.058 2.41-.159 2.379-1 3-.229.59 0 1 0 1s1.549.711 2.42 2.088C9.196 9.369 10 8.999 10 8.999s.229-.409 0-1c-.841-.62-1.058-.59-1-3 .058-2.419 1.367-3 2.5-3s2.437.581 2.495 3c.059 2.41-.158 2.38-1 3-.229.59 0 1 0 1s3.005 1.366 3.005 4"></path></svg>
+    <span class="num text-emphasized">
+      35
+    </span>
+    contributors
+</a>
+
+        </li>
+          <li>
+            <a href="https://github.com/noelboss/featherlight/blob/master/LICENSE">
+              <svg class="octicon octicon-law" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7 4c-.83 0-1.5-.67-1.5-1.5S6.17 1 7 1s1.5.67 1.5 1.5S7.83 4 7 4zm7 6c0 1.11-.89 2-2 2h-1c-1.11 0-2-.89-2-2l2-4h-1c-.55 0-1-.45-1-1H8v8c.42 0 1 .45 1 1h1c.42 0 1 .45 1 1H3c0-.55.58-1 1-1h1c0-.55.58-1 1-1h.03L6 5H5c0 .55-.45 1-1 1H3l2 4c0 1.11-.89 2-2 2H2c-1.11 0-2-.89-2-2l2-4H1V5h3c0-.55.45-1 1-1h4c.55 0 1 .45 1 1h3v1h-1l2 4zM2.5 7L1 10h3L2.5 7zM13 10l-1.5-3-1.5 3h3z"></path></svg>
+                MIT
+            </a>
+          </li>
+      </ul>
+
+        <div class="repository-lang-stats">
+          <ol class="repository-lang-stats-numbers">
+            <li>
+                <a href="https://github.com/noelboss/featherlight/search?l=javascript" data-ga-click="Repository, language stats search click, location:repo overview">
+                  <span class="color-block language-color" style="background-color:#f1e05a;"></span>
+                  <span class="lang">JavaScript</span>
+                  <span class="percent">59.0%</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/noelboss/featherlight/search?l=html" data-ga-click="Repository, language stats search click, location:repo overview">
+                  <span class="color-block language-color" style="background-color:#e34c26;"></span>
+                  <span class="lang">HTML</span>
+                  <span class="percent">35.6%</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/noelboss/featherlight/search?l=css" data-ga-click="Repository, language stats search click, location:repo overview">
+                  <span class="color-block language-color" style="background-color:#563d7c;"></span>
+                  <span class="lang">CSS</span>
+                  <span class="percent">5.4%</span>
+                </a>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="repository-lang-stats-graph js-toggle-lang-stats" title="Click for language details" data-ga-click="Repository, language bar stats toggle, location:repo overview">
+      <span class="language-color" aria-label="JavaScript 59.0%" style="width:59.0%; background-color:#f1e05a;" itemprop="keywords">JavaScript</span>
+      <span class="language-color" aria-label="HTML 35.6%" style="width:35.6%; background-color:#e34c26;" itemprop="keywords">HTML</span>
+      <span class="language-color" aria-label="CSS 5.4%" style="width:5.4%; background-color:#563d7c;" itemprop="keywords">CSS</span>
+    </div>
+
+
+
+  <div class="file-navigation in-mid-page">
+
+    <details class="get-repo-select-menu js-get-repo-select-menu float-right position-relative dropdown-details details-reset">
+  <summary role="button" tabindex="0" aria-expanded="false" class="btn btn-sm btn-primary">
+    Clone or download
+    <span class="dropdown-caret"></span>
+  </summary>
+  <div class="position-relative">
+    <div class="get-repo-modal dropdown-menu dropdown-menu-sw pb-0 js-toggler-container  js-get-repo-modal">
+
+      <div class="get-repo-modal-options">
+          <div class="clone-options https-clone-options">
+
+            <h4 class="mb-1">
+              Clone with HTTPS
+              <a class="muted-link" href="https://help.github.com/articles/which-remote-url-should-i-use" target="_blank" title="Which remote URL should I use?">
+                <svg class="octicon octicon-question" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6 10h2v2H6v-2zm4-3.5C10 8.64 8 9 8 9H6c0-.55.45-1 1-1h.5c.28 0 .5-.22.5-.5v-1c0-.28-.22-.5-.5-.5h-1c-.28 0-.5.22-.5.5V7H4c0-1.5 1.5-3 3-3s3 1 3 2.5zM7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7z"></path></svg>
+              </a>
+            </h4>
+            <p class="mb-2 get-repo-decription-text">
+              Use Git or checkout with SVN using the web URL.
+            </p>
+
+            <div class="input-group">
+  <input class="form-control input-monospace input-sm js-url-field" value="https://github.com/noelboss/featherlight.git" aria-label="Clone this repository at https://github.com/noelboss/featherlight.git" readonly="readonly" type="text">
+  <div class="input-group-button">
+    <clipboard-copy role="button" tabindex="0" value="https://github.com/noelboss/featherlight.git" aria-label="Copy to clipboard" class="btn btn-sm tooltipped tooltipped-s" copied-label="Copied!">
+      <svg class="octicon octicon-clippy" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M2 13h4v1H2v-1zm5-6H2v1h5V7zm2 3V8l-3 3 3 3v-2h5v-2H9zM4.5 9H2v1h2.5V9zM2 12h2.5v-1H2v1zm9 1h1v2c-.02.28-.11.52-.3.7-.19.18-.42.28-.7.3H1c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h3c0-1.11.89-2 2-2 1.11 0 2 .89 2 2h3c.55 0 1 .45 1 1v5h-1V6H1v9h10v-2zM2 5h8c0-.55-.45-1-1-1H8c-.55 0-1-.45-1-1s-.45-1-1-1-1 .45-1 1-.45 1-1 1H3c-.55 0-1 .45-1 1z"></path></svg>
+    </clipboard-copy>
+  </div>
+</div>
+
+          </div>
+
+        <div class="mt-2">
+            <a href="https://desktop.github.com/" class="btn btn-outline get-repo-btn tooltipped tooltipped-s tooltipped-multiline js-get-repo" data-open-app="windows" aria-label="Clone noelboss/featherlight to your computer and use it in GitHub Desktop.">
+    Open in Desktop
+  </a>
+
+<a href="https://github.com/noelboss/featherlight/archive/master.zip" class="btn btn-outline get-repo-btn
+" rel="nofollow" data-ga-click="Repository, download zip, location:repo overview">
+  Download ZIP
+</a>
+
+        </div>
+      </div>
+
+      <div class="js-modal-download-mac py-2 px-3 d-none">
+        <h4 class="lh-condensed mb-3">Launching GitHub Desktop<span class="animated-ellipsis-container"><span class="animated-ellipsis">...</span></span></h4>
+        <p class="text-gray">If nothing happens, <a href="https://desktop.github.com/">download GitHub Desktop</a> and try again.</p>
+        <p><button class="btn-link js-get-repo-modal-download-back">Go back</button></p>
+      </div>
+
+      <div class="js-modal-download-windows py-2 px-3 d-none">
+        <h4 class="lh-condensed mb-3">Launching GitHub Desktop<span class="animated-ellipsis-container"><span class="animated-ellipsis">...</span></span></h4>
+        <p class="text-gray">If nothing happens, <a href="https://desktop.github.com/">download GitHub Desktop</a> and try again.</p>
+        <p><button class="btn-link js-get-repo-modal-download-back">Go back</button></p>
+      </div>
+
+      <div class="js-modal-download-xcode py-2 px-3 d-none">
+        <h4 class="lh-condensed mb-3">Launching Xcode<span class="animated-ellipsis-container"><span class="animated-ellipsis">...</span></span></h4>
+        <p class="text-gray">If nothing happens, <a href="https://developer.apple.com/xcode/">download Xcode</a> and try again.</p>
+        <p><button class="btn-link js-get-repo-modal-download-back">Go back</button></p>
+      </div>
+
+      <div class="js-modal-download-visual-studio py-2 px-3 d-none">
+        <h4 class="lh-condensed mb-3">Launching Visual Studio<span class="animated-ellipsis-container"><span class="animated-ellipsis">...</span></span></h4>
+        <p class="text-gray">If nothing happens, <a href="https://visualstudio.github.com/">download the GitHub extension for Visual Studio</a> and try again.</p>
+        <p><button class="btn-link js-get-repo-modal-download-back">Go back</button></p>
+      </div>
+
+    </div>
+  </div>
+</details>
+
+
+  <div class="BtnGroup float-right">
+
+    <a href="https://github.com/noelboss/featherlight/find/master" class="btn btn-sm empty-icon float-right BtnGroup-item" data-pjax="" data-hotkey="t" data-ga-click="Repository, find file, location:repo overview">
+      Find file
+    </a>
+  </div>
+
+  
+<div class="select-menu branch-select-menu js-menu-container js-select-menu float-left">
+  <button class=" btn btn-sm select-menu-button js-menu-target css-truncate" data-hotkey="w" type="button" aria-label="Switch branches or tags" aria-expanded="false" aria-haspopup="true">
+      <i>Branch:</i>
+      <span class="js-select-button css-truncate-target">master</span>
+  </button>
+
+  <div class="select-menu-modal-holder js-menu-content js-navigation-container" data-pjax="">
+
+    <div class="select-menu-modal">
+      <div class="select-menu-header">
+        <svg class="octicon octicon-x js-menu-close" role="img" aria-label="Close" viewBox="0 0 12 16" version="1.1" width="12" height="16"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+        <span class="select-menu-title">Switch branches/tags</span>
+      </div>
+
+      <div class="select-menu-filters">
+        <div class="select-menu-text-filter">
+          <input aria-label="Filter branches/tags" id="context-commitish-filter-field" class="form-control js-filterable-field js-navigation-enable" placeholder="Filter branches/tags" type="text">
+        </div>
+        <div class="select-menu-tabs">
+          <ul>
+            <li class="select-menu-tab">
+              <a href="#" data-tab-filter="branches" data-filter-placeholder="Filter branches/tags" class="js-select-menu-tab" role="tab">Branches</a>
+            </li>
+            <li class="select-menu-tab">
+              <a href="#" data-tab-filter="tags" data-filter-placeholder="Find a tag…" class="js-select-menu-tab" role="tab">Tags</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket" data-tab-filter="branches" role="menu">
+
+        <div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
+
+
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/accessibility" data-name="accessibility" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target js-select-menu-filter-text">
+                accessibility
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/focus" data-name="focus" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target js-select-menu-filter-text">
+                focus
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/gh-pages" data-name="gh-pages" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target js-select-menu-filter-text">
+                gh-pages
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open selected" href="https://github.com/noelboss/featherlight/tree/master" data-name="master" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target js-select-menu-filter-text">
+                master
+              </span>
+            </a>
+        </div>
+
+          <div class="select-menu-no-results">Nothing to show</div>
+      </div>
+
+      <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket" data-tab-filter="tags">
+        <div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
+
+
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.7.13" data-name="1.7.13" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.7.13">
+                1.7.13
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.7.12" data-name="1.7.12" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.7.12">
+                1.7.12
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.7.11" data-name="1.7.11" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.7.11">
+                1.7.11
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.7.10" data-name="1.7.10" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.7.10">
+                1.7.10
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.7.9" data-name="1.7.9" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.7.9">
+                1.7.9
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.7.8" data-name="1.7.8" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.7.8">
+                1.7.8
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.7.7" data-name="1.7.7" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.7.7">
+                1.7.7
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.7.6" data-name="1.7.6" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.7.6">
+                1.7.6
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.7.5" data-name="1.7.5" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.7.5">
+                1.7.5
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.7.4" data-name="1.7.4" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.7.4">
+                1.7.4
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.7.3" data-name="1.7.3" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.7.3">
+                1.7.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.7.2" data-name="1.7.2" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.7.2">
+                1.7.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.7.1" data-name="1.7.1" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.7.1">
+                1.7.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.7.0" data-name="1.7.0" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.7.0">
+                1.7.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.6.1" data-name="1.6.1" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.6.1">
+                1.6.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.6.0" data-name="1.6.0" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.6.0">
+                1.6.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.5.1" data-name="1.5.1" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.5.1">
+                1.5.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.5.0" data-name="1.5.0" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.5.0">
+                1.5.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.4.2" data-name="1.4.2" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.4.2">
+                1.4.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.4.1" data-name="1.4.1" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.4.1">
+                1.4.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.4.0" data-name="1.4.0" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.4.0">
+                1.4.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.3.5" data-name="1.3.5" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.3.5">
+                1.3.5
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.3.4" data-name="1.3.4" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.3.4">
+                1.3.4
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.3.3" data-name="1.3.3" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.3.3">
+                1.3.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.3.2" data-name="1.3.2" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.3.2">
+                1.3.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.3.1" data-name="1.3.1" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.3.1">
+                1.3.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.3.0" data-name="1.3.0" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.3.0">
+                1.3.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.2.3" data-name="1.2.3" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.2.3">
+                1.2.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.2.2" data-name="1.2.2" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.2.2">
+                1.2.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.2.1" data-name="1.2.1" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.2.1">
+                1.2.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.2.0" data-name="1.2.0" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.2.0">
+                1.2.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.1.0" data-name="1.1.0" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.1.0">
+                1.1.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.0.4" data-name="1.0.4" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.0.4">
+                1.0.4
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.0.3" data-name="1.0.3" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.0.3">
+                1.0.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.0.2" data-name="1.0.2" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.0.2">
+                1.0.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/1.0.1" data-name="1.0.1" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="1.0.1">
+                1.0.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.4.10" data-name="0.4.10" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.4.10">
+                0.4.10
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.4.9" data-name="0.4.9" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.4.9">
+                0.4.9
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.4.8" data-name="0.4.8" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.4.8">
+                0.4.8
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.4.7" data-name="0.4.7" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.4.7">
+                0.4.7
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.4.6" data-name="0.4.6" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.4.6">
+                0.4.6
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.4.5" data-name="0.4.5" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.4.5">
+                0.4.5
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.4.4" data-name="0.4.4" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.4.4">
+                0.4.4
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.4.3" data-name="0.4.3" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.4.3">
+                0.4.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.4.2" data-name="0.4.2" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.4.2">
+                0.4.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.4.1" data-name="0.4.1" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.4.1">
+                0.4.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.4.0" data-name="0.4.0" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.4.0">
+                0.4.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.3.1" data-name="0.3.1" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.3.1">
+                0.3.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.3.0" data-name="0.3.0" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.3.0">
+                0.3.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.2.2" data-name="0.2.2" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.2.2">
+                0.2.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.2.1" data-name="0.2.1" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.2.1">
+                0.2.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.2.0" data-name="0.2.0" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.2.0">
+                0.2.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.1.13" data-name="0.1.13" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.1.13">
+                0.1.13
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.1.12" data-name="0.1.12" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.1.12">
+                0.1.12
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.1.11" data-name="0.1.11" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.1.11">
+                0.1.11
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.1.10" data-name="0.1.10" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.1.10">
+                0.1.10
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.1.9" data-name="0.1.9" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.1.9">
+                0.1.9
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.1.8" data-name="0.1.8" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.1.8">
+                0.1.8
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.1.7" data-name="0.1.7" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.1.7">
+                0.1.7
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.1.6" data-name="0.1.6" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.1.6">
+                0.1.6
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.1.5" data-name="0.1.5" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.1.5">
+                0.1.5
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.1.4" data-name="0.1.4" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.1.4">
+                0.1.4
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/noelboss/featherlight/tree/0.1.3" data-name="0.1.3" data-skip-pjax="true" rel="nofollow">
+              <svg class="octicon octicon-check select-menu-item-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target" title="0.1.3">
+                0.1.3
+              </span>
+            </a>
+        </div>
+
+        <div class="select-menu-no-results">Nothing to show</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+        <button type="button" class="btn btn-sm disabled tooltipped tooltipped-n new-pull-request-btn" aria-label="You must be signed in to create a pull request">
+          New pull request
+        </button>
+
+  <div class="breadcrumb">
+    
+  </div>
+</div>
+
+
+  
+
+
+  <div class="commit-tease js-details-container Details">
+    <span class="float-right">
+      Latest commit
+      <a class="commit-tease-sha" href="https://github.com/noelboss/featherlight/commit/23a0cbfb9b1f42c41d6fb0f13789f4faeeec65b0" data-pjax="">
+        23a0cbf
+      </a>
+      <span itemprop="dateModified"><relative-time title="Apr 1, 2018, 11:06 PM GMT+6" datetime="2018-04-01T17:06:03Z">17 days ago</relative-time></span>
+    </span>
+
+
+    <div class="d-flex no-wrap">
+      
+<div class="AvatarStack flex-self-start ">
+  <div class="AvatarStack-body" aria-label="marcandre">
+
+        <a aria-describedby="hovercard-aria-description" class="avatar" data-skip-pjax="true" data-hovercard-user-id="33770" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/marcandre">
+          <img alt="@marcandre" src="FeatherLight%20Documentation_files/33770.jpg" height="20" width="20">
+</a>  </div>
+</div>
+
+      <div class="flex-auto f6">
+        
+      <a href="https://github.com/noelboss/featherlight/commits?author=marcandre" class="commit-author tooltipped tooltipped-s user-mention" aria-label="View all commits by marcandre">marcandre</a>
+
+
+  
+
+
+          <a data-pjax="true" title="Release 1.7.13" class="message" href="https://github.com/noelboss/featherlight/commit/23a0cbfb9b1f42c41d6fb0f13789f4faeeec65b0">Release 1.7.13</a>
+
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="file-wrap">
+
+  <a class="d-none js-permalink-shortcut" data-hotkey="y" href="https://github.com/noelboss/featherlight/tree/23a0cbfb9b1f42c41d6fb0f13789f4faeeec65b0">Permalink</a>
+
+  <table class="files js-navigation-container js-active-navigation-container" data-pjax="">
+
+
+    <tbody>
+      <tr class="warning include-fragment-error">
+        <td class="icon"><svg class="octicon octicon-alert" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8.865 1.52c-.18-.31-.51-.5-.87-.5s-.69.19-.87.5L.275 13.5c-.18.31-.18.69 0 1 .19.31.52.5.87.5h13.7c.36 0 .69-.19.86-.5.17-.31.18-.69.01-1L8.865 1.52zM8.995 13h-2v-2h2v2zm0-3h-2V6h2v4z"></path></svg></td>
+        <td class="content" colspan="3">Failed to load latest commit information.</td>
+      </tr>
+
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg class="octicon octicon-file-directory" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M13 4H7V3c0-.66-.31-1-1-1H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1zM6 4H1V3h5v1z"></path></svg>
+            <img class="spinner" alt="" src="FeatherLight%20Documentation_files/octocat-spinner-32.gif" height="16" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a class="js-navigation-open" title=".github" id="01777e4a9846fea5f3fcc8fe40d44680-a9626e50572ffb4b1e1e358de2acdf195b4f8d89" href="https://github.com/noelboss/featherlight/tree/master/.github">.github</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a data-pjax="true" title="+ ISSUE_TEMPLATE.md [ci-skip]" class="message" href="https://github.com/noelboss/featherlight/commit/3413c1dfdbd65d8102f9b0060f3946c07236d0b6">+ ISSUE_TEMPLATE.md [ci-skip]</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago title="Mar 21, 2016, 6:37 PM GMT+6" datetime="2016-03-21T12:37:13Z">2 years ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg class="octicon octicon-file-directory" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M13 4H7V3c0-.66-.31-1-1-1H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1zM6 4H1V3h5v1z"></path></svg>
+            <img class="spinner" alt="" src="FeatherLight%20Documentation_files/octocat-spinner-32.gif" height="16" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a class="js-navigation-open" title="assets" id="32bb636196f91ed59d7a49190e26b42c-d0aaeb867fce7d14d4b54938080863dac42b5ff4" href="https://github.com/noelboss/featherlight/tree/master/assets">assets</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a data-pjax="true" title="Add detect swipe to gallery demo for touch devices [#289]" class="message" href="https://github.com/noelboss/featherlight/commit/cddcebe9aebf6e06bf54a4c971c618824691c831">Add detect swipe to gallery demo for touch devices [</a><a href="https://github.com/noelboss/featherlight/issues/289" class="issue-link js-issue-link" data-url="https://github.com/noelboss/featherlight/issues/289" data-id="211895330" data-error-text="Failed to load issue title" data-permission-text="Issue title is private">#289</a><a data-pjax="true" title="Add detect swipe to gallery demo for touch devices [#289]" class="message" href="https://github.com/noelboss/featherlight/commit/cddcebe9aebf6e06bf54a4c971c618824691c831">]</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago title="Mar 5, 2017, 5:20 AM GMT+6" datetime="2017-03-04T23:20:17Z">a year ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg class="octicon octicon-file-directory" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M13 4H7V3c0-.66-.31-1-1-1H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1zM6 4H1V3h5v1z"></path></svg>
+            <img class="spinner" alt="" src="FeatherLight%20Documentation_files/octocat-spinner-32.gif" height="16" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a class="js-navigation-open" title="release" id="123fead50246387983ee340507115ef4-13fdf2398c24152aceceec3f73770eb0629381a7" href="https://github.com/noelboss/featherlight/tree/master/release">release</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a data-pjax="true" title="Release 1.7.13" class="message" href="https://github.com/noelboss/featherlight/commit/23a0cbfb9b1f42c41d6fb0f13789f4faeeec65b0">Release 1.7.13</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago title="Apr 1, 2018, 11:06 PM GMT+6" datetime="2018-04-01T17:06:03Z">17 days ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg class="octicon octicon-file-directory" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M13 4H7V3c0-.66-.31-1-1-1H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1zM6 4H1V3h5v1z"></path></svg>
+            <img class="spinner" alt="" src="FeatherLight%20Documentation_files/octocat-spinner-32.gif" height="16" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a class="js-navigation-open" title="src" id="25d902c24283ab8cfbac54dfa101ad31-3313f2093ff896357785bb25eeab50b512eef2e5" href="https://github.com/noelboss/featherlight/tree/master/src">src</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a data-pjax="true" title="Release 1.7.13" class="message" href="https://github.com/noelboss/featherlight/commit/23a0cbfb9b1f42c41d6fb0f13789f4faeeec65b0">Release 1.7.13</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago title="Apr 1, 2018, 11:06 PM GMT+6" datetime="2018-04-01T17:06:03Z">17 days ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg class="octicon octicon-file-directory" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M13 4H7V3c0-.66-.31-1-1-1H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1zM6 4H1V3h5v1z"></path></svg>
+            <img class="spinner" alt="" src="FeatherLight%20Documentation_files/octocat-spinner-32.gif" height="16" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a class="js-navigation-open" title="test" id="098f6bcd4621d373cade4e832627b4f6-a92f7b1c77ee562cca31a86300751ca55469287c" href="https://github.com/noelboss/featherlight/tree/master/test">test</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a data-pjax="true" title="Fix auto-bind &amp; filters [#235]" class="message" href="https://github.com/noelboss/featherlight/commit/1c265c4cf1524a664900318648481c289d5aada4">Fix auto-bind &amp; filters [</a><a class="issue-link js-issue-link" data-error-text="Failed to load issue title" data-id="167099839" data-permission-text="Issue title is private" data-url="https://github.com/noelboss/featherlight/issues/235" href="https://github.com/noelboss/featherlight/issues/235">#235</a><a data-pjax="true" title="Fix auto-bind &amp; filters [#235]" class="message" href="https://github.com/noelboss/featherlight/commit/1c265c4cf1524a664900318648481c289d5aada4">]</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago title="Apr 1, 2018, 11:05 PM GMT+6" datetime="2018-04-01T17:05:26Z">17 days ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg class="octicon octicon-file" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img class="spinner" alt="" src="FeatherLight%20Documentation_files/octocat-spinner-32.gif" height="16" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a class="js-navigation-open" title=".bowerrc" id="adba2f4daaaceb7e9889870260a0012e-44491d3df5f79ed479feb1e22db967bd5e44f8f2" href="https://github.com/noelboss/featherlight/blob/master/.bowerrc">.bowerrc</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a data-pjax="true" title="+ test" class="message" href="https://github.com/noelboss/featherlight/commit/c260fed69581eb226a7e7a50088b052fd471a634">+ test</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago title="Mar 29, 2014, 4:49 AM GMT+6" datetime="2014-03-28T22:49:27Z">4 years ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg class="octicon octicon-file" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img class="spinner" alt="" src="FeatherLight%20Documentation_files/octocat-spinner-32.gif" height="16" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a class="js-navigation-open" title=".editorconfig" id="1e70daafb475c0ce3fef7d2728279182-dd9908cb51943c371eb6d524e5cd504886efca0d" href="https://github.com/noelboss/featherlight/blob/master/.editorconfig">.editorconfig</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a data-pjax="true" title="Add .editorconfig" class="message" href="https://github.com/noelboss/featherlight/commit/5094b29cba162b27bb71c745a00563547ea2d779">Add .editorconfig</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago title="Dec 23, 2016, 2:21 AM GMT+6" datetime="2016-12-22T20:21:11Z">a year ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg class="octicon octicon-file" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img class="spinner" alt="" src="FeatherLight%20Documentation_files/octocat-spinner-32.gif" height="16" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a class="js-navigation-open" title=".gitignore" id="a084b794bc0759e7a6b77810e01874f2-4d147673c5149d4a69270a0c4d8b0ef04a7bbc84" href="https://github.com/noelboss/featherlight/blob/master/.gitignore">.gitignore</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a data-pjax="true" title="Ignore yarn lock [ci-skip]" class="message" href="https://github.com/noelboss/featherlight/commit/bb3a4cbe07a1ca09bb38d87005f3e56a66bdf6ba">Ignore yarn lock [ci-skip]</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago title="Nov 23, 2016, 10:03 PM GMT+6" datetime="2016-11-23T16:03:21Z">a year ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg class="octicon octicon-file" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img class="spinner" alt="" src="FeatherLight%20Documentation_files/octocat-spinner-32.gif" height="16" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a class="js-navigation-open" title=".jshintrc" id="4d5aa81bf4f18104bb6ea53a8b5d1f43-1d35ce1633149b521f531af3e5759c0166998e93" href="https://github.com/noelboss/featherlight/blob/master/.jshintrc">.jshintrc</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a data-pjax="true" title="+ test" class="message" href="https://github.com/noelboss/featherlight/commit/c260fed69581eb226a7e7a50088b052fd471a634">+ test</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago title="Mar 29, 2014, 4:49 AM GMT+6" datetime="2014-03-28T22:49:27Z">4 years ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg class="octicon octicon-file" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img class="spinner" alt="" src="FeatherLight%20Documentation_files/octocat-spinner-32.gif" height="16" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a class="js-navigation-open" title=".travis.yml" id="354f30a63fb0907d4ad57269548329e3-60d68f23cd59b558d36489c90f12749c02440867" href="https://github.com/noelboss/featherlight/blob/master/.travis.yml">.travis.yml</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a data-pjax="true" title="Travis gets confused with the force option, or maybe there's a way to turn warning in errors?" class="message" href="https://github.com/noelboss/featherlight/commit/4e7ef12c2002ac1f69f155b753668227ac5f4bb3">Travis gets confused with the force option, or maybe there's a way to…</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago title="Jun 12, 2014, 10:29 PM GMT+6" datetime="2014-06-12T16:29:26Z">4 years ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg class="octicon octicon-file" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img class="spinner" alt="" src="FeatherLight%20Documentation_files/octocat-spinner-32.gif" height="16" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a class="js-navigation-open" title="CHANGELOG.md" id="4ac32a78649ca5bdd8e0ba38b7006a1e-3ce1a9cf53d6e72ee85806764bc9b286df178400" href="https://github.com/noelboss/featherlight/blob/master/CHANGELOG.md">CHANGELOG.md</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a data-pjax="true" title="Release Version 1.7.0" class="message" href="https://github.com/noelboss/featherlight/commit/0e70f2b90b2e0f1999a4c7ff22961cc0f118e69d">Release Version 1.7.0</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago title="Dec 23, 2016, 2:48 AM GMT+6" datetime="2016-12-22T20:48:51Z">a year ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg class="octicon octicon-file" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img class="spinner" alt="" src="FeatherLight%20Documentation_files/octocat-spinner-32.gif" height="16" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a class="js-navigation-open" title="Gruntfile.js" id="35b4a816e0441e6a375cd925af50752c-e41e2500789e7c0f772b5f8726531c1bae1d6824" href="https://github.com/noelboss/featherlight/blob/master/Gruntfile.js">Gruntfile.js</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a data-pjax="true" title="Fix build issue.
+Thanks to https://github.com/jshint/jshint/issues/2922#issuecomment-219263558" class="message" href="https://github.com/noelboss/featherlight/commit/9dbf4e8348b9ccf2a6e13da09828851c2402fd03">Fix build issue.</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago title="Jun 27, 2016, 10:27 PM GMT+6" datetime="2016-06-27T16:27:02Z">2 years ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg class="octicon octicon-file" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img class="spinner" alt="" src="FeatherLight%20Documentation_files/octocat-spinner-32.gif" height="16" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a class="js-navigation-open" title="LICENSE" id="9879d6db96fd29134fc802214163b95a-b4b5d5e0a521c1836b7af9d423df30e39707b4ac" itemprop="license" href="https://github.com/noelboss/featherlight/blob/master/LICENSE">LICENSE</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a data-pjax="true" title="Added Grunt
+
+- Featherlight checks for jQuery and throws an error if not loaded
+- Some jslint improvements
+– Moved minified files to release/folder
+- Using grunt" class="message" href="https://github.com/noelboss/featherlight/commit/55d4b0f480065b01947f2b94ef962525f8fd6673">Added Grunt</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago title="Jan 6, 2014, 8:55 PM GMT+6" datetime="2014-01-06T14:55:11Z">4 years ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg class="octicon octicon-file" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img class="spinner" alt="" src="FeatherLight%20Documentation_files/octocat-spinner-32.gif" height="16" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a class="js-navigation-open" title="README.md" id="04c6e90faac2675aa89e2176d2eec7d8-ddd211262eaf5b752f22d34029a4803956569f3a" href="https://github.com/noelboss/featherlight/blob/master/README.md">README.md</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a data-pjax="true" title="Release 1.7.13" class="message" href="https://github.com/noelboss/featherlight/commit/23a0cbfb9b1f42c41d6fb0f13789f4faeeec65b0">Release 1.7.13</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago title="Apr 1, 2018, 11:06 PM GMT+6" datetime="2018-04-01T17:06:03Z">17 days ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg class="octicon octicon-file" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img class="spinner" alt="" src="FeatherLight%20Documentation_files/octocat-spinner-32.gif" height="16" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a class="js-navigation-open" title="bower.json" id="0a08a7565aba4405282251491979bb6b-13f6f13fbbe5b47bab8a1d271f00e3076bc65847" href="https://github.com/noelboss/featherlight/blob/master/bower.json">bower.json</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a data-pjax="true" title="Release 1.7.13" class="message" href="https://github.com/noelboss/featherlight/commit/23a0cbfb9b1f42c41d6fb0f13789f4faeeec65b0">Release 1.7.13</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago title="Apr 1, 2018, 11:06 PM GMT+6" datetime="2018-04-01T17:06:03Z">17 days ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg class="octicon octicon-file" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img class="spinner" alt="" src="FeatherLight%20Documentation_files/octocat-spinner-32.gif" height="16" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a class="js-navigation-open" title="featherlight.jquery.json" id="95e85b50b4420d6047193303731d4423-d1ce78ecc473a7015a951c1f737cdafc6a579254" href="https://github.com/noelboss/featherlight/blob/master/featherlight.jquery.json">featherlight.jquery.json</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a data-pjax="true" title="Release 1.7.13" class="message" href="https://github.com/noelboss/featherlight/commit/23a0cbfb9b1f42c41d6fb0f13789f4faeeec65b0">Release 1.7.13</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago title="Apr 1, 2018, 11:06 PM GMT+6" datetime="2018-04-01T17:06:03Z">17 days ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg class="octicon octicon-file" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img class="spinner" alt="" src="FeatherLight%20Documentation_files/octocat-spinner-32.gif" height="16" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a class="js-navigation-open" title="gallery.html" id="3dfcaf688c54165082366bea949adfd2-2430217c5d84e04cff5eff05b591f10a3edaa022" href="https://github.com/noelboss/featherlight/blob/master/gallery.html">gallery.html</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a data-pjax="true" title="Release 1.7.13" class="message" href="https://github.com/noelboss/featherlight/commit/23a0cbfb9b1f42c41d6fb0f13789f4faeeec65b0">Release 1.7.13</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago title="Apr 1, 2018, 11:06 PM GMT+6" datetime="2018-04-01T17:06:03Z">17 days ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg class="octicon octicon-file" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img class="spinner" alt="" src="FeatherLight%20Documentation_files/octocat-spinner-32.gif" height="16" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a class="js-navigation-open" title="index.html" id="eacf331f0ffc35d4b482f1d15a887d3b-b6b13a74d504e66ad2ba0471163743e09c1ddcb2" href="https://github.com/noelboss/featherlight/blob/master/index.html">index.html</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a data-pjax="true" title="Release 1.7.13" class="message" href="https://github.com/noelboss/featherlight/commit/23a0cbfb9b1f42c41d6fb0f13789f4faeeec65b0">Release 1.7.13</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago title="Apr 1, 2018, 11:06 PM GMT+6" datetime="2018-04-01T17:06:03Z">17 days ago</time-ago></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <svg class="octicon octicon-file" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>
+            <img class="spinner" alt="" src="FeatherLight%20Documentation_files/octocat-spinner-32.gif" height="16" width="16">
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a class="js-navigation-open" title="package.json" id="b9cfc7f2cdf78a7f4b91a753d10865a2-d8e95b2c32583a1c31dc5141db1a3f5c2ae06b94" href="https://github.com/noelboss/featherlight/blob/master/package.json">package.json</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a data-pjax="true" title="Release 1.7.13" class="message" href="https://github.com/noelboss/featherlight/commit/23a0cbfb9b1f42c41d6fb0f13789f4faeeec65b0">Release 1.7.13</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time-ago title="Apr 1, 2018, 11:06 PM GMT+6" datetime="2018-04-01T17:06:03Z">17 days ago</time-ago></span>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+</div>
+
+
+
+  <div id="readme" class="readme boxed-group clearfix announce instapaper_body md">
+    <h3>
+      <svg class="octicon octicon-book" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M3 5h4v1H3V5zm0 3h4V7H3v1zm0 2h4V9H3v1zm11-5h-4v1h4V5zm0 2h-4v1h4V7zm0 2h-4v1h4V9zm2-6v9c0 .55-.45 1-1 1H9.5l-1 1-1-1H2c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h5.5l1 1 1-1H15c.55 0 1 .45 1 1zm-8 .5L7.5 3H2v9h6V3.5zm7-.5H9.5l-.5.5V12h6V3z"></path></svg>
+      README.md
+    </h3>
+
+      <article class="markdown-body entry-content" itemprop="text"><h2><a id="user-content-featherlight---ultra-slim-jquery-lightbox-" class="anchor" aria-hidden="true" href="#featherlight---ultra-slim-jquery-lightbox-"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Featherlight - ultra slim jQuery lightbox <a href="https://travis-ci.org/noelboss/featherlight" rel="nofollow"><img src="FeatherLight%20Documentation_files/68747470733a2f2f7472617669732d63692e6f72672f6e6f656c626f7373.svg" alt="Build Status" data-canonical-src="https://travis-ci.org/noelboss/featherlight.svg?branch=master" style="max-width:100%;"></a></h2>
+<p><strong>Featherlight is a very lightweight jQuery lightbox plugin. For more information and demos, visit the <a href="http://noelboss.github.io/featherlight/" rel="nofollow">official website</a>.</strong></p>
+<ul>
+<li>Simple yet flexible</li>
+<li>Image, Ajax, iFrame and custom content support</li>
+<li><a href="https://github.com/noelboss/featherlight/#featherlight-gallery">Gallery Extension</a></li>
+<li>Minimal CSS</li>
+<li>Name-spaced CSS and JavaScript</li>
+<li>Responsive</li>
+<li>Accessible</li>
+<li>Customizable via javascript or attributes</li>
+</ul>
+<h2><a id="user-content--download-current-release-1713" class="anchor" aria-hidden="true" href="#-download-current-release-1713"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a href="https://github.com/noelboss/featherlight/archive/1.7.13.zip">» Download Current Release 1.7.13</a></h2>
+<p>Here you'll find a <a href="https://github.com/noelboss/featherlight/blob/master/CHANGELOG.md">list of all the changes</a> and you can also download <a href="https://github.com/noelboss/featherlight/releases">old releases</a> or <a href="https://github.com/noelboss/featherlight/archive/master.zip">the master including all the latest  bling</a>.</p>
+<h1><a id="user-content-installation" class="anchor" aria-hidden="true" href="#installation"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation</h1>
+<p>All styling is done using CSS so you'll want to include the Featherlight CSS in your head.</p>
+<pre><code>&lt;link href="//cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.css" type="text/css" rel="stylesheet" /&gt;
+</code></pre>
+<p>Be aware that Featherlight uses very unspecific CSS selectors to help
+ you overwrite every aspect. This means in turn, that if you're not 
+following a modularized approach to write CSS (which you should! It's 
+terrific!) and have many global and specific definitions (read ID's and 
+such – which you shouldn't), these definitions can break the 
+Featherlight styling.</p>
+<p>Featherlight requires jQuery version 1.7.0 or higher (regular 
+version, not the slim one). It's recommended to include the javascript 
+at the bottom of the page before the closing <code>&lt;/body&gt;</code> tag.</p>
+<pre><code>&lt;script src="//code.jquery.com/jquery-latest.js"&gt;&lt;/script&gt;
+&lt;script src="//cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.js" type="text/javascript" charset="utf-8"&gt;&lt;/script&gt;
+</code></pre>
+<h1><a id="user-content-usage" class="anchor" aria-hidden="true" href="#usage"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Usage</h1>
+<p>By default, featherlight acts on all elements using the 
+'data-featherlight' attribute. An element with this attribute triggers 
+the lightbox. The value of the attribute acts as selector for an element
+ that's opened as lightbox.</p>
+<pre><code>&lt;a href="#" data-featherlight="#mylightbox"&gt;Open element in lightbox&lt;/a&gt;
+&lt;div id="mylightbox"&gt;This div will be opened in a lightbox&lt;/div&gt;
+</code></pre>
+<p>Featherlight is smart. 'data-featherlight' can also contain a link to an image, an ajax-url or even DOM code:</p>
+<pre><code>&lt;a href="#" data-featherlight="myimage.png"&gt;Open image in lightbox&lt;/a&gt;
+&lt;a href="#" data-featherlight="myhtml.html .selector"&gt;Open ajax content in lightbox&lt;/a&gt;
+&lt;a href="#" data-featherlight="&lt;p&gt;Fancy DOM Lightbox!&lt;/p&gt;"&gt;Open some DOM in lightbox&lt;/a&gt;
+</code></pre>
+<p>it also works with links using href and the "image" and "ajax" 
+keywords (this can also be manually set with the configuration options 
+like <code>{image: 'photo.jpg'}</code> or <code>{type: 'image'}</code>):</p>
+<pre><code>&lt;a href="myimage.png" data-featherlight="image"&gt;Open image in lightbox&lt;/a&gt;
+&lt;a href="myhtml.html .selector" data-featherlight="ajax"&gt;Open ajax content in lightbox&lt;/a&gt;
+&lt;a href="#" data-featherlight-ajax="myhtml.html .selector"&gt;Open ajax content in lightbox&lt;/a&gt;
+&lt;a href="#" data-featherlight="myhtml.html .selector" data-featherlight-type="ajax"&gt;Open ajax content in lightbox&lt;/a&gt;
+</code></pre>
+<p>By default, Featherlight initializes all elements matching <code>$.featherlight.autoBind</code> on document ready. If you want to prevent this, set <code>$.featherlight.autoBind</code> to <code>false</code> before the DOM is ready.</p>
+<h2><a id="user-content-bind-featherlight" class="anchor" aria-hidden="true" href="#bind-featherlight"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Bind Featherlight</h2>
+<p>You can bind the Featherlight events on any element using the following code:</p>
+<pre><code>$('.myElement').featherlight($content, configuration);
+</code></pre>
+<p>It will then look for the <code>targetAttr</code> (by default 
+"data-featherlight") on this element and use its value to find the 
+content that will be opened as lightbox when you click on the element.</p>
+<p><em><strong>$content</strong></em> – jQuery Object or String: You can manually pass a jQuery object or a string (see <a href="#content-filters">content filters</a>) to be opened in the lightbox. Optional</p>
+<p><em><strong>configuration</strong></em> – Object: Object to configure certain aspects of the plugin. See <a href="#configuration">Configuration</a>. Optional</p>
+<h2><a id="user-content-manual-calling-of-featherlight" class="anchor" aria-hidden="true" href="#manual-calling-of-featherlight"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Manual calling of Featherlight</h2>
+<p>In cases where you don't want an Element to act as Trigger you can 
+call Featherlight manually. You can use this for example in an ajax 
+callback to display the response data.</p>
+<pre><code>$.featherlight($content, configuration);
+</code></pre>
+<p><em><strong>$content</strong></em> – jQuery Object or String: You can manually pass a jQuery object or a string (see <a href="#content-filters">content filters</a>) to be opened in the lightbox. Optional</p>
+<p><em><strong>configuration</strong></em> – Object: Object to configure certain aspects of the plugin. See <a href="#configuration">Configuration</a>. Optional</p>
+<h1><a id="user-content-configuration" class="anchor" aria-hidden="true" href="#configuration"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuration</h1>
+<p>Featherlight comes with a bunch of configuration-options which make it very flexible.
+These options can be passed when calling <code>featherlight</code>.
+Alternatively, they can specified as attribute on the elements triggering the lightbox;
+for example, <code>&lt;a data-featherlight-close-on-esc="false" ...&gt;</code> has the same effect as
+passing <code>{closeOnEsc: false}</code>.
+You can also modify the <code>$.featherlight.defaults</code> directly which holds all the defaults:</p>
+<div class="highlight highlight-source-js"><pre><span class="pl-c"><span class="pl-c">/*</span> you can access and overwrite all defaults using $.featherlight.defaults <span class="pl-c">*/</span></span>
+defaults<span class="pl-k">:</span> {
+	namespace<span class="pl-k">:</span>      <span class="pl-s"><span class="pl-pds">'</span>featherlight<span class="pl-pds">'</span></span>,        <span class="pl-c"><span class="pl-c">/*</span> Name of the events and css class prefix <span class="pl-c">*/</span></span>
+	targetAttr<span class="pl-k">:</span>     <span class="pl-s"><span class="pl-pds">'</span>data-featherlight<span class="pl-pds">'</span></span>,   <span class="pl-c"><span class="pl-c">/*</span> Attribute of the triggered element that contains the selector to the lightbox content <span class="pl-c">*/</span></span>
+	variant<span class="pl-k">:</span>        <span class="pl-c1">null</span>,                  <span class="pl-c"><span class="pl-c">/*</span> Class that will be added to change look of the lightbox <span class="pl-c">*/</span></span>
+	resetCss<span class="pl-k">:</span>       <span class="pl-c1">false</span>,                 <span class="pl-c"><span class="pl-c">/*</span> Reset all css <span class="pl-c">*/</span></span>
+	background<span class="pl-k">:</span>     <span class="pl-c1">null</span>,                  <span class="pl-c"><span class="pl-c">/*</span> Custom DOM for the background, wrapper and the closebutton <span class="pl-c">*/</span></span>
+	openTrigger<span class="pl-k">:</span>    <span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>,               <span class="pl-c"><span class="pl-c">/*</span> Event that triggers the lightbox <span class="pl-c">*/</span></span>
+	closeTrigger<span class="pl-k">:</span>   <span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>,               <span class="pl-c"><span class="pl-c">/*</span> Event that triggers the closing of the lightbox <span class="pl-c">*/</span></span>
+	filter<span class="pl-k">:</span>         <span class="pl-c1">null</span>,                  <span class="pl-c"><span class="pl-c">/*</span> Selector to filter events. Think $(...).on('click', filter, eventHandler) <span class="pl-c">*/</span></span>
+	root<span class="pl-k">:</span>           <span class="pl-s"><span class="pl-pds">'</span>body<span class="pl-pds">'</span></span>,                <span class="pl-c"><span class="pl-c">/*</span> A selector specifying where to append featherlights <span class="pl-c">*/</span></span>
+	openSpeed<span class="pl-k">:</span>      <span class="pl-c1">250</span>,                   <span class="pl-c"><span class="pl-c">/*</span> Duration of opening animation <span class="pl-c">*/</span></span>
+	closeSpeed<span class="pl-k">:</span>     <span class="pl-c1">250</span>,                   <span class="pl-c"><span class="pl-c">/*</span> Duration of closing animation <span class="pl-c">*/</span></span>
+	closeOnClick<span class="pl-k">:</span>   <span class="pl-s"><span class="pl-pds">'</span>background<span class="pl-pds">'</span></span>,          <span class="pl-c"><span class="pl-c">/*</span> Close lightbox on click ('background', 'anywhere', or false) <span class="pl-c">*/</span></span>
+	closeOnEsc<span class="pl-k">:</span>     <span class="pl-c1">true</span>,                  <span class="pl-c"><span class="pl-c">/*</span> Close lightbox when pressing esc <span class="pl-c">*/</span></span>
+	closeIcon<span class="pl-k">:</span>      <span class="pl-s"><span class="pl-pds">'</span>&amp;#10005;<span class="pl-pds">'</span></span>,            <span class="pl-c"><span class="pl-c">/*</span> Close icon <span class="pl-c">*/</span></span>
+	loading<span class="pl-k">:</span>        <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,                    <span class="pl-c"><span class="pl-c">/*</span> Content to show while initial content is loading <span class="pl-c">*/</span></span>
+	persist<span class="pl-k">:</span>        <span class="pl-c1">false</span>,                 <span class="pl-c"><span class="pl-c">/*</span> If set, the content will persist and will be shown again when opened again. 'shared' is a special value when binding multiple elements for them to share the same content <span class="pl-c">*/</span></span>
+	otherClose<span class="pl-k">:</span>     <span class="pl-c1">null</span>,                  <span class="pl-c"><span class="pl-c">/*</span> Selector for alternate close buttons (e.g. "a.close") <span class="pl-c">*/</span></span>
+	beforeOpen<span class="pl-k">:</span>     <span class="pl-smi">$</span>.<span class="pl-smi">noop</span>,                <span class="pl-c"><span class="pl-c">/*</span> Called before open. can return false to prevent opening of lightbox. Gets event as parameter, this contains all data <span class="pl-c">*/</span></span>
+	beforeContent<span class="pl-k">:</span>  <span class="pl-smi">$</span>.<span class="pl-smi">noop</span>,                <span class="pl-c"><span class="pl-c">/*</span> Called when content is about to be presented. `this` is the featherlight instance. Gets event as parameter <span class="pl-c">*/</span></span>
+	beforeClose<span class="pl-k">:</span>    <span class="pl-smi">$</span>.<span class="pl-smi">noop</span>,                <span class="pl-c"><span class="pl-c">/*</span> Called before close. can return false to prevent opening of lightbox. `this` is the featherlight instance. Gets event as parameter  <span class="pl-c">*/</span></span>
+	afterOpen<span class="pl-k">:</span>      <span class="pl-smi">$</span>.<span class="pl-smi">noop</span>,                <span class="pl-c"><span class="pl-c">/*</span> Called after open. `this` is the featherlight instance. Gets event as parameter  <span class="pl-c">*/</span></span>
+	afterContent<span class="pl-k">:</span>   <span class="pl-smi">$</span>.<span class="pl-smi">noop</span>,                <span class="pl-c"><span class="pl-c">/*</span> Called after content is ready and has been set. Gets event as parameter, this contains all data <span class="pl-c">*/</span></span>
+	afterClose<span class="pl-k">:</span>     <span class="pl-smi">$</span>.<span class="pl-smi">noop</span>,                <span class="pl-c"><span class="pl-c">/*</span> Called after close. `this` is the featherlight instance. Gets event as parameter  <span class="pl-c">*/</span></span>
+	onKeyUp<span class="pl-k">:</span>        <span class="pl-smi">$</span>.<span class="pl-smi">noop</span>,                <span class="pl-c"><span class="pl-c">/*</span> Called on key up for the frontmost featherlight <span class="pl-c">*/</span></span>
+	onResize<span class="pl-k">:</span>       <span class="pl-smi">$</span>.<span class="pl-smi">noop</span>,                <span class="pl-c"><span class="pl-c">/*</span> Called after new content and when a window is resized <span class="pl-c">*/</span></span>
+	type<span class="pl-k">:</span>           <span class="pl-c1">null</span>,                  <span class="pl-c"><span class="pl-c">/*</span> Specify content type. If unset, it will check for the targetAttrs value. <span class="pl-c">*/</span></span>
+	contentFilters<span class="pl-k">:</span> [<span class="pl-s"><span class="pl-pds">'</span>jquery<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>image<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>html<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>ajax<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>] <span class="pl-c"><span class="pl-c">/*</span> List of content filters to use to determine the content <span class="pl-c">*/</span></span>
+	jquery<span class="pl-k">/</span>image<span class="pl-k">/</span>html<span class="pl-k">/</span>ajax<span class="pl-k">/</span>text<span class="pl-k">:</span> <span class="pl-c1">undefined</span> <span class="pl-c"><span class="pl-c">/*</span> Specify content type and data <span class="pl-c">*/</span></span>
+}</pre></div>
+<p>================================================</p>
+<pre><code>namespace – String:  'featherlight'
+</code></pre>
+<p>All functions bound to elements are namespaced. This is also used to 
+prefix all CSS classes for the background, the content-wrapper and the 
+close button.</p>
+<p>================================================</p>
+<pre><code>targetAttr – String:  'data-featherlight'
+</code></pre>
+<p>Attribute on the triggering element pointing to the target element or content that will be opened in the lightbox.</p>
+<p>================================================</p>
+<pre><code>variant – String:  null
+</code></pre>
+<p>Pass your own CSS class to adjust the styling of the lightbox according to your need.</p>
+<p>================================================</p>
+<pre><code>resetCss – Boolean: false
+</code></pre>
+<p>Set this to true to remove all default css and start from designing scratch.</p>
+<p>================================================</p>
+<pre><code>openTrigger &amp; closeTrigger – String:  'click'
+</code></pre>
+<p>Events that are used to open or close the lightbox. The close event 
+is bound to the close button and to the lightbox background (if 
+enabled).
+Has no effect if $.featherlight is called directly.</p>
+<p>================================================</p>
+<pre><code>filter - String: null
+</code></pre>
+<p>A selector to filter events, when calling <code>featherlight</code> on a jQuery set, in a similar fashion to <code>$(...).on('click', filter, eventHandler)</code>.</p>
+<p>Attributes both the selector and the filtered element are taken into account.</p>
+<p>In the following example, the first link will make an ajax request while the second will display the text "second".</p>
+<pre><code>&lt;div data-featherlight data-featherlight-filter="a"
+     data-featherlight-type="ajax"&gt;
+  &lt;a href="first"&gt;Hello&lt;/a&gt;
+  &lt;a href="second" data-featherlight-type="text"&gt;World&lt;/a&gt;
+&lt;/div&gt;
+</code></pre>
+<p>================================================</p>
+<pre><code>root - String: 'body'
+</code></pre>
+<p>This selector specified where the featherlight should be appended.</p>
+<p>================================================</p>
+<pre><code>openSpeed &amp; closeSpeed – Integer or String:  250
+</code></pre>
+<p>Defines the speed for the opening and close animations. Values allowed are <a href="http://api.jquery.com/animate/#duration" rel="nofollow">jQuery animation durations</a>.
+ Avoid the usage of 0 since this would cause a reversal of time and the 
+end of the world! (Okay, kidding, just the closing callback would not be
+ fired and unused ghost-DOM would linger around, but still.)</p>
+<p>================================================</p>
+<pre><code>closeOnClick – 'background', 'anywhere' or false
+</code></pre>
+<p>If set, the close event is also bound to the either the background only or anywhere</p>
+<p>================================================</p>
+<pre><code>closeOnEsc – Boolean: true
+</code></pre>
+<p>If true, the lightbox is closed when pressing the ESC key</p>
+<p>================================================</p>
+<pre><code>closeIcon – String: '&amp;#10005;';
+</code></pre>
+<p>Oh the naming...</p>
+<p>================================================</p>
+<pre><code>loading – String: '';
+</code></pre>
+<p>Shown initially while content loads. The lightbox also has a class 
+'.featherlight-loading' while content is loading. This makes it easy to 
+specify a "Loading..." message or a spinner.</p>
+<p>================================================</p>
+<pre><code>persist - Boolean or 'shared': false;
+</code></pre>
+<p>If set, the content will persist and will be shown again when opened again.
+In case where multiple buttons need to persist the same content, use the special value 'shared'.
+The content filter <code>jquery</code> (used for links like <code>.some-class</code> or <code>#some-id</code>) will clone the given content if and only if it is not persisted. Otherwise it will be moved into the lightbox.</p>
+<p>================================================</p>
+<pre><code>otherClose - String: null
+</code></pre>
+<p>While the close icon generated by featherlight will have class 
+'featherlight-close', you may specify alternate selector for other 
+buttons having the same effect in your dialog, for example 
+"a:contains('Cancel')".</p>
+<p>================================================</p>
+<pre><code>background – DOM String: null
+</code></pre>
+<p>You can provide the wrapping DOM. This is a bit tricky and just for 
+the advanced users. It's recommended to study the plugin code. But you 
+need to provide an element with a "{namespace}-inner" class: the content
+ of the lightbox will replace this element. It is recommended that 
+instead of providing this option you modify the lightbox on <code>beforeOpen</code> or <code>afterOpen</code>.</p>
+<p>================================================</p>
+<pre><code>beforeOpen, beforeClose – Function: null
+</code></pre>
+<p>Called before the open or close method is executed. This function can return false to prevent open or
+close method from execution. <code>this</code> is an object and contains the triggering DOM element (if existing) and the related Featherlight objects.</p>
+<pre><code>// example
+beforeOpen: function(event){
+	console.log(this); // this contains all related elements
+	return false; // prevent lightbox from opening
+}
+</code></pre>
+<p>================================================</p>
+<pre><code>beforeContent, afterContent – Function: null
+</code></pre>
+<p>Called before and after the loading of the content. For ajax calls or
+ images, there can be a significant delay, for inline content the two 
+calls will occur one right after the other. It receives the event 
+object. <code>this</code> is an object and contains the triggering DOM element (if existing) and the related Featherlight objects.</p>
+<p>================================================</p>
+<pre><code>afterOpen, afterClose – Function: null
+</code></pre>
+<p>Called after the open or close method is executed – it is not called, if the <code>before-</code> or <code>open</code> function returns <code>false</code>! It receives the event object. <code>this</code> is an object and contains the triggering DOM element (if existing) and the related Featherlight objects.</p>
+<pre><code>// example
+afterOpen: function(event){
+	console.log(this); // this contains all related elements
+	alert(this.$content.hasClass('true')); // alert class of content
+}
+</code></pre>
+<p>================================================</p>
+<pre><code>onKeyUp, onResize – Function: null
+</code></pre>
+<p>The function receives the event object. <code>this</code> is an object and contains the triggering DOM element (if existing) and the related Featherlight objects.</p>
+<p>================================================</p>
+<pre><code>type – String: null
+</code></pre>
+<p>The type object allows you to manually set what type the lightbox is.
+ Set the value to 'image', 'ajax' or any of the content filters. 
+Otherwise, the value from targetAttr will used be to determine the type 
+of the lightbox. Example:</p>
+<pre><code>$('.image-lightbox').featherlight({type: 'image'});
+</code></pre>
+<h1><a id="user-content-methods" class="anchor" aria-hidden="true" href="#methods"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Methods</h1>
+<p><code>$.featherlight</code> is actually a constructor of new featherlight objects. Modify <code>$.featherlight.prototype</code> to change the default properties, or use the <code>configuration</code> object passed to the constructor to override the properties of that specific new instance.</p>
+<p>It's possible to use or change these methods, but the API isn't 
+guaranteed to remain constant; enquire if you have particular needs.</p>
+<pre><code>var current = $.featherlight.current();
+current.close();
+// do something else
+current.open(); // reopen it
+</code></pre>
+<p>Check the source code for more details.</p>
+<h1><a id="user-content-globals" class="anchor" aria-hidden="true" href="#globals"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Globals</h1>
+<p><code>$.featherlight</code> has the following globals:</p>
+<pre><code>autoBind: '[data-featherlight]' /* Will automatically bind elements matching this selector. Clear or set before onReady */
+current: function() /* returns the currently opened featherlight, or undefined */
+close:   function() /* closes the currently opened featherlight (if any) */
+</code></pre>
+<h1><a id="user-content-content-filters" class="anchor" aria-hidden="true" href="#content-filters"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Content Filters</h1>
+<p>There are many ways to specify content to featherlight. Featherlight 
+uses a set of heuristics to determine the type, for example data ending 
+with <code>.gif</code> will be assumed to be an image. The following are equivalent:</p>
+<pre><code>&lt;a href="#" data-featherlight="photo.gif"&gt;See in a lightbox&lt;/a&gt;
+
+&lt;a href="photo.gif" data-featherlight&gt;See in a lightbox&lt;/a&gt;
+
+&lt;a id="#example" href="#"&gt;See in a lightbox&lt;/a&gt;
+&lt;script&gt;$('#example').featherlight('photo.gif');&lt;/script&gt;
+</code></pre>
+<p>In case the heuristic wouldn't work, you can specify which contentFilter to use:</p>
+<pre><code>&lt;a href="photo_without_extension" data-featherlight="image"&gt;See in a lightbox&lt;/a&gt;
+
+&lt;a id="force_as_image" href="photo_without_extension"&gt;See in a lightbox&lt;/a&gt;
+&lt;script&gt;
+	$('#force_as_image').featherlight('image');
+	// Equivalent:
+	$('#force_as_image').featherlight({type: {image: true}});
+&lt;/script&gt;
+
+&lt;a id="force_as_image2" href="#"&gt;See in a lightbox&lt;/a&gt;
+&lt;script&gt;$('#force_as_image2').featherlight('photo_without_extension', {type:{image: true}});&lt;/script&gt;
+</code></pre>
+<p>You can add your own heuristics, for example:</p>
+<pre><code>$.featherlight.contentFilters.feed = {
+	regex: /^feed:/,
+	process: function(url) { /* deal with url */ return $('Loading...'); }
+};
+$.featherlight.defaults.contentFilters.unshift('feed');
+</code></pre>
+<p>This way the following would be possible:</p>
+<pre><code>&lt;a href="feed://some_url" data-featherlight&gt;See the feed in a lightbox&lt;/a&gt;
+</code></pre>
+<p>The content filter 'text' needs to be specified explicitly, it has no heuristic attached to it:</p>
+<pre><code>&lt;a href="Hello, world" data-featherlight="text"&gt;Example&lt;/a&gt;
+</code></pre>
+<h1><a id="user-content-examples" class="anchor" aria-hidden="true" href="#examples"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h1>
+<h2><a id="user-content-use-link-hashtags-to-open-lightbox" class="anchor" aria-hidden="true" href="#use-link-hashtags-to-open-lightbox"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Use link-hashtags to open lightbox</h2>
+<pre><code>&lt;a href="#targetElement" class="fl"&gt;Open&lt;/a&gt;
+&lt;div id="targetElement"&gt;Lightbox&lt;/div&gt;
+
+$('a.fl').featherlight({
+	targetAttr: 'href'
+});
+</code></pre>
+<h2><a id="user-content-open-images-with-featherlight" class="anchor" aria-hidden="true" href="#open-images-with-featherlight"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Open images with Featherlight</h2>
+<p>Use a link and point the data-featherlight attribute to the desired attribute which contains the link...</p>
+<pre><code>&lt;a href="myimage.jpg" data-featherlight="image"&gt;Open Image&lt;/a&gt;
+</code></pre>
+<p>...or directly provide the link as the data-featherlight attribute:</p>
+<pre><code>&lt;a href="#" data-featherlight="myimage.jpg"&gt;Open Image&lt;/a&gt;
+</code></pre>
+<h2><a id="user-content-open-lightbox-with-ajax-content" class="anchor" aria-hidden="true" href="#open-lightbox-with-ajax-content"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Open lightbox with ajax content</h2>
+<p>Use Featherlight with ajax using 'ajax' keyword or providing a url. 
+It even supports selecting elements inside the response document.</p>
+<pre><code>&lt;a href="url.html .jQuery-Selector" data-featherlight="ajax"&gt;Open Ajax Content&lt;/a&gt;
+</code></pre>
+<p>or you can provide the link directly as the featherlight-attribute:</p>
+<pre><code>&lt;a href="#" data-featherlight="url.html .jQuery-Selector"&gt;Open Ajax Content&lt;/a&gt;
+</code></pre>
+<h2><a id="user-content-open-lightbox-with-iframe" class="anchor" aria-hidden="true" href="#open-lightbox-with-iframe"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Open lightbox with iframe</h2>
+<p>Featherlight generates an iframe with the 'iframe' keyword and a given URL.<br>
+The default size of the iframe is very small (300 x 150).</p>
+<pre><code>&lt;a href="http://www.example.com" data-featherlight="iframe"&gt;Open example.com in an iframe&lt;/a&gt;
+</code></pre>
+<p>Options:<br>
+You can use the following iframe attributes:<br>
+<code>allow, allowfullscreen, frameborder, height, longdesc, 
+marginheight, marginwidth, mozallowfullscreen, name, referrerpolicy, 
+sandbox, scrolling, src, srcdoc, style, webkitallowfullscreen, width</code></p>
+<p>For example, to set the height and width, you would use</p>
+<pre><code>data-featherlight-iframe-height="640" data-featherlight-iframe-width="480"
+</code></pre>
+<p>or to set some css style:</p>
+<pre><code>data-featherlight-iframe-style="border:none"
+</code></pre>
+<p>You can also set the iframe attributes <code>iframeWidth</code>, <code>iframeMinWidth</code> etc. using JavaScript:</p>
+<pre><code>$.featherlight({iframe: 'editor.html', iframeMaxWidth: '80%', iframeWidth: 500,
+	iframeHeight: 300});
+</code></pre>
+<h2><a id="user-content-open-youtube-video-with-featherlight" class="anchor" aria-hidden="true" href="#open-youtube-video-with-featherlight"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Open YouTube video with Featherlight</h2>
+<p>Featherlight generates an iframe that contains the embedded video.</p>
+<p>Display a clickable thumbnail image that opens a video with a fixed size of 640 x 480 and automatically start playback:<br>
+<code>&lt;a 
+href="http://www.youtube.com/embed/f0BzD1zCye0?rel=0&amp;amp;autoplay=1"
+ data-featherlight="iframe" data-featherlight-iframe-width="640" 
+data-featherlight-iframe-height="480" 
+data-featherlight-iframe-frameborder="0" 
+data-featherlight-iframe-allow="autoplay; encrypted-media" 
+data-featherlight-iframe-allowfullscreen="true"&gt; &lt;img 
+src="http://img.youtube.com/vi/f0BzD1zCye0/0.jpg" alt="" /&gt; 
+&lt;/a&gt;</code></p>
+<p>A text link that opens a video in a lightbox that is stretched to 85% height and width of the viewport:<br>
+<code>&lt;a 
+href="http://www.youtube.com/embed/f0BzD1zCye0?rel=0&amp;amp;autoplay=1"
+ data-featherlight="iframe" data-featherlight-iframe-frameborder="0" 
+data-featherlight-iframe-allow="autoplay; encrypted-media" 
+data-featherlight-iframe-allowfullscreen="true" 
+data-featherlight-iframe-style="display:block;border:none;height:85vh;width:85vw;"&gt;My
+ video&lt;/a&gt;</code></p>
+<p>A link that opens a video in a lightbox that fills 100% of the window:<br>
+Note: the "close" icon is not visible so this example is not user-friendly.<br>
+<code>&lt;a 
+href="http://www.youtube.com/embed/f0BzD1zCye0?rel=0&amp;amp;autoplay=1"
+ data-featherlight="iframe" data-featherlight-iframe-frameborder="0" 
+data-featherlight-iframe-allow="autoplay; encrypted-media" 
+data-featherlight-iframe-allowfullscreen="true" 
+data-featherlight-iframe-style="position:fixed;background:#000;border:none;top:0;right:0;bottom:0;left:0;width:100%;height:100%;"&gt;My
+ video&lt;/a&gt;</code></p>
+<h1><a id="user-content-ie8-background-transparency" class="anchor" aria-hidden="true" href="#ie8-background-transparency"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>IE8 background transparency</h1>
+<p>If you want the background in IE8 to be translucent, use data:image before the rgba background:</p>
+<pre><code>background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAKQWlDQ1BJQ0MgUHJvZmlsZQAASA2dlndUU9kWh8+9N73QEiIgJfQaegkg0jtIFQRRiUmAUAKGhCZ2RAVGFBEpVmRUwAFHhyJjRRQLg4Ji1wnyEFDGwVFEReXdjGsJ7601896a/cdZ39nnt9fZZ+9917oAUPyCBMJ0WAGANKFYFO7rwVwSE8vE9wIYEAEOWAHA4WZmBEf4RALU/L09mZmoSMaz9u4ugGS72yy/UCZz1v9/kSI3QyQGAApF1TY8fiYX5QKUU7PFGTL/BMr0lSkyhjEyFqEJoqwi48SvbPan5iu7yZiXJuShGlnOGbw0noy7UN6aJeGjjAShXJgl4GejfAdlvVRJmgDl9yjT0/icTAAwFJlfzOcmoWyJMkUUGe6J8gIACJTEObxyDov5OWieAHimZ+SKBIlJYqYR15hp5ejIZvrxs1P5YjErlMNN4Yh4TM/0tAyOMBeAr2+WRQElWW2ZaJHtrRzt7VnW5mj5v9nfHn5T/T3IevtV8Sbsz55BjJ5Z32zsrC+9FgD2JFqbHbO+lVUAtG0GQOXhrE/vIADyBQC03pzzHoZsXpLE4gwnC4vs7GxzAZ9rLivoN/ufgm/Kv4Y595nL7vtWO6YXP4EjSRUzZUXlpqemS0TMzAwOl89k/fcQ/+PAOWnNycMsnJ/AF/GF6FVR6JQJhIlou4U8gViQLmQKhH/V4X8YNicHGX6daxRodV8AfYU5ULhJB8hvPQBDIwMkbj96An3rWxAxCsi+vGitka9zjzJ6/uf6Hwtcim7hTEEiU+b2DI9kciWiLBmj34RswQISkAd0oAo0gS4wAixgDRyAM3AD3iAAhIBIEAOWAy5IAmlABLJBPtgACkEx2AF2g2pwANSBetAEToI2cAZcBFfADXALDIBHQAqGwUswAd6BaQiC8BAVokGqkBakD5lC1hAbWgh5Q0FQOBQDxUOJkBCSQPnQJqgYKoOqoUNQPfQjdBq6CF2D+qAH0CA0Bv0BfYQRmALTYQ3YALaA2bA7HAhHwsvgRHgVnAcXwNvhSrgWPg63whfhG/AALIVfwpMIQMgIA9FGWAgb8URCkFgkAREha5EipAKpRZqQDqQbuY1IkXHkAwaHoWGYGBbGGeOHWYzhYlZh1mJKMNWYY5hWTBfmNmYQM4H5gqVi1bGmWCesP3YJNhGbjS3EVmCPYFuwl7ED2GHsOxwOx8AZ4hxwfrgYXDJuNa4Etw/XjLuA68MN4SbxeLwq3hTvgg/Bc/BifCG+Cn8cfx7fjx/GvyeQCVoEa4IPIZYgJGwkVBAaCOcI/YQRwjRRgahPdCKGEHnEXGIpsY7YQbxJHCZOkxRJhiQXUiQpmbSBVElqIl0mPSa9IZPJOmRHchhZQF5PriSfIF8lD5I/UJQoJhRPShxFQtlOOUq5QHlAeUOlUg2obtRYqpi6nVpPvUR9Sn0vR5Mzl/OX48mtk6uRa5Xrl3slT5TXl3eXXy6fJ18hf0r+pvy4AlHBQMFTgaOwVqFG4bTCPYVJRZqilWKIYppiiWKD4jXFUSW8koGStxJPqUDpsNIlpSEaQtOledK4tE20Otpl2jAdRzek+9OT6cX0H+i99AllJWVb5SjlHOUa5bPKUgbCMGD4M1IZpYyTjLuMj/M05rnP48/bNq9pXv+8KZX5Km4qfJUilWaVAZWPqkxVb9UU1Z2qbapP1DBqJmphatlq+9Uuq43Pp893ns+dXzT/5PyH6rC6iXq4+mr1w+o96pMamhq+GhkaVRqXNMY1GZpumsma5ZrnNMe0aFoLtQRa5VrntV4wlZnuzFRmJbOLOaGtru2nLdE+pN2rPa1jqLNYZ6NOs84TXZIuWzdBt1y3U3dCT0svWC9fr1HvoT5Rn62fpL9Hv1t/ysDQINpgi0GbwaihiqG/YZ5ho+FjI6qRq9Eqo1qjO8Y4Y7ZxivE+41smsImdSZJJjclNU9jU3lRgus+0zwxr5mgmNKs1u8eisNxZWaxG1qA5wzzIfKN5m/krCz2LWIudFt0WXyztLFMt6ywfWSlZBVhttOqw+sPaxJprXWN9x4Zq42Ozzqbd5rWtqS3fdr/tfTuaXbDdFrtOu8/2DvYi+yb7MQc9h3iHvQ732HR2KLuEfdUR6+jhuM7xjOMHJ3snsdNJp9+dWc4pzg3OowsMF/AX1C0YctFx4bgccpEuZC6MX3hwodRV25XjWuv6zE3Xjed2xG3E3dg92f24+ysPSw+RR4vHlKeT5xrPC16Il69XkVevt5L3Yu9q76c+Oj6JPo0+E752vqt9L/hh/QL9dvrd89fw5/rX+08EOASsCegKpARGBFYHPgsyCRIFdQTDwQHBu4IfL9JfJFzUFgJC/EN2hTwJNQxdFfpzGC4sNKwm7Hm4VXh+eHcELWJFREPEu0iPyNLIR4uNFksWd0bJR8VF1UdNRXtFl0VLl1gsWbPkRoxajCCmPRYfGxV7JHZyqffS3UuH4+ziCuPuLjNclrPs2nK15anLz66QX8FZcSoeGx8d3xD/iRPCqeVMrvRfuXflBNeTu4f7kufGK+eN8V34ZfyRBJeEsoTRRJfEXYljSa5JFUnjAk9BteB1sl/ygeSplJCUoykzqdGpzWmEtPi000IlYYqwK10zPSe9L8M0ozBDuspp1e5VE6JA0ZFMKHNZZruYjv5M9UiMJJslg1kLs2qy3mdHZZ/KUcwR5vTkmuRuyx3J88n7fjVmNXd1Z752/ob8wTXuaw6thdauXNu5Tnddwbrh9b7rj20gbUjZ8MtGy41lG99uit7UUaBRsL5gaLPv5sZCuUJR4b0tzlsObMVsFWzt3WazrWrblyJe0fViy+KK4k8l3JLr31l9V/ndzPaE7b2l9qX7d+B2CHfc3em681iZYlle2dCu4F2t5czyovK3u1fsvlZhW3FgD2mPZI+0MqiyvUqvakfVp+qk6oEaj5rmvep7t+2d2sfb17/fbX/TAY0DxQc+HhQcvH/I91BrrUFtxWHc4azDz+ui6rq/Z39ff0TtSPGRz0eFR6XHwo911TvU1zeoN5Q2wo2SxrHjccdv/eD1Q3sTq+lQM6O5+AQ4ITnx4sf4H++eDDzZeYp9qukn/Z/2ttBailqh1tzWibakNml7THvf6YDTnR3OHS0/m/989Iz2mZqzymdLz5HOFZybOZ93fvJCxoXxi4kXhzpXdD66tOTSna6wrt7LgZevXvG5cqnbvfv8VZerZ645XTt9nX297Yb9jdYeu56WX+x+aem172296XCz/ZbjrY6+BX3n+l37L972un3ljv+dGwOLBvruLr57/17cPel93v3RB6kPXj/Mejj9aP1j7OOiJwpPKp6qP6391fjXZqm99Oyg12DPs4hnj4a4Qy//lfmvT8MFz6nPK0a0RupHrUfPjPmM3Xqx9MXwy4yX0+OFvyn+tveV0auffnf7vWdiycTwa9HrmT9K3qi+OfrW9m3nZOjk03dp76anit6rvj/2gf2h+2P0x5Hp7E/4T5WfjT93fAn88ngmbWbm3/eE8/syOll+AAAACXBIWXMAAAsTAAALEwEAmpwYAAADpmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iCiAgICAgICAgICAgIHhtbG5zOnRpZmY9Imh0dHA6Ly9ucy5hZG9iZS5jb20vdGlmZi8xLjAvIgogICAgICAgICAgICB4bWxuczpleGlmPSJodHRwOi8vbnMuYWRvYmUuY29tL2V4aWYvMS4wLyI+CiAgICAgICAgIDx4bXA6TW9kaWZ5RGF0ZT4yMDEzLTExLTA2VDIyOjExOjgxPC94bXA6TW9kaWZ5RGF0ZT4KICAgICAgICAgPHhtcDpDcmVhdG9yVG9vbD5QaXhlbG1hdG9yIDMuMDwveG1wOkNyZWF0b3JUb29sPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICAgICA8dGlmZjpDb21wcmVzc2lvbj41PC90aWZmOkNvbXByZXNzaW9uPgogICAgICAgICA8dGlmZjpSZXNvbHV0aW9uVW5pdD4xPC90aWZmOlJlc29sdXRpb25Vbml0PgogICAgICAgICA8dGlmZjpZUmVzb2x1dGlvbj43MjwvdGlmZjpZUmVzb2x1dGlvbj4KICAgICAgICAgPHRpZmY6WFJlc29sdXRpb24+NzI8L3RpZmY6WFJlc29sdXRpb24+CiAgICAgICAgIDxleGlmOlBpeGVsWERpbWVuc2lvbj4xMDwvZXhpZjpQaXhlbFhEaW1lbnNpb24+CiAgICAgICAgIDxleGlmOkNvbG9yU3BhY2U+MTwvZXhpZjpDb2xvclNwYWNlPgogICAgICAgICA8ZXhpZjpQaXhlbFlEaW1lbnNpb24+MTA8L2V4aWY6UGl4ZWxZRGltZW5zaW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KbQS91AAAAB1JREFUGBljZGBgOA7EBAETQRVQBaMK8YYU0cEDAE1HANt9zybzAAAAAElFTkSuQmCC);
+background: rgba(0, 0, 0, 0.8);
+</code></pre>
+<hr>
+<h1><a id="user-content-featherlight-gallery" class="anchor" aria-hidden="true" href="#featherlight-gallery"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Featherlight Gallery</h1>
+<p>You will need to use an extension (featherlight.gallery.js).  Since 
+Featherlight was created to be as small and simple as possible, it has 
+selected functionality, and  allows you to add additional functionality 
+by using extensions.  featherlight.gallery.js is a small extension that 
+turns your set of links into a <a href="http://noelboss.github.io/featherlight/gallery.html" rel="nofollow">gallery</a>.</p>
+<h2><a id="user-content-gallery-installation" class="anchor" aria-hidden="true" href="#gallery-installation"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Gallery installation</h2>
+<p>Simply include the extension CSS and JavaScript Files after the regular featherlight files like this:</p>
+<pre><code>&lt;link href="//cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.css" type="text/css" rel="stylesheet" /&gt;
+&lt;link href="//cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.gallery.min.css" type="text/css" rel="stylesheet" /&gt;
+</code></pre>
+<p>Add the JavaScript at the bottom of the body:</p>
+<div class="highlight highlight-text-html-basic"><pre>	&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>//code.jquery.com/jquery-latest.js<span class="pl-pds">"</span></span>&gt;<span class="pl-s1">&lt;</span>/<span class="pl-ent">script</span>&gt;
+	&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>//cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.js<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> <span class="pl-e">charset</span>=<span class="pl-s"><span class="pl-pds">"</span>utf-8<span class="pl-pds">"</span></span>&gt;<span class="pl-s1">&lt;</span>/<span class="pl-ent">script</span>&gt;
+	&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>//cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.gallery.min.js<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> <span class="pl-e">charset</span>=<span class="pl-s"><span class="pl-pds">"</span>utf-8<span class="pl-pds">"</span></span>&gt;<span class="pl-s1">&lt;</span>/<span class="pl-ent">script</span>&gt;</pre></div>
+<p>Check out the example here: <a href="https://github.com/noelboss/featherlight/blob/master/gallery.html">Gallery with Featherlight</a></p>
+<h2><a id="user-content-gallery-configuration" class="anchor" aria-hidden="true" href="#gallery-configuration"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Gallery configuration</h2>
+<p>The gallery also has a range of configuration options and the following defaults:</p>
+<div class="highlight highlight-source-js"><pre>	<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>a.gallery<span class="pl-pds">'</span></span>).<span class="pl-en">featherlightGallery</span>({
+		previousIcon<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>&amp;#9664;<span class="pl-pds">'</span></span>,     <span class="pl-c"><span class="pl-c">/*</span> Code that is used as previous icon <span class="pl-c">*/</span></span>
+		nextIcon<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>&amp;#9654;<span class="pl-pds">'</span></span>,         <span class="pl-c"><span class="pl-c">/*</span> Code that is used as next icon <span class="pl-c">*/</span></span>
+		galleryFadeIn<span class="pl-k">:</span> <span class="pl-c1">100</span>,          <span class="pl-c"><span class="pl-c">/*</span> fadeIn speed when slide is loaded <span class="pl-c">*/</span></span>
+		galleryFadeOut<span class="pl-k">:</span> <span class="pl-c1">300</span>          <span class="pl-c"><span class="pl-c">/*</span> fadeOut speed before slide is loaded <span class="pl-c">*/</span></span>
+	});</pre></div>
+<p>It also overrides its <code>autoBind</code> global option:</p>
+<div class="highlight highlight-source-js"><pre>	autoBind<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>[data-featherlight-gallery]<span class="pl-pds">'</span></span> <span class="pl-c"><span class="pl-c">/*</span> Will automatically bind elements matching this selector. Clear or set before onReady <span class="pl-c">*/</span></span></pre></div>
+<p>Example in pure HTML:</p>
+<div class="highlight highlight-text-html-basic"><pre>    &lt;<span class="pl-ent">section</span>
+      <span class="pl-e">data-featherlight-gallery</span>
+      <span class="pl-e">data-featherlight-filter</span>=<span class="pl-s"><span class="pl-pds">"</span>a<span class="pl-pds">"</span></span>
+    &gt;
+      &lt;<span class="pl-ent">h</span>&gt;This is a gallery&lt;/<span class="pl-ent">h</span>&gt;
+      &lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>photo_large.jpg<span class="pl-pds">"</span></span>&gt;&lt;<span class="pl-ent">img</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>photo_thumbnail.jpg<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">a</span>&gt;
+      &lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>other_photo_large.jpg<span class="pl-pds">"</span></span>&gt;&lt;<span class="pl-ent">img</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>other_photo_thumbnail.jpg<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">a</span>&gt;
+    &lt;/<span class="pl-ent">section</span>&gt;</pre></div>
+<p>Example in JavaScript (assuming there are <code>a</code> tags of class <code>gallery</code> in the page):</p>
+<div class="highlight highlight-source-js"><pre>	<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>a.gallery<span class="pl-pds">'</span></span>).<span class="pl-en">featherlightGallery</span>({
+		previousIcon<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>«<span class="pl-pds">'</span></span>,
+		nextIcon<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>»<span class="pl-pds">'</span></span>,
+		galleryFadeIn<span class="pl-k">:</span> <span class="pl-c1">300</span>,
+
+		openSpeed<span class="pl-k">:</span> <span class="pl-c1">300</span>
+	});</pre></div>
+<p>The gallery responds to custom events <code>previous</code> and <code>next</code> to navigate to the previous and next images.</p>
+<p>Instead of navigation buttons it will use swipe events on touch devices, assuming that one of the <a href="https://github.com/noelboss/featherlight/wiki/Gallery:-swipe-on-touch-devices">supported swipe libraries</a> is also installed.</p>
+<p>It sets the classes <code>'featherlight-first-slide'</code> and <code>'featherlight-last-slide'</code> if the current slide is the first and/or last one.</p>
+<h2><a id="user-content-gallery-installation-1" class="anchor" aria-hidden="true" href="#gallery-installation-1"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Gallery installation</h2>
+<p>Simply include the extension CSS and JavaScript Files after the regular featherlight files like this:</p>
+<pre><code>&lt;link href="//cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.css" type="text/css" rel="stylesheet" /&gt;
+&lt;link href="//cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.gallery.min.css" type="text/css" rel="stylesheet" /&gt;
+&lt;script src="//code.jquery.com/jquery-latest.js"&gt;&lt;/script&gt;
+&lt;script src="//cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.js" type="text/javascript" charset="utf-8"&gt;&lt;/script&gt;
+&lt;script src="//cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.gallery.min.js" type="text/javascript" charset="utf-8"&gt;&lt;/script&gt;
+</code></pre>
+<h2><a id="user-content-gallery-on-mobile-devices" class="anchor" aria-hidden="true" href="#gallery-on-mobile-devices"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Gallery on Mobile Devices</h2>
+<p>To support mobile/tablet and all touch devices, you will need to include one of the <a href="https://github.com/noelboss/featherlight/wiki/Gallery:-swipe-on-touch-devices">supported swipe libraries</a>. For example, to use <code>swipe_detect</code> library, include it in the header:</p>
+<div class="highlight highlight-text-html-basic"><pre> &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>//cdnjs.cloudflare.com/ajax/libs/detect_swipe/2.1.1/jquery.detect_swipe.min.js<span class="pl-pds">"</span></span>&gt;<span class="pl-s1">&lt;</span>/<span class="pl-ent">script</span>&gt;</pre></div>
+<h1><a id="user-content-support" class="anchor" aria-hidden="true" href="#support"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Support</h1>
+<h2><a id="user-content-questions" class="anchor" aria-hidden="true" href="#questions"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Questions</h2>
+<p>For questions, please use <a href="http://stackoverflow.com/questions/ask" rel="nofollow">Stack Overflow</a> and be sure to use the <code>featherlight.js</code> tag. Please <strong>provide an example</strong>, starting for example from <a href="http://jsfiddle.net/JNsu6/15/" rel="nofollow">this jsfiddle</a></p>
+<h2><a id="user-content-reporting-bugs-and-issues" class="anchor" aria-hidden="true" href="#reporting-bugs-and-issues"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Reporting bugs and issues</h2>
+<p>If you believe you've found a bug, please open an issue on <a href="https://github.com/noelboss/featherlight/issues/new">Github</a> and <strong>provide an example</strong> starting from <a href="http://jsfiddle.net/JNsu6/15/" rel="nofollow">this jsfiddle</a>.</p>
+<h2><a id="user-content-pull-requests" class="anchor" aria-hidden="true" href="#pull-requests"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Pull requests</h2>
+<p>Pull requests are welcome (good tips can be found on <a href="http://stackoverflow.com/questions/14680711/how-to-do-a-github-pull-request" rel="nofollow">Stack Overflow</a>)</p>
+<p>To run the tests, you can open <code>test/featherlight.html</code> or <code>test/featherlight_gallery.html</code> in your browser.
+Alternatively, run them from the console with <code>grunt test</code>; you will need to run <code>npm install</code> the first time.</p>
+</article>
+  </div>
+
+
+  </div>
+  <div class="modal-backdrop js-touch-events"></div>
+</div>
+
+    </div>
+  </div>
+
+  </div>
+
+      
+<div class="footer container-lg px-3" role="contentinfo">
+  <div class="position-relative d-flex flex-justify-between pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <ul class="list-style-none d-flex flex-wrap ">
+      <li class="mr-3">© 2018 <span title="0.25860s from unicorn-486828953-hgfzg">GitHub</span>, Inc.</li>
+        <li class="mr-3"><a data-ga-click="Footer, go to terms, text:terms" href="https://github.com/site/terms">Terms</a></li>
+        <li class="mr-3"><a data-ga-click="Footer, go to privacy, text:privacy" href="https://github.com/site/privacy">Privacy</a></li>
+        <li class="mr-3"><a href="https://help.github.com/articles/github-security/" data-ga-click="Footer, go to security, text:security">Security</a></li>
+        <li class="mr-3"><a href="https://status.github.com/" data-ga-click="Footer, go to status, text:status">Status</a></li>
+        <li><a data-ga-click="Footer, go to help, text:help" href="https://help.github.com/">Help</a></li>
+    </ul>
+
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon" href="https://github.com/">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+</a>
+   <ul class="list-style-none d-flex flex-wrap ">
+        <li class="mr-3"><a data-ga-click="Footer, go to contact, text:contact" href="https://github.com/contact">Contact GitHub</a></li>
+      <li class="mr-3"><a href="https://developer.github.com/" data-ga-click="Footer, go to api, text:api">API</a></li>
+      <li class="mr-3"><a href="https://training.github.com/" data-ga-click="Footer, go to training, text:training">Training</a></li>
+      <li class="mr-3"><a href="https://shop.github.com/" data-ga-click="Footer, go to shop, text:shop">Shop</a></li>
+        <li class="mr-3"><a href="https://blog.github.com/" data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
+        <li><a data-ga-click="Footer, go to about, text:about" href="https://github.com/about">About</a></li>
+
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+</div>
+
+
+
+  <div id="ajax-error-message" class="ajax-error-message flash flash-error">
+    <svg class="octicon octicon-alert" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8.865 1.52c-.18-.31-.51-.5-.87-.5s-.69.19-.87.5L.275 13.5c-.18.31-.18.69 0 1 .19.31.52.5.87.5h13.7c.36 0 .69-.19.86-.5.17-.31.18-.69.01-1L8.865 1.52zM8.995 13h-2v-2h2v2zm0-3h-2V6h2v4z"></path></svg>
+    <button type="button" class="flash-close js-ajax-error-dismiss" aria-label="Dismiss error">
+      <svg class="octicon octicon-x" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+    </button>
+    You can't perform that action at this time.
+  </div>
+
+
+    <script crossorigin="anonymous" integrity="sha512-ZJLxhPfYuYU0MapbzqjNhwg2if/JrVmKZ1SdP+YwUlvCysCk9Up5KSnz49XzMIHFe9SAVGUbKJeFRug2Ne8R3w==" type="application/javascript" src="FeatherLight%20Documentation_files/compat-413dd2a0695c3dfaf7de158468a91646.js"></script>
+    <script crossorigin="anonymous" integrity="sha512-tNSBMimAykTs9AfrJNzs+KN6nftm8ETYwKMdDuorjSs5Ng5rAkMdJzqWddK331DHHryj2afQSMGmKQykvjG/DA==" type="application/javascript" src="FeatherLight%20Documentation_files/frameworks-eca8e7e9ccc2078d10d49cad268f6a4f.js"></script>
+    
+    <script crossorigin="anonymous" async="async" integrity="sha512-SCyqZhgZMxb8RjE80QCMbHHrlp0SE/RnriLsgCecyOfKZpCel1mO2LxtnlPLpdLaWYFCzam49UG1Z4kvxo6xMw==" type="application/javascript" src="FeatherLight%20Documentation_files/github-cddf6325595be9f25478e49c496f274e.js"></script>
+    
+    
+    
+    
+  <div class="js-stale-session-flash stale-session-flash flash flash-warn flash-banner d-none">
+    <svg class="octicon octicon-alert" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8.865 1.52c-.18-.31-.51-.5-.87-.5s-.69.19-.87.5L.275 13.5c-.18.31-.18.69 0 1 .19.31.52.5.87.5h13.7c.36 0 .69-.19.86-.5.17-.31.18-.69.01-1L8.865 1.52zM8.995 13h-2v-2h2v2zm0-3h-2V6h2v4z"></path></svg>
+    <span class="signed-in-tab-flash">You signed in with another tab or window. <a href="">Reload</a> to refresh your session.</span>
+    <span class="signed-out-tab-flash">You signed out in another tab or window. <a href="">Reload</a> to refresh your session.</span>
+  </div>
+  <div class="facebox" id="facebox" style="display:none;">
+  <div class="facebox-popup">
+    <div class="facebox-content" role="dialog" aria-labelledby="facebox-header" aria-describedby="facebox-description">
+    </div>
+    <button type="button" class="facebox-close js-facebox-close" aria-label="Close modal">
+      <svg class="octicon octicon-x" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+    </button>
+  </div>
+</div>
+
+  <div class="Popover js-hovercard-content position-absolute" style="display: none; outline: none;" tabindex="0">
+  <div class="Popover-message Popover-message--bottom-left Popover-message--large Box box-shadow-large" style="width:360px;">
+  </div>
+</div>
+
+<div id="hovercard-aria-description" class="sr-only">
+  Press h to open a hovercard with more details.
+</div>
+
+
+  
+
+
+</body></html>
