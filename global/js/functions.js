@@ -1,5 +1,5 @@
 //<!--
-var url_prefix = '/dse_lease_mgt/'; /*should be start and end with / (slash)*/
+var url_prefix = '/lease_management/'; /*should be start and end with / (slash)*/
 $(document).ready(function () {
 	init();
 });
