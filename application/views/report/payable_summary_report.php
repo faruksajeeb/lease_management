@@ -19,7 +19,7 @@
                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" >
                         <div class="panel panel-default" style="margin:30px 0px;">
                             <div class="panel-heading">
-                                <h2 style="text-align: center;"><span class="glyphicon glyphicon-file"></span> Payable Summary</h2>
+                                <h2 style="text-align: center;"><span class="glyphicon glyphicon-file"></span> Payable Summary Report</h2>
                             </div>
                             <div class="panel-body">
                             <?php //echo $this->session->flashdata('message_name'); ?>
