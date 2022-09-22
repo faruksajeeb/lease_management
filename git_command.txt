@@ -1,23 +1,69 @@
 >> git init
+
+### connect/add with remote repository
+-------------------------------------------------------------------------------------------------------
+>> git remote add origin https://github.com/faruksajeeb/lease_management.git
+
+
+### Check Git Status
+-------------------------------------------------------------------------------------------------------
 >> git status
+
+
 ### for all file
->> git add ./ 
+-------------------------------------------------------------------------------------------------------
+>> git add .
+
+
+## for single file add
+-------------------------------------------------------------------------------------------------------
+>> git add filename.txt
+
+
+## Commit single  file
+-------------------------------------------------------------------------------------------------------
+>> git commit -am "comment here"  filename.txt
+
+
+## Commit all file
+-------------------------------------------------------------------------------------------------------
 >> git commit -am "comment here"
+
 ### For push
+-------------------------------------------------------------------------------------------------------
 >> git push -u origin main
 
+## See log
+-------------------------------------------------------------------------------------------------------
 >> git log
 
-echo "# lease_management" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/faruksajeeb/lease_management.git
-git push -u origin main
 
-git clone --branch imran https://github.com/faruksajeeb/lease_management.git
+## see branch list 
+-------------------------------------------------------------------------------------------------------
+git branch
 
-git pull origin other-branch
-git fetch origin other-branch && git merge other-branch
-git checkout branchname
+
+### switch branch
+-------------------------------------------------------------------------------------------------------
+>> git checkout branchname
+
+
+### Push into remote main
+-------------------------------------------------------------------------------------------------------
+>> git push -u origin main
+
+
+### Project clone from branch
+-------------------------------------------------------------------------------------------------------
+>> git clone --branch imran https://github.com/faruksajeeb/lease_management.git
+
+
+### Pull(fetch & merge) from branch
+-------------------------------------------------------------------------------------------------------
+>> git pull origin other-branch
+
+
+### Fetch & Merge from branch
+-------------------------------------------------------------------------------------------------------
+>> git fetch origin other-branch && git merge other-branch
+
