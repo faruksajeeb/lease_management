@@ -31,12 +31,12 @@ class PayableController extends CI_Controller
         }
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('VENDOR_ID', 'Vendor Name', 'required|trim');
-        $this->form_validation->set_rules('LEASE_ID', 'LEASE_ID', 'required|trim');
-        $this->form_validation->set_rules('PERIOD', 'PERIOD', 'required');
-        $this->form_validation->set_rules('AMOUNT', 'AMOUNT', 'required|trim');
-        $this->form_validation->set_rules('PAYMENT_METHOD_ID', 'PAYMENT_METHOD_ID', 'trim');
-        $this->form_validation->set_rules('PAYMENT_DATE', 'PAYMENT_DATE', 'required');
+        // $this->form_validation->set_rules('VENDOR_ID', 'Vendor Name', 'required|trim');
+        $this->form_validation->set_rules('pay_amount[]', 'pay_amount', 'required|trim');
+        // $this->form_validation->set_rules('PERIOD', 'PERIOD', 'required');
+        // $this->form_validation->set_rules('AMOUNT', 'AMOUNT', 'required|trim');
+        // $this->form_validation->set_rules('PAYMENT_METHOD_ID', 'PAYMENT_METHOD_ID', 'trim');
+        // $this->form_validation->set_rules('PAYMENT_DATE', 'PAYMENT_DATE', 'required');
 
         if (!$this->form_validation->run()) {
             # for ajax call
@@ -45,67 +45,104 @@ class PayableController extends CI_Controller
             }
 
             $data['vendors'] = $this->db->query("SELECT * FROM tbl_vendor WHERE STATUS=7")->result();
-            $data['leases'] = $this->db->query("SELECT * FROM tbl_lease_onboarding WHERE STATUS=7")->result();
+            // $data['leases'] = $this->db->query("SELECT * FROM tbl_lease_onboarding WHERE STATUS=7")->result();
 
             $this->load->view('payable/create_payable', $data);
             return FALSE;
         }
 
         # get input post
-        $input = $this->webspice->get_input('user_id');
-        if($input->AMOUNT<= 0){
-            exit("Submit Error:\n Amount should be greater then 0" );
-        }
+        $input = $this->webspice->get_input('edit_id');
+        $insertData = array();
+        $validAmt = 0;
+        $amountExceedError = null;
+        for ($i = 0; $i < count($input->pay_amount); $i++) {
+            $payAmount = $input->pay_amount[$i];
+            if ($payAmount <= 0) {
+                continue;
+            }
+            $validAmt++;
+            if ($input->payable[$i] < $input->pay_amount[$i]) {
+                $slabNo = $i + 1;
+                $amountExceedError .= "slab no: " . $slabNo . " pay amount exceeded maximum limit. \n";
+                continue;
+            }
 
-        $period = $input->PERIOD;
-        $periodSlice = explode("/",$period);
-        $periodMonth = $periodSlice[0];
-        $periodYear = $periodSlice[1];
-        $customePeriod = date("Y-m-d",strtotime("$periodYear-$periodMonth-01"));
-        
-        # update process
-        if ($input->key) {
-            $updateData = array(
-                'VENDOR_ID' => $input->VENDOR_ID,
-                'LEASE_ID' => $input->LEASE_ID,
-                'PERIOD' => $customePeriod,
-                'PAYMENT_DATE' => $input->PAYMENT_DATE,
-                'PAYMENT_METHOD_ID' => $input->PAYMENT_METHOD_ID,
-                'REFERENCE_NUMBER' => $input->REFERENCE_NUMBER,
-                'AMOUNT' => $input->AMOUNT,
-                'REMARKS' => $input->REMARKS,
-                'UPDATED_BY' => $this->webspice->get_user_id(),
-                'UPDATED_DATE' => $this->webspice->now('datetime24')
+            $insertData[] = array(
+                'lease_slab_id' => $input->lease_slab_id[$i],
+                'payable' => $input->payable[$i],
+                'pay_amount' => $input->pay_amount[$i]
             );
-            $this->db->where('ID', $input->key);
-            $this->db->update('tbl_payable', $updateData);
-            $this->webspice->log_me('Payable_updated - ' . $input->key); # log activities
-            exit('update_success');
         }
-
-        # INSERT
-        $insertData = array(
-            'VENDOR_ID' => $input->VENDOR_ID,
-            'LEASE_ID' => $input->LEASE_ID,
-            'PERIOD' => $customePeriod,
-            'PAYMENT_DATE' => $input->PAYMENT_DATE,
-            'PAYMENT_METHOD_ID' => $input->PAYMENT_METHOD_ID,
-            'REFERENCE_NUMBER' => $input->REFERENCE_NUMBER,
-            'AMOUNT' => $input->AMOUNT,
-            'REMARKS' => $input->REMARKS,
-            'PAID_BY' => $this->webspice->get_user_id(),
-            'CREATED_BY' => $this->webspice->get_user_id(),
-            'CREATED_DATE' => $this->webspice->now('datetime24')
+        # Check limitation exceed
+        if ($amountExceedError) {
+            exit($amountExceedError);
+        }
+        # Check pay amount
+        if ($validAmt == 0) {
+            exit("Submit Error: Minimum 1 slab amount should be greater then 0 for make a payment.");
+        }
+        $paymentData = array(
+            'PAYMENT_DATE' => date('Y-m-d'),
+            'PAYMENT_METHOD_ID' => 1,
+            'REFERENCE_NUMBER' => null,
+            'REMARKS' => null,
+            'PAID_BY' => null,
+            'ATTACHMENT' => null,
+            'HISTORY' => null,
+            'CREATED_BY' =>  $this->webspice->get_user_id(),
+            'CREATED_AT' => $this->webspice->now('datetime24')
         );
-
-        # dd($insertData);
+        
         try {
-            $this->db->insert('tbl_payable', $insertData);
-            if ($this->db->insert_id()) {
-                exit('insert_success');
+           
+            $this->db->trans_begin();
+            # Insert into payment table
+            $this->db->insert('tbl_payments', $paymentData);
+            $paymentId = $this->db->insert_id();
+           
+            if ($paymentId) {
+               
+                $paymentDeatils = array();
+                
+                foreach ($insertData as $key => $val) :
+                   
+                    $lease_slab_id = $val['lease_slab_id'];
+                    $pay_amount = $val['pay_amount'];
+                    $paymentDeatils[] = array(
+                        'PAYMENT_ID' => $paymentId,
+                        'LEASE_SLAB_ID' => $lease_slab_id,
+                        'AMOUNT' => $pay_amount
+                    );
+                   
+                    # Update lease slab/agrement table
+                    $this->db->query("UPDATE tbl_lease_agreement 
+                    SET PAID_AMOUNT = PAID_AMOUNT+$pay_amount,
+                    REF=CONCAT(IFNULL(REF, ''),?,','),
+                    UPDATED_BY=?,
+                    UPDATED_AT=? 
+                    WHERE ID=? ",array(
+                        $paymentId,
+                        $this->webspice->get_user_id(),
+                        $this->webspice->now('datetime24'),
+                        $lease_slab_id
+                    ));
+                endforeach;
+               
+                # Insert into payment detail table
+                $this->db->insert_batch('tbl_payment_details', $paymentDeatils);
+               
+            }
+            if ($this->db->trans_status() === FALSE) {
+                # If not success
+                $this->db->trans_rollback();
+                exit("Something went wrong");
+            } else {
+                $this->db->trans_commit();
+                exit("success");
             }
         } catch (Exception $e) {
-            echo 'Message: ' . $e->getMessage();
+            exit($e->getMessage());
         }
     }
     public function managePayable()
@@ -274,90 +311,108 @@ class PayableController extends CI_Controller
         $postData = $this->input->post();
         $vendorId = $postData['vendor_id'];
         $monthYear = $postData['month_year'];
-        $Slice = explode("/",$monthYear);
+        $Slice = explode("/", $monthYear);
         $Month = $Slice[0];
         $Year = $Slice[1];
-        $dateFrom = date("Y-m-d",strtotime("$Year-$Month-01"));
+        $dateFrom = date("Y-m-d", strtotime("$Year-$Month-01"));
         # Select record
-        $this->db->select('tbl_lease_onboarding.ID,tbl_lease_onboarding.LEASE_NAME,tbl_lease_agreement.DATE_FROM,tbl_lease_agreement.DATE_TO,tbl_lease_agreement.AMOUNT');        
+        $this->db->select('tbl_lease_onboarding.ID,tbl_lease_onboarding.LEASE_NAME,tbl_lease_agreement.DATE_FROM,tbl_lease_agreement.DATE_TO,tbl_lease_agreement.AMOUNT');
         $this->db->from('tbl_lease_agreement');
-        $this->db->join('tbl_lease_onboarding','tbl_lease_onboarding.ID=tbl_lease_agreement.LEASE_ID','LEFT');
+        $this->db->join('tbl_lease_onboarding', 'tbl_lease_onboarding.ID=tbl_lease_agreement.LEASE_ID', 'LEFT');
         $this->db->where('tbl_lease_onboarding.VENDOR_ID', $vendorId);
         $this->db->where('tbl_lease_onboarding.LEASE_TYPE', 'payable');
         $this->db->where('tbl_lease_agreement.TYPE', 'rent');
         $q = $this->db->get();
-        $q = $this->db->query("SELECT LO.ID,
+        $q = $this->db->query("SELECT LA.ID,LO.ID as LeaseID,
         LO.LEASE_NAME,LA.DATE_FROM,
         LA.DATE_TO,LA.AMOUNT,
         (SELECT IFNULL(SUM(AMOUNT),0) as Advance FROM tbl_lease_agreement WHERE LEASE_ID=LO.ID AND `TYPE`='advance' AND (`DATE_FROM` BETWEEN LA.DATE_FROM AND LA.DATE_TO) AND (`DATE_TO` BETWEEN LA.DATE_FROM AND LA.DATE_TO)) as Advance,
-        (SELECT IFNULL(SUM(AMOUNT),0) as Paid FROM tbl_payments WHERE (`PERIOD` BETWEEN LA.DATE_FROM AND LA.DATE_TO) AND LEASE_ID=LO.ID AND VENDOR_ID=$vendorId GROUP BY VENDOR_ID,LEASE_ID,`PERIOD`) as Paid
+        -- (SELECT IFNULL(SUM(AMOUNT),0) as Paid FROM tbl_payments WHERE (`PERIOD` BETWEEN LA.DATE_FROM AND LA.DATE_TO) AND LEASE_ID=LO.ID AND VENDOR_ID=$vendorId GROUP BY VENDOR_ID,LEASE_ID,`PERIOD`) as Paid
+        LA.PAID_AMOUNT as Paid
         FROM tbl_lease_agreement LA
         LEFT JOIN tbl_lease_onboarding LO ON LO.ID=LA.LEASE_ID
         WHERE 
         LO.VENDOR_ID=? AND 
         LO.LEASE_TYPE='payable' AND 
         LA.DATE_TO <= ? AND
-        LA.TYPE='rent' ",array($vendorId,$dateFrom));
+        LA.TYPE='rent' ", array($vendorId, $dateFrom));
         // echo $this->db->last_query();
         $response = $q->result();
-        
+
         $html = "";
-        $html .="<from id='payment_form' action='' method='POST'>";
-            $html .="<table class='table table-brodered'>";
-            $html .="<thead style='font-weight:bold;background-color:#D5F5E3'>";
-                $html .="<th>Lease ID</th>";
-                $html .="<th>Lease Name</th>";
-                $html .="<th>Date From</th>";
-                $html .="<th>Date To</th>";
-                $html .="<th style='text-align:right'>Rent</th>";
-                $html .="<th style='text-align:right'>Advance</th>";
-                $html .="<th style='text-align:right'>Paid</th>";
-                $html .="<th style='width:200px;text-align:right'>Payable</th>";
-                $html .="<th style='width:200px;text-align:right'>Pay</th>";
-            $html .="</thead>";
-            $html .="<tbody>";
-            $totalPayable = 0;
-            $totalAmount = 0;
-            $totalAdvance = 0;
-            $totalPaid = 0;
-            foreach($response as $key => $val):
-                $amount = ($val->AMOUNT) ? $val->AMOUNT : 0;
-                $advance = ($val->Advance) ? $val->Advance : 0;
-                $paid = ($val->Paid) ? $val->Paid : 0;
-                $payable = ($amount- ($advance+$paid));
-                $html .="<tr >";
-                    $html .="<td>".$val->ID."</td>";
-                    $html .="<td>".$val->LEASE_NAME."</td>";
-                    $html .="<td>".$val->DATE_FROM."</td>";
-                    $html .="<td>".$val->DATE_TO."</td>";
-                    $html .="<td style='text-align:right'>".$amount."</td>";
-                    $html .="<td style='text-align:right'>".$advance."</td>";
-                    $html .="<td style='text-align:right'>".$paid."</td>";                    
-                    $html .="<td style='text-align:right'><input type='text' name='payable' style='text-align:right' class='form-control payable' readonly value='".$payable."'></td>";
-                    $html .="<td><input type='text' name='pay_amount'  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  class='form-control pay' style='text-align:right'></td>";
-                $html .="</tr>";
-                $totalPayable += $payable;
-                $totalAmount += $amount;
-                $totalAdvance += $advance;
-                $totalPaid += $paid;
-            endforeach;
-            $html .="<tr style='font-weight:bold;background-color:#D5F5E3'>
+        $html .= "<table class='table table-brodered'>";
+        $html .= "<thead style='font-weight:bold;background-color:#D5F5E3'>";
+        $html .= "<th>Lease ID</th>";
+        $html .= "<th>Lease Name</th>";
+        $html .= "<th>Date From</th>";
+        $html .= "<th>Date To</th>";
+        $html .= "<th style='text-align:right'>Rent</th>";
+        $html .= "<th style='text-align:right'>Advance</th>";
+        $html .= "<th style='text-align:right'>Paid</th>";
+        $html .= "<th style='text-align:center' >Status</th>";
+        $html .= "<th style='width:200px;text-align:right'>Payable</th>";
+        $html .= "<th style='width:200px;text-align:right'>Pay</th>";
+        $html .= "</thead>";
+        $html .= "<tbody>";
+        $totalPayable = 0;
+        $totalAmount = 0;
+        $totalAdvance = 0;
+        $totalPaid = 0;
+        foreach ($response as $key => $val) :
+            $amount = ($val->AMOUNT) ? $val->AMOUNT : 0;
+            $advance = ($val->Advance) ? $val->Advance : 0;
+            $paid = ($val->Paid) ? $val->Paid : 0;
+            $payTotal = ($advance + $paid) ;
+            $payable = ($amount - $payTotal);
+            if($payable==0){
+                $status = "<span class='badge badge-success'>Paid</span>";
+            }elseif($payTotal==0){
+                $status = "<span class='badge badge-danger'>Due</span>";
+            }elseif(($payTotal<$amount) && $payTotal>0){
+                $status = "<span class='badge badge-warning'>Partial paid</span>";
+            }
+            
+            
+            $html .= "<tr >";
+            $html .= "<td>" . $val->LeaseID . "</td>";
+            $html .= "<td>" . $val->LEASE_NAME . "</td>";
+            $html .= "<td>" . $val->DATE_FROM . "</td>";
+            $html .= "<td>" . $val->DATE_TO . "</td>";
+            $html .= "<td style='text-align:right'>" . $amount . "</td>";
+            $html .= "<td style='text-align:right'>" . $advance . "</td>";
+            $html .= "<td style='text-align:right'>" . $paid . "</td>";
+            $html .= "<td style='text-align:center'>" . $status . "</td>";
+            $html .= "<td style='text-align:right'>
+                    <input type='hidden' name='lease_slab_id[]' value='" . $val->ID . "'>
+                    <input type='text' name='payable[]' style='text-align:right' class='form-control payable' readonly value='" . $payable . "'>
+                    </td>";
+            $readOnly = ($payable==0) ? 'readonly' : '';
+            $readOnlyValue = ($payable==0) ? 0 : '';
+            $html .= "<td><input type='text' name='pay_amount[]' ".$readOnly." value='".$readOnlyValue."' onkeypress='return event.charCode >= 48 && event.charCode <= 57'  class='form-control pay' style='text-align:right'></td>";
+            $html .= "</tr>";
+            $totalPayable += $payable;
+            $totalAmount += $amount;
+            $totalAdvance += $advance;
+            $totalPaid += $paid;
+        endforeach;
+        $html .= "<tr style='font-weight:bold;background-color:#D5F5E3'>
                 <td colspan='4' style='text-align:right;font-weight:bold'>TOTAL</td>
-                <td style='text-align:right;font-weight:bold'>".$totalAmount."</td>
-                <td style='text-align:right;font-weight:bold'>".$totalAdvance."</td>
-                <td style='text-align:right;font-weight:bold'>".$totalPaid."</td>
-                <td style='text-align:right;font-weight:bold'>".$totalPayable."</td>
+                <td style='text-align:right;font-weight:bold'>" . $totalAmount . "</td>
+                <td style='text-align:right;font-weight:bold'>" . $totalAdvance . "</td>
+                <td style='text-align:right;font-weight:bold'>" . $totalPaid . "</td>
+                <td style='text-align:right;font-weight:bold'></td>
+                <td style='text-align:right;font-weight:bold'>" . $totalPayable . "</td>
                 <td id='pay_total'  style='text-align:right;font-weight:bold'></td>
             </tr>";
-            $html .="<tr style='font-weight:bold'>
-                <td colspan='8' style='text-align:right;font-weight:bold'></td>
-                <td><input type='SUBMIT' value='SUBMIT'class='form-control btn btn-success submit_button' /></td>
+        $html .= "<tr style='font-weight:bold'>
+                <td colspan='9' style='text-align:right;font-weight:bold'></td>
+                <td><input type='SUBMIT' value='SUBMIT' class='form-control btn btn-success submit_button' /></td>
             </tr>";
-            $html .="</tbody>";
-            $html .="</table";
-        $html .="</from";
+        $html .= "</tbody>";
+        $html .= "</table";
 
-       echo $html;
+
+        echo $html;
     }
 
     public function getOutstanding()
@@ -377,7 +432,7 @@ class PayableController extends CI_Controller
         $leaseRentSlabs = $this->db->query("SELECT * 
         FROM tbl_lease_agreement 
         WHERE LEASE_ID=? AND `TYPE`=?", array($leaseID, 'rent'))->result();
-       
+
         $advanceSlabs = $this->db->query("SELECT * FROM tbl_lease_agreement WHERE LEASE_ID=? AND `TYPE`=?", array($leaseID, 'advance'))->result();
         $payments = $this->db->query("SELECT * FROM tbl_payable WHERE LEASE_ID=?", array($leaseID))->result();
 

@@ -139,7 +139,7 @@ if ($action_type == 'csv') {
                         <th>Lease Name</th>
                         <th>Total Amount (Tk)</th>
                         <th>Total Paid (Tk)</th>
-                        <th>Outstanding (Tk)</th>
+                        <th>Payable (Tk)</th>
                     </tr>
                     <?php
                     $vendorTotal = $vendorPaidTotal = $vendorOutstandingTotal = 0;
@@ -173,7 +173,7 @@ if ($action_type == 'csv') {
                 ?>
 
                 <tr>
-                    <th colspan="2">TOTAL</th>
+                    <th colspan="2">Total Payable</th>
                     <th style='text-align:right;font-weight:bold'><?php echo number_format($grandTotalAmount, 2); ?></th>
                     <th style='text-align:right;font-weight:bold'><?php echo number_format($grandTotalPaid, 2); ?></th>
                     <th style='text-align:right;font-weight:bold'><?php echo number_format($grandTotalOutstanding, 2); ?></th>

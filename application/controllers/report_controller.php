@@ -111,7 +111,10 @@ class Report_controller extends CI_Controller {
 			$query = "SELECT ID AS LeaseId,LEASE_NAME,LEASE_TYPE,VENDOR_ID,VENDOR_NAME,TotalAmount,IFNULL(TotalPaid,0) AS TotalPaid,IFNULL((IFNULL(TotalAmount,0)-IFNULL(TotalPaid,0)),0) AS Due FROM (
 				SELECT L.ID,L.LEASE_NAME,L.LEASE_TYPE,L.VENDOR_ID,tbl_vendor.VENDOR_NAME,
 				(SELECT SUM(IFNULL(AMOUNT,0)) FROM tbl_lease_agreement WHERE LEASE_ID=L.ID AND TYPE='rent' GROUP BY LEASE_ID) AS TotalAmount,
-				(SELECT SUM(IFNULL(AMOUNT,0)) FROM tbl_payable WHERE LEASE_ID=L.ID AND PERIOD BETWEEN '$dateFrom' AND '$dateTo' GROUP BY LEASE_ID) AS TotalPaid 
+				(SELECT SUM(IFNULL(tbl_payment_details.AMOUNT,0)) 
+					FROM tbl_payment_details 
+					LEFT JOIN tbl_lease_agreement ON tbl_lease_agreement.ID=tbl_payment_details.LEASE_SLAB_ID 
+					WHERE tbl_lease_agreement.LEASE_ID=L.ID AND tbl_lease_agreement.DATE_FROM >= '$dateFrom' AND tbl_lease_agreement.DATE_TO <= '$dateTo' GROUP BY tbl_lease_agreement.LEASE_ID) AS TotalPaid 
 				FROM tbl_lease_onboarding L
 				LEFT JOIN tbl_vendor ON tbl_vendor.ID=L.VENDOR_ID
 				WHERE L.LEASE_TYPE='payable' $additionalWhere

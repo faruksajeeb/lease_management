@@ -1,4 +1,4 @@
-<?php $page_title = 'Create Payable'; ?>
+<?php $page_title = 'Create Payament'; ?>
 <?php $route = 'create_payable';
 
 ?>
@@ -52,7 +52,12 @@
 
 				<div class="row">
 					<div class="col-md-12 content_section" style='padding-top:10px'>
-
+					<form id='payment_form' class='form_post_ajax' form-route='create_payable' method='post' action=''>
+       				<input type='hidden' name='<?php echo $this->security->get_csrf_token_name() ?>' value='<?php echo $this->security->get_csrf_hash() ?>'>
+							<div class="dynamic_slot">
+								
+							</div>
+					</form>
 					</div>
 				</div>
 
@@ -86,7 +91,7 @@
 				$('#pay_total').text(0);
 				$(".submit_button").prop("disabled", true);
 			});
-			$('.content_section').on('keyup', '.pay', function() {				
+			$('.dynamic_slot').on('keyup', '.pay', function() {				
                 var tr = $(this).parent().parent();
 				var payable = Number(tr.find('.payable').val());
 				var pay = Number($(this).val());
@@ -142,7 +147,7 @@
 							success: function(response) {
 								// Remove options 
 								// $('#LEASE_ID').find('option').not(':first').remove();
-								$('.content_section').html(response);
+								$('.dynamic_slot').html(response);
 								$(".submit_button").prop("disabled", true);
 							}
 						});
@@ -165,7 +170,7 @@
 						success: function(response) {
 							// Remove options 
 							// $('#LEASE_ID').find('option').not(':first').remove();
-							$('.content_section').html(response);
+							$('.dynamic_slot').html(response);
 						}
 					});
 				}
