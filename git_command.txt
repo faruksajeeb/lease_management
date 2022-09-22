@@ -17,3 +17,7 @@ git remote add origin https://github.com/faruksajeeb/lease_management.git
 git push -u origin main
 
 git clone --branch imran https://github.com/faruksajeeb/lease_management.git
+
+git pull origin other-branch
+git fetch origin other-branch && git merge other-branch
+git checkout branchname
