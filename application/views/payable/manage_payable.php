@@ -14,7 +14,7 @@
 		<div id="header_container"><?php include(APPPATH . "views/header.php"); ?></div>
 
 		<div id="page_manage_payable" class="container-fluid page_identifier">
-			<div class="page_caption">Manage Payable</div>
+			<div class="page_caption">Manage Payments</div>
 			<div class="page_body table-responsive">
 				<div class="row">
 					<div class="col-lg-8 col-md-8">
@@ -87,35 +87,27 @@
 					<table class="table table-bordered table-striped">
 						<tr>
 							<th>Sl No.</th>
-							<th>Vendor Name</th>
-							<th>Lease ID</th>
-							<th>Period</th>
-							<th>Amount</th>
-							<th>Payment Method</th>
 							<th>Payment Date</th>
+							<th>Payment Method</th>
 							<th>Referance Number</th>
 							<th>Remarks</th>
 							<th>Paid BY</th>
 							<th>Attachment</th>
 							<th>created By</th>
-							<th>created Date</th>
+							<th>created At</th>
 							<th>Updated By</th>
-							<th>Updated Date</th>
+							<th>Updated At</th>
 							<th>Status</th>
 							<th>Action</th>
 						</tr>
 						<?php foreach ($get_record as $k => $v) : ?>
 							<tr>
 								<td><?php echo ++$k; ?></td>
-								<td><?php echo $v->VENDOR_NAME; ?></td>
-								<td><?php echo $v->LEASE_ID; ?></td>
-								<td><?php echo $v->PERIOD; ?></td>
-								<td><?php echo $v->AMOUNT; ?></td>
-								<td><?php echo $v->PAYMENT_METHOD_ID; ?></td>
 								<td><?php echo $v->PAYMENT_DATE; ?></td>
+								<td><?php echo ucfirst($v->PAYMENT_METHOD); ?></td>
 								<td><?php echo $v->REFERENCE_NUMBER; ?></td>
 								<td><?php echo $v->REMARKS; ?></td>
-								<td><?php echo $v->PAID_BY; ?></td>
+								<td><?php echo $this->customcache->user_maker($v->PAID_BY, 'USER_NAME'); ?></td>
 								<td>
 									<?php if($v->ATTACHMENT) { ?>
 									<a href="<?php echo $url_prefix.'global/custom_files/receivable/'.$v->ATTACHMENT;  ?>" target="_blank">attachment</a>
@@ -123,13 +115,14 @@
 											
 								</td>
 								<td><?php echo $this->customcache->user_maker($v->CREATED_BY, 'USER_NAME'); ?></td>
-								<td><?php echo $this->webspice->formatted_date($v->CREATED_DATE); ?></td>
+								<td><?php echo $this->webspice->formatted_date($v->CREATED_AT); ?></td>
 								<td><?php echo $this->customcache->user_maker($v->UPDATED_BY, 'USER_NAME'); ?></td>
-								<td><?php echo $this->webspice->formatted_date($v->UPDATED_DATE); ?></td>
+								<td><?php echo $this->webspice->formatted_date($v->UPDATED_AT); ?></td>
 								<td><?php echo $this->webspice->static_status($v->STATUS); ?></td>
 								<td>
 								<?php if ($this->webspice->permission_verify('manage_payable', true)) : ?>
-										<a href="<?php echo $url_prefix; ?>manage_payable/delete/<?php echo $this->webspice->encrypt_decrypt($v->ID, 'encrypt'); ?>" class="btn btn-xs btn-danger btn_ajax"> Delete</a>
+										<a href="<?php echo $url_prefix; ?>manage_payable/view/<?php echo $this->webspice->encrypt_decrypt($v->ID, 'encrypt'); ?>" class="btn btn-xs btn-info btn_ajax"> View</a>
+										<!-- <a href="<?php echo $url_prefix; ?>manage_payable/delete/<?php echo $this->webspice->encrypt_decrypt($v->ID, 'encrypt'); ?>" class="btn btn-xs btn-danger btn_ajax"> Delete</a> -->
 									<?php endif; ?>
 									<!-- <?php if ($this->webspice->permission_verify('manage_payable', true)) : ?>
 										<a href="<?php echo $url_prefix; ?>manage_payable/edit/<?php echo $this->webspice->encrypt_decrypt($v->ID, 'encrypt'); ?>" class="btn btn-xs btn-primary" data-featherlight="ajax">Edit</a>

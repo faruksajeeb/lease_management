@@ -21,7 +21,7 @@ class PayableController extends CI_Controller
                 'LEASE_ID' => null,
                 'PERIOD' => null,
                 'AMOUNT' => null,
-                'PAYMENT_METHOD_ID' => null,
+                'PAYMENT_METHOD' => null,
                 'PAYMENT_DATE' => null,
                 'REFERENCE_NUMBER' => null,
                 'REMARKS' => null,
@@ -84,10 +84,10 @@ class PayableController extends CI_Controller
         }
         $paymentData = array(
             'PAYMENT_DATE' => date('Y-m-d'),
-            'PAYMENT_METHOD_ID' => 1,
-            'REFERENCE_NUMBER' => null,
-            'REMARKS' => null,
-            'PAID_BY' => null,
+            'PAYMENT_METHOD' => $input->PAYMENT_METHOD,
+            'REFERENCE_NUMBER' => $input->REFERENCE_NUMBER,
+            'REMARKS' => $input->REMARKS,
+            'PAID_BY' => $this->webspice->get_user_id(),
             'ATTACHMENT' => null,
             'HISTORY' => null,
             'CREATED_BY' =>  $this->webspice->get_user_id(),
@@ -151,10 +151,10 @@ class PayableController extends CI_Controller
         $this->webspice->permission_verify('manage_payable');
 
         $this->load->database();
-        $orderby = ' ORDER BY tbl_payable.ID DESC';
+        $orderby = ' ORDER BY tbl_payments.ID DESC';
         $groupby = null;
-        $where = ' WHERE tbl_payable.STATUS !=-1';
-        $additional_where = ' tbl_payable.STATUS !=-1';
+        $where = ' WHERE tbl_payments.STATUS = 1 ';
+        $additional_where = ' tbl_payments.STATUS = 1 ';
         $page_index = 0;
         $no_of_record = 10;
         $limit = ' LIMIT ' . $no_of_record;
@@ -170,15 +170,13 @@ class PayableController extends CI_Controller
         }
 
         $initialSQL = "
-		SELECT tbl_payable.*,tbl_lease_onboarding.LEASE_NAME,tbl_vendor.VENDOR_NAME 
-		FROM tbl_payable 
-        LEFT JOIN tbl_vendor ON tbl_vendor.ID=tbl_payable.vendor_id
-        LEFT JOIN tbl_lease_onboarding ON tbl_lease_onboarding.ID = tbl_payable.lease_id
+		SELECT tbl_payments.*
+		FROM tbl_payments 
 		";
 
         $countSQL = "
 		SELECT COUNT(*) AS TOTAL_RECORD
-		FROM tbl_payable
+		FROM tbl_payments
 		";
 
         # filtering records
@@ -187,20 +185,20 @@ class PayableController extends CI_Controller
             if ($this->input->get('date_from') && $this->input->get('date_to')) {
                 $DateFrom = $this->input->get('date_from');
                 $DateTo = $this->input->get('date_to');
-                $additional_where .= " AND tbl_payable.PAYMENT_DATE BETWEEN '{$DateFrom}' AND '{$DateTo}'";
+                $additional_where .= " AND tbl_payments.PAYMENT_DATE BETWEEN '{$DateFrom}' AND '{$DateTo}'";
                 $temp_filter = "PAYMENT_DATE Between - '" . $DateFrom . "' and '" . $DateTo . "'";
             } elseif ($this->input->get('date_from')) {
                 $DateFrom = $this->input->get('date_from');
-                $additional_where .= " AND tbl_payable.PAYMENT_DATE LIKE '%" . $DateFrom . "%'";
+                $additional_where .= " AND tbl_payments.PAYMENT_DATE LIKE '%" . $DateFrom . "%'";
                 $temp_filter = "PAYMENT_DATE - " . $DateFrom . "";
             } elseif ($this->input->get('date_to')) {
                 $DateTo = $this->input->get('date_to');
-                $additional_where .= " AND tbl_payable.PAYMENT_DATE LIKE '%" . $DateTo . "%'";
+                $additional_where .= " AND tbl_payments.PAYMENT_DATE LIKE '%" . $DateTo . "%'";
                 $temp_filter = "PAYMENT_DATE - " . $DateTo . "";
             }
 
             $result = $this->webspice->filter_generator(
-                $TableName = 'tbl_payable',
+                $TableName = 'tbl_payments',
                 $InputField = array('VENDOR_ID'),
                 $Keyword = array('VENDOR_ID', 'LEASE_ID', 'PERIOD', 'AMOUNT'),
                 $AdditionalWhere = $additional_where,
@@ -239,22 +237,22 @@ class PayableController extends CI_Controller
 
             case 'edit':
 
-                $this->webspice->edit_generator($TableName = 'tbl_payable', $KeyField = 'ID', $key, $RedirectController = 'PayableController', $RedirectFunction = 'createPayable', $PermissionName = 'craete_payable,manage_payable', $StatusCheck = null, $Log = 'edit_payable');
+                $this->webspice->edit_generator($TableName = 'tbl_payments', $KeyField = 'ID', $key, $RedirectController = 'PayableController', $RedirectFunction = 'createPayable', $PermissionName = 'craete_payable,manage_payable', $StatusCheck = null, $Log = 'edit_payable');
 
                 return false;
                 break;
 
             case 'inactive':
-                $this->webspice->action_executer($TableName = 'tbl_payable', $KeyField = 'ID', $key, $RedirectURL = 'manage_payable', $PermissionName = 'manage_payable', $StatusCheck = 7, $ChangeStatus = -7, $RemoveCache = 'payable', $Log = 'inactive_payable');
+                $this->webspice->action_executer($TableName = 'tbl_payments', $KeyField = 'ID', $key, $RedirectURL = 'manage_payable', $PermissionName = 'manage_payable', $StatusCheck = 7, $ChangeStatus = -7, $RemoveCache = 'payable', $Log = 'inactive_payable');
                 return false;
                 break;
 
             case 'active':
-                $this->webspice->action_executer($TableName = 'tbl_payable', $KeyField = 'ID', $key, $RedirectURL = 'manage_payable', $PermissionName = 'manage_payable', $StatusCheck = -7, $ChangeStatus = 7, $RemoveCache = 'payable', $Log = 'active_payable');
+                $this->webspice->action_executer($TableName = 'tbl_payments', $KeyField = 'ID', $key, $RedirectURL = 'manage_payable', $PermissionName = 'manage_payable', $StatusCheck = -7, $ChangeStatus = 7, $RemoveCache = 'payable', $Log = 'active_payable');
                 return false;
                 break;
             case 'delete':
-                $this->webspice->action_executer($TableName = 'tbl_payable', $KeyField = 'ID', $key, $RedirectURL = 'manage_payable', $PermissionName = 'manage_payable', $StatusCheck = 1, $ChangeStatus = -1, $RemoveCache = 'payable', $Log = 'delete_payable');
+                $this->webspice->action_executer($TableName = 'tbl_payments', $KeyField = 'ID', $key, $RedirectURL = 'manage_payable', $PermissionName = 'manage_payable', $StatusCheck = 1, $ChangeStatus = -1, $RemoveCache = 'payable', $Log = 'delete_payable');
                 return false;
                 break;
         }
@@ -404,9 +402,28 @@ class PayableController extends CI_Controller
                 <td style='text-align:right;font-weight:bold'>" . $totalPayable . "</td>
                 <td id='pay_total'  style='text-align:right;font-weight:bold'></td>
             </tr>";
+            $html .= "<tr style='font-weight:bold'>
+            <td colspan='8' style='text-align:right;font-weight:bold'></td>
+            <td colspan='2'>
+            <select class='form-control' name='PAYMENT_METHOD' required>
+                <option value=''>select payment</option>
+                <option value='cash'>Cash</option>
+                <option value='cheque'>Cheque</option>
+                <option value='bank'>Bank</option>
+            </select>
+            </td>
+        </tr>";
+            $html .= "<tr style='font-weight:bold'>
+            <td colspan='2' style='text-align:right;font-weight:bold'></td>
+            <td colspan='1' style='text-align:right;font-weight:bold'>Remarks</td>
+            <td colspan='5'><textarea class='form-control' name='REMARKS'></textarea></td>
+            <td colspan='2'>
+            <input type='text' name='REFERENCE_NUMBER' id='REFERENCE_NUMBER' class='form-control' placeholder='Enter Reference'>
+            </td>
+        </tr>";
         $html .= "<tr style='font-weight:bold'>
-                <td colspan='9' style='text-align:right;font-weight:bold'></td>
-                <td><input type='SUBMIT' value='SUBMIT' class='form-control btn btn-success submit_button' /></td>
+                <td colspan='8' style='text-align:right;font-weight:bold'></td>
+                <td colspan='2'><input type='SUBMIT' value='SUBMIT' class='form-control btn btn-success submit_button' /></td>
             </tr>";
         $html .= "</tbody>";
         $html .= "</table";
@@ -420,7 +437,7 @@ class PayableController extends CI_Controller
         $postData = $this->input->post();
         $RENT_TOTAL = $this->db->query("SELECT SUM(AMOUNT) as RENT_TOTAL FROM tbl_lease_agreement WHERE LEASE_ID=? AND `TYPE`=?", array($postData['lease_id'], 'rent'))->row('RENT_TOTAL');
         $ADVANCE_TOTAL = $this->db->query("SELECT SUM(AMOUNT) as ADVANCE_TOTAL FROM tbl_lease_agreement WHERE LEASE_ID=? AND `TYPE`=?", array($postData['lease_id'], 'advance'))->row('ADVANCE_TOTAL');
-        $PAID_TOTAL = $this->db->query("SELECT SUM(AMOUNT) as PAID_TOTAL FROM tbl_payable WHERE LEASE_ID=?", array($postData['lease_id']))->row('PAID_TOTAL');
+        $PAID_TOTAL = $this->db->query("SELECT SUM(AMOUNT) as PAID_TOTAL FROM tbl_payments WHERE LEASE_ID=?", array($postData['lease_id']))->row('PAID_TOTAL');
         $TOTAL_OUTSTANDING = $RENT_TOTAL - ($ADVANCE_TOTAL + $PAID_TOTAL);
         echo $TOTAL_OUTSTANDING;
     }
@@ -434,7 +451,7 @@ class PayableController extends CI_Controller
         WHERE LEASE_ID=? AND `TYPE`=?", array($leaseID, 'rent'))->result();
 
         $advanceSlabs = $this->db->query("SELECT * FROM tbl_lease_agreement WHERE LEASE_ID=? AND `TYPE`=?", array($leaseID, 'advance'))->result();
-        $payments = $this->db->query("SELECT * FROM tbl_payable WHERE LEASE_ID=?", array($leaseID))->result();
+        $payments = $this->db->query("SELECT * FROM tbl_payments WHERE LEASE_ID=?", array($leaseID))->result();
 
         $html = '<table class="table table-bordered">
         <thead>
