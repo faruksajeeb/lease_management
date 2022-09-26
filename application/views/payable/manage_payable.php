@@ -25,7 +25,7 @@
 							<table style="width:auto;">
 								<tr>
 									<td>Keyword</td>
-									<td>Vendor Name</td>
+									<!-- <td>Vendor Name</td> -->
 									<td>Date From (PAID)</td>
 									<td>Date To (PAID)</td>
 								</tr>
@@ -33,7 +33,7 @@
 									<td>
 										<input type="text" name="SearchKeyword" class="input_style input_full" />
 									</td>
-									<td>
+									<!-- <td>
 										<div>
 											<select name="VENDOR_ID" id="VENDOR_ID" class="input_full form-control" >
 												<option value="">Select One</option>
@@ -42,7 +42,7 @@
 												<?php endforeach; ?>
 											</select>
 										</div>
-									</td>
+									</td> -->
 									<td>
 										<div>
 											<input type="text" name="date_from" class="input_style date_picker" />
@@ -71,7 +71,7 @@
 							<div class="title">Tips to All Users.</div>
 							<div class="description">
 								<ul>
-									<li>Filter by Vendor Name, Lease ID, Amount, Date Range in <b>Keyword</b> field.</li>
+									<li>Filter by Date Range in <b>Keyword</b> field.</li>
 								</ul>
 							</div>
 						</div>
@@ -121,7 +121,7 @@
 								<td><?php echo $this->webspice->static_status($v->STATUS); ?></td>
 								<td>
 								<?php if ($this->webspice->permission_verify('manage_payable', true)) : ?>
-										<a href="<?php echo $url_prefix; ?>manage_payable/view/<?php echo $this->webspice->encrypt_decrypt($v->ID, 'encrypt'); ?>" class="btn btn-xs btn-info btn_ajax"> View</a>
+										<a href="<?php echo $url_prefix; ?>manage_payable/view/<?php echo $this->webspice->encrypt_decrypt($v->ID, 'encrypt'); ?>" class="btn btn-xs btn-info "> View</a>
 										<!-- <a href="<?php echo $url_prefix; ?>manage_payable/delete/<?php echo $this->webspice->encrypt_decrypt($v->ID, 'encrypt'); ?>" class="btn btn-xs btn-danger btn_ajax"> Delete</a> -->
 									<?php endif; ?>
 									<!-- <?php if ($this->webspice->permission_verify('manage_payable', true)) : ?>

@@ -1,4 +1,4 @@
-<?php $page_title = 'Create Receivable'; ?>
+<?php $page_title = 'Create Receive'; ?>
 <?php $route = 'create_receivable';
 
 ?>
@@ -24,135 +24,43 @@
 			<div class="page_caption"><?php echo $page_title; ?></div>
 			<div class="page_body stamp">
 				<div class="row">
-					<div class="col-lg-5 col-md-5 col-sm-12">
-						<fieldset class="divider">
-							<legend>Please enter required information</legend>
-						</fieldset>
+					<div class="col-md-4">
+						<div class="input-group">
+							<span class="input-group-addon "> Vendor Name</span>
+							<select name="VENDOR_ID" id="VENDOR_ID" class="input_full form-control" required>
+								<option value="">Select One</option>
+								<?php foreach ($vendors as $val) : ?>
+									<option value="<?php echo $val->ID; ?>" <?php if (set_value('VENDOR_ID', $edit['VENDOR_ID']) == $val->ID) {
+																				echo 'selected="selected"';
+																			} ?>><?php echo $val->VENDOR_NAME; ?></option>
+								<?php endforeach; ?>
+							</select>
+						</div>
 
-						<div class="stitle">* Mandatory Field</div>
-
-						<form id="frm_<?php echo str_replace(' ', '_', strtolower($page_title)); ?>" class="form_post_ajax" form-route="<?php echo $route; ?>" method="post" action="" enctype="multipart/form-data" data-parsley-validate>
-							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
-							<input type="hidden" name="key" value="<?php if (isset($edit['ID']) && $edit['ID']) {
-																		echo $this->webspice->encrypt_decrypt($edit['ID'], 'encrypt');
-																	} ?>" />
-
-							<table width="100%">
-								<tr>
-									<td>
-										<div class="form_label">Vendor Name*</div>
-										<div>
-											<select name="VENDOR_ID" id="VENDOR_ID" class="input_full form-control" required>
-												<option value="">Select One</option>
-												<?php foreach ($vendors as $val) : ?>
-													<option value="<?php echo $val->ID; ?>" <?php if (set_value('VENDOR_ID', $edit['VENDOR_ID']) == $val->ID) {
-																								echo 'selected="selected"';
-																							} ?>><?php echo $val->VENDOR_NAME; ?></option>
-												<?php endforeach; ?>
-											</select>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<div class="form_label">Lease ID*</div>
-										<div>
-											<select name="LEASE_ID" id="LEASE_ID" class="input_full form-control" required>
-												<option value="">Select vendor first</option>
-												<?php foreach ($leases as $val) : ?>
-													<option value="<?php echo $val->ID; ?>" <?php if (set_value('LEASE_ID', $edit['LEASE_ID']) == $val->ID) {
-																								echo 'selected="selected"';
-																							} ?>><?php echo $val->LEASE_NAME; ?></option>
-												<?php endforeach; ?>
-											</select>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<div class="form_label">Period (Month/Year) *:</div>
-										<div>
-											<input type="text" class="input_full form-control PERIOD monthpicker" id="PERIOD" name="PERIOD" value="<?php echo set_value('PERIOD', $edit['PERIOD']); ?>" required>
-											<span class="fred"><?php echo form_error('PERIOD'); ?></span>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<div class="form_label">Received Date*:</div>
-										<div>
-											<input type="text" class="input_full form-control date_picker" id="RECEIVE_DATE" name="RECEIVE_DATE" value="<?php echo set_value('RECEIVE_DATE', $edit['RECEIVE_DATE']); ?>" required />
-											<span class="fred"><?php echo form_error('RECEIVE_DATE'); ?></span>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<div class="form_label">Payment Method*</div>
-										<div>
-											<select name="PAYMENT_METHOD_ID" id="PAYMENT_METHOD_ID" class="input_full form-control" required>
-												<option value="">Select One</option>
-												<option value="1" <?php echo $edit['PAYMENT_METHOD_ID'] == '1' ? 'selected' : ''; ?>>Cash</option>
-												<option value="2" <?php echo $edit['PAYMENT_METHOD_ID'] == '2' ? 'selected' : ''; ?>>Cheque</option>
-												<option value="3" <?php echo $edit['PAYMENT_METHOD_ID'] == '3' ? 'selected' : ''; ?>>Card</option>
-											</select>
-											<span class="fred"><?php echo form_error('PAYMENT_METHOD_ID'); ?></span>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<div class="form_label">Reference Number*</div>
-										<div>
-											<input type="text" class="input_full form-control " id="REFERENCE_NUMBER" name="REFERENCE_NUMBER" value="<?php echo set_value('REFERENCE_NUMBER', $edit['REFERENCE_NUMBER']); ?>" required />
-											<span class="fred"><?php echo form_error('REFERENCE_NUMBER'); ?></span>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<div class="form_label">Amount*</div>
-										<div>
-											<input type="number" class="input_full form-control " id="AMOUNT" name="AMOUNT" value="<?php echo set_value('AMOUNT', $edit['AMOUNT']); ?>" required />
-											<span class="fred"><?php echo form_error('AMOUNT'); ?></span>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<div class="form_label">REMARKS</div>
-										<div>
-											<textarea name="REMARKS" id="REMARKS" cols="30" rows="5" class="form-control"></textarea>
-											<span class="fred"><?php echo form_error('REMARKS'); ?></span>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<div class="form_label">Attachment</div>
-										<div>
-											<input type="file" name="attachment" id="attachment" autocomplete="off" class="input-text" accept="image/jpeg,image/gif,image/png,application/pdf">
-											<input type="hidden" name="previous_uploaded_attachment" id="previous_uploaded_attachment" value="<?php if ($edit['ATTACHMENT']) {
-																																					echo $edit['ATTACHMENT'];
-																																				} ?>">
-										</div>
-									</td>
-								</tr>
-
-								<tr>
-									<td>
-										<div><input type="submit" class="btn btn-danger" id="submit_button" value="Submit Data" /></div>
-										<div class="spinner">&nbsp;</div>
-									</td>
-								</tr>
-							</table>
-						</form>
 					</div>
-
-					<div id="right_part" class="col-lg-7 col-md-7 col-sm-12">
-
+					<div class="col-md-3">
+						<div class="input-group">
+							<span class="input-group-addon glyphicon glyphicon-calendar"> Month/Year</span>
+							<input type="text" class="form-control monthpicker" name="MONTH_YEAR" id="MONTH_YEAR" aria-label="" required>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<button class="btn btn-success full_paid" type="button">Full Paid</button>
+						<button class="btn btn-default reset" type="button">Reset</button>
 					</div>
 				</div>
+
+				<div class="row">
+					<div class="col-md-12 content_section" style='padding-top:10px'>
+					<form id='payment_form' class='form_post_ajax' form-route='create_received' method='post' action=''>
+       				<input type='hidden' name='<?php echo $this->security->get_csrf_token_name() ?>' value='<?php echo $this->security->get_csrf_hash() ?>'>
+							<div class="dynamic_slot">
+								
+							</div>
+					</form>
+					</div>
+				</div>
+
 
 
 			</div>
@@ -164,94 +72,109 @@
 		<?php endif; ?>
 
 	</div>
-
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$(".monthpicker").MonthPicker({
-				ShowIcon: false
-				// Button: '<button>...</button>'
+			
+			$('.full_paid').on('click', function() {
+				$('.receivable').each(function() {
+					var receivable = Number($(this).val());
+					var tr = $(this).parent().parent();
+					tr.find('.pay').val(receivable);
+				});
+				totalPay();
+				
 			});
-			$('#VENDOR_ID').change(function() {
-				var VendorId = $(this).val();
-				if (VendorId) {
-					$.ajax({
-						url: '<?php echo $url_prefix; ?>ReceivableController/getLeaseIdByVendor',
-						method: 'post',
-						data: {
-							'<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>',
-							vendor_id: VendorId
-						},
-						dataType: 'json',
-						success: function(response) {
-							// Remove options 
-							// $('#LEASE_ID').find('option').not(':first').remove();
-							$('#LEASE_ID').find('option').remove();
-							// Add options
-							$('#LEASE_ID').append('<option value="">--select lease ID--</option>');
-							$.each(response, function(index, data) {
-								$('#LEASE_ID').append('<option value="' + data['ID'] + '">' + data['LEASE_NAME'] + '</option>');
-							});
-						}
+			$(".reset").on('click',function() {
+				$('.pay').each(function() {
+					$(this).val("");
+				});
+				$('#pay_total').text(0);
+				$(".submit_button").prop("disabled", true);
+			});
+			$('.dynamic_slot').on('keyup', '.pay', function() {				
+                var tr = $(this).parent().parent();
+				var receivable = Number(tr.find('.receivable').val());
+				var pay = Number($(this).val());
+				totalPay();
+				if(pay>receivable){
+					Swal.fire({
+						allowOutsideClick: false,
+						icon: 'warning',
+						title: 'Alert!',
+						text: "Receive amount must be less than or equal to receivable.",
 					});
+					tr.find('.pay').css('border', '1px solid red').focus();
+					$(".submit_button").prop("disabled", true);
+				}else{
+					tr.find('.pay').css('border', '1px solid green');
+					$(".submit_button").prop("disabled", false);
+				}				
+            });
+			function totalPay(){
+				var totalPay =0;
+				var pay;
+				$('.pay').each(function() {
+					pay = Number($(this).val());
+					totalPay += pay;
+				});
+				$('#pay_total').text(totalPay);
+				if(totalPay>0){
+					$(".submit_button").prop("disabled", false);
+				}else{
+					$(".submit_button").prop("disabled", true);
+				}				
+			}
+			$(".monthpicker").MonthPicker({
+				ShowIcon: false,
+				// Button: '<button>...</button>',
+				OnAfterChooseMonth: function() {
+					var vendorId = $('#VENDOR_ID').val();
+					var monthYear = $(this).val();
+					if (!vendorId) {
+						Swal.fire('Warning', 'Please select vendor first.', 'warning');
+						return false;
+					}
+					if (vendorId && monthYear) {
+						$.ajax({
+							url: '<?php echo $url_prefix; ?>ReceivableController/getLeaseIdByVendor',
+							method: 'post',
+							data: {
+								'<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>',
+								vendor_id: vendorId,
+								month_year: monthYear,
+							},
+							dataType: 'html',
+							success: function(response) {
+								// Remove options 
+								// $('#LEASE_ID').find('option').not(':first').remove();
+								$('.dynamic_slot').html(response);
+								$(".submit_button").prop("disabled", true);
+							}
+						});
+					}
 				}
 			});
-			$('#LEASE_ID').change(function() {
-				var LEASE_ID = $(this).val();
-				if (LEASE_ID) {
+			$('#VENDOR_ID').change(function() {
+				var vendorId = $(this).val();
+				var monthYear = $("#MONTH_YEAR").val();
+				if (vendorId && monthYear) {
 					$.ajax({
-						url: '<?php echo $url_prefix; ?>ReceivableController/getAdvanceAndPaymentInfoByLeaseId',
+						url: '<?php echo $url_prefix; ?>PayableController/getLeaseIdByVendor',
 						method: 'post',
 						data: {
 							'<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>',
-							LEASE_ID: LEASE_ID
+							vendor_id: vendorId,
+							month_year: monthYear,
 						},
 						dataType: 'html',
 						success: function(response) {
 							// Remove options 
-							$("#right_part").html(response);
+							// $('#LEASE_ID').find('option').not(':first').remove();
+							$('.dynamic_slot').html(response);
 						}
 					});
 				}
 			});
-			$('#AMOUNT').on('keyup', function() {
-				$("#submit_button").prop("disabled", false);
-				var VendorId = $('#VENDOR_ID').val();
-				var Amount = $(this).val();
-				var LeaseId = $('#LEASE_ID').val();
-				if (!VendorId || !Amount || !LeaseId) {
-					Swal.fire('ERROR', 'Please select vendor & lease first then enter amount.', 'warning');
-					return false;
-				}
-				if (Amount) {
-					$.ajax({
-						url: '<?php echo $url_prefix; ?>ReceivableController/getOutstanding',
-						method: 'post',
-						data: {
-							'<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>',
-							amount: Amount,
-							vendor_id: VendorId,
-							lease_id: LeaseId
-						},
-						dataType: 'text',
-						success: function(response) {
-							if (Number(Amount) > Number(response)) {
-								$("#submit_button").prop("disabled", true);
-								Swal.fire(
-									'Forbidden!',
-									'Amount shoud be less than or equal to outstanding balance (' + response + ')! ',
-									'warning'
-								)
-								//alert('Amount shoud be less than outstanding!');
-							} else {
-								$("#submit_button").prop("disabled", false);
-							}
-						}
-					})
-				} else {
-					alert('Please enter number.');
-				}
-			});
-
 
 			// if edit
 			var key = $('#key').val();
@@ -262,6 +185,7 @@
 					$('#right_part').html("");
 					return false;
 				}
+
 				$('#right_part').html('<br /><br /><br /><span style="color:red;">Instruction:</span><br />' + desc).css('font-weight', 'bold');
 			}
 

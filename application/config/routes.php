@@ -102,16 +102,16 @@ $route['manage_lease_onboarding/:any']='configuration_controller/manage_lease_on
 $route['manage_lease_onboarding/:any/:any']='configuration_controller/manage_lease_onboarding';
 
 # Receivable
-$route['create_receivable']='ReceivableController/createReceivable';
-$route['manage_receivable']='ReceivableController/manageReceivable';
-$route['manage_receivable/:any']='ReceivableController/manageReceivable';
-$route['manage_receivable/:any/:any']='ReceivableController/manageReceivable';
+$route['create_received']='ReceivableController/createReceived';
+$route['manage_received']='ReceivableController/manageReceived';
+$route['manage_received/:any']='ReceivableController/manageReceived';
+$route['manage_received/:any/:any']='ReceivableController/manageReceived';
 
 # Payable
-$route['create_payable']='PayableController/createPayable';
-$route['manage_payable']='PayableController/managePayable';
-$route['manage_payable/:any']='PayableController/managePayable';
-$route['manage_payable/:any/:any']='PayableController/managePayable';
+$route['create_payment']='PayableController/createPayment';
+$route['manage_payment']='PayableController/managePayment';
+$route['manage_payment/:any']='PayableController/managePayment';
+$route['manage_payment/:any/:any']='PayableController/managePayment';
 
 # report folder
 $route['receivable_summary_report']='report_controller/receivable_summary_report';

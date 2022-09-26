@@ -11,7 +11,7 @@ class PayableController extends CI_Controller
     }
     public $tableName = 'tbl_payment';
 
-    public function createPayable($data = NULL)
+    public function createPayment($data = NULL)
     {
         $this->webspice->user_verify($this->urlPrefix . 'login', $this->urlPrefix . 'create_payable');
         $this->webspice->permission_verify('create_payable');
@@ -145,7 +145,7 @@ class PayableController extends CI_Controller
             exit($e->getMessage());
         }
     }
-    public function managePayable()
+    public function managePayment()
     {
         $this->webspice->user_verify($this->urlPrefix . 'login', $this->urlPrefix . 'manage_payable');
         $this->webspice->permission_verify('manage_payable');
@@ -314,13 +314,13 @@ class PayableController extends CI_Controller
         $Year = $Slice[1];
         $dateFrom = date("Y-m-d", strtotime("$Year-$Month-01"));
         # Select record
-        $this->db->select('tbl_lease_onboarding.ID,tbl_lease_onboarding.LEASE_NAME,tbl_lease_agreement.DATE_FROM,tbl_lease_agreement.DATE_TO,tbl_lease_agreement.AMOUNT');
-        $this->db->from('tbl_lease_agreement');
-        $this->db->join('tbl_lease_onboarding', 'tbl_lease_onboarding.ID=tbl_lease_agreement.LEASE_ID', 'LEFT');
-        $this->db->where('tbl_lease_onboarding.VENDOR_ID', $vendorId);
-        $this->db->where('tbl_lease_onboarding.LEASE_TYPE', 'payable');
-        $this->db->where('tbl_lease_agreement.TYPE', 'rent');
-        $q = $this->db->get();
+        // $this->db->select('tbl_lease_onboarding.ID,tbl_lease_onboarding.LEASE_NAME,tbl_lease_agreement.DATE_FROM,tbl_lease_agreement.DATE_TO,tbl_lease_agreement.AMOUNT');
+        // $this->db->from('tbl_lease_agreement');
+        // $this->db->join('tbl_lease_onboarding', 'tbl_lease_onboarding.ID=tbl_lease_agreement.LEASE_ID', 'LEFT');
+        // $this->db->where('tbl_lease_onboarding.VENDOR_ID', $vendorId);
+        // $this->db->where('tbl_lease_onboarding.LEASE_TYPE', 'payable');
+        // $this->db->where('tbl_lease_agreement.TYPE', 'rent');
+        // $q = $this->db->get();
         $q = $this->db->query("SELECT LA.ID,LO.ID as LeaseID,
         LO.LEASE_NAME,LA.DATE_FROM,
         LA.DATE_TO,LA.AMOUNT,
@@ -406,7 +406,7 @@ class PayableController extends CI_Controller
             <td colspan='8' style='text-align:right;font-weight:bold'></td>
             <td colspan='2'>
             <select class='form-control' name='PAYMENT_METHOD' required>
-                <option value=''>select payment</option>
+                <option value=''>select payment method</option>
                 <option value='cash'>Cash</option>
                 <option value='cheque'>Cheque</option>
                 <option value='bank'>Bank</option>
