@@ -305,7 +305,19 @@ class ReceivableController extends CI_Controller
     //     $response = $q->result_array();
     //     echo json_encode($response);
     // }
-
+    public function viewReceivable(){
+        $id = $this->input->post('id');
+        $id = $this->webspice->encrypt_decrypt($id, 'decrypt');
+        $data['received_info'] = $this->db->query("SELECT * FROM tbl_received WHERE ID=$id")->row();
+        $data['records'] = $this->db->query("SELECT R.RECEIVED_DATE,LA.LEASE_ID,LO.LEASE_NAME,LA.DATE_FROM,LA.DATE_TO,RD.AMOUNT 
+        FROM tbl_received_details RD 
+        LEFT JOIN tbl_received R ON R.ID=RD.RECEIVED_ID 
+        LEFT JOIN tbl_lease_agreement LA ON LA.ID=RD.LEASE_SLAB_ID 
+        LEFT JOIN tbl_lease_onboarding LO ON LO.ID=LA.LEASE_ID 
+        WHERE R.ID=$id
+        ")->result();
+        $this->load->view('receivable/view_receivable',$data);
+    }
     public function getLeaseIdByVendor()
     {
         $postData = $this->input->post();

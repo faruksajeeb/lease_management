@@ -109,10 +109,10 @@
 								<td><?php echo $v->REMARKS; ?></td>
 								<td><?php echo $this->customcache->user_maker($v->PAID_BY, 'USER_NAME'); ?></td>
 								<td>
-									<?php if($v->ATTACHMENT) { ?>
-									<a href="<?php echo $url_prefix.'global/custom_files/receivable/'.$v->ATTACHMENT;  ?>" target="_blank">attachment</a>
+									<?php if ($v->ATTACHMENT) { ?>
+										<a href="<?php echo $url_prefix . 'global/custom_files/receivable/' . $v->ATTACHMENT;  ?>" target="_blank">attachment</a>
 									<?php } ?>
-											
+
 								</td>
 								<td><?php echo $this->customcache->user_maker($v->CREATED_BY, 'USER_NAME'); ?></td>
 								<td><?php echo $this->webspice->formatted_date($v->CREATED_AT); ?></td>
@@ -120,9 +120,9 @@
 								<td><?php echo $this->webspice->formatted_date($v->UPDATED_AT); ?></td>
 								<td><?php echo $this->webspice->static_status($v->STATUS); ?></td>
 								<td>
-								<?php if ($this->webspice->permission_verify('manage_payable', true)) : ?>
-										<a href="<?php echo $url_prefix; ?>manage_payable/view/<?php echo $this->webspice->encrypt_decrypt($v->ID, 'encrypt'); ?>" class="btn btn-xs btn-info "> View</a>
-										<!-- <a href="<?php echo $url_prefix; ?>manage_payable/delete/<?php echo $this->webspice->encrypt_decrypt($v->ID, 'encrypt'); ?>" class="btn btn-xs btn-danger btn_ajax"> Delete</a> -->
+									<?php if ($this->webspice->permission_verify('manage_payable', true)) : ?>
+										<a id='<?php echo $this->webspice->encrypt_decrypt($v->ID, 'encrypt'); ?>' href="<?php echo $url_prefix; ?>manage_payable/view/<?php echo $this->webspice->encrypt_decrypt($v->ID, 'encrypt'); ?>" class="btn btn-xs btn-info view"> View</a>
+										<a href="<?php echo $url_prefix; ?>manage_payable/delete/<?php echo $this->webspice->encrypt_decrypt($v->ID, 'encrypt'); ?>" class="btn btn-xs btn-danger btn_ajax disabled"> Delete</a>
 									<?php endif; ?>
 									<!-- <?php if ($this->webspice->permission_verify('manage_payable', true)) : ?>
 										<a href="<?php echo $url_prefix; ?>manage_payable/edit/<?php echo $this->webspice->encrypt_decrypt($v->ID, 'encrypt'); ?>" class="btn btn-xs btn-primary" data-featherlight="ajax">Edit</a>
@@ -144,12 +144,38 @@
 
 				<div id="pagination"><?php echo $pager; ?><div class="float_clear_full">&nbsp;</div>
 				</div>
+				<div class="modal fade view_modal" tabindex="-1" role="dialog">
+
+				</div>
 
 			</div>
 			<!--end .page_body-->
 
 		</div>
-
+		<script>
+			$(document).ready(function() {
+				$('.view').click(function(event) {
+					event.preventDefault();
+					var id = $(this).attr('id');
+					if (id) {
+						//alert(id);
+						$.ajax({
+							url: '<?php echo $url_prefix; ?>PayableController/viewPayable',
+							method: 'post',
+							data: {
+								'<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>',
+								id: id
+							},
+							dataType: 'html',
+							success: function(response) {
+								$('.view_modal').modal('show');
+								$('.view_modal').html(response);
+							}
+						});
+					}
+				});
+			});
+		</script>
 		<div id="footer_container"><?php include(APPPATH . "views/footer.php"); ?></div>
 	</div>
 </body>

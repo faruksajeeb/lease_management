@@ -291,6 +291,20 @@ class PayableController extends CI_Controller
         $this->load->view('payable/manage_payable', $data);
     }
 
+    public function viewPayable(){
+        $id = $this->input->post('id');
+        $id = $this->webspice->encrypt_decrypt($id, 'decrypt');
+        $data['payment_info'] = $this->db->query("SELECT * FROM tbl_payments WHERE ID=$id")->row();
+        $data['records'] = $this->db->query("SELECT P.PAYMENT_DATE,LA.LEASE_ID,LO.LEASE_NAME,LA.DATE_FROM,LA.DATE_TO,PD.AMOUNT 
+        FROM tbl_payment_details PD 
+        LEFT JOIN tbl_payments P ON P.ID=PD.PAYMENT_ID 
+        LEFT JOIN tbl_lease_agreement LA ON LA.ID=PD.LEASE_SLAB_ID 
+        LEFT JOIN tbl_lease_onboarding LO ON LO.ID=LA.LEASE_ID 
+        WHERE P.ID=$id
+        ")->result();
+        $this->load->view('payable/view_payment',$data);
+    }
+
     // public function getLeaseIdByVendor()
     // {
     //     $postData = $this->input->post();
