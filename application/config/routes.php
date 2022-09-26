@@ -116,6 +116,8 @@ $route['manage_payment/:any/:any']='PayableController/managePayment';
 # report folder
 $route['receivable_summary_report']='report_controller/receivable_summary_report';
 $route['payable_summary_report']='report_controller/payable_summary_report';
+$route['lease_history']='report_controller/lease_history';
+$route['cost_center_report']='report_controller/cost_center_report';
 
 $route['accounts_journal']='report_controller/accounts_journal';
 $route['accounts_journal/:any']='report_controller/accounts_journal';
