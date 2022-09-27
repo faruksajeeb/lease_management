@@ -20,7 +20,7 @@
 		<div id="page_<?php echo str_replace(' ','_',strtolower($page_title)); ?>" class="container-fluid page_identifier">
 			<div class="page_caption"><?php echo $page_title; ?></div>
 			<div class="page_body stamp">
-				<form id="frm_<?php echo str_replace(' ','_',strtolower($page_title)); ?>" form-route="<?php echo $route; ?>" method="post" action="" autocomplete="off" data-parsley-validate enctype="multipart/form-data">
+				<form id="frm_<?php echo str_replace(' ','_',strtolower($page_title)); ?>" class="form_post_ajax" form-route="<?php echo $route; ?>" method="post" action="" data-parsley-validate>
 				<div class="row">
 					<div class="col-lg-6 col-md-6 col-sm-12" id="form_input_id">
 						<fieldset class="divider"><legend>Please enter required information</legend></fieldset>
@@ -30,7 +30,7 @@
 						<input type="hidden" name="key" id="key" value="<?php if( isset($edit['ID']) && $edit['ID'] ){echo $this->webspice->encrypt_decrypt($edit['ID'], 'encrypt');} ?>" />
 	            
 						<div class="form-group">
-							<div class="form_label">Region*</div>
+							<div class="form_label">Region</div>
 							<div>
 								<select class="form-control choosen" id="REGION" name="REGION" required>
 									<option value="">Select One</option>
@@ -39,7 +39,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<div class="form_label">Branch Name*</div>
+							<div class="form_label">Branch Name</div>
 							<div>
 								<?php if( isset($edit['ID']) && $edit['ID'] ): ?>
 								<input type="hidden" name="BRANCH_ID" value="<?php echo $edit['BRANCH_ID']; ?>">
@@ -52,6 +52,13 @@
 								<?php endif; ?>
 							</div>
 						</div>
+						<!--<div class="form-group">
+							<div class="form_label">Branch Code/SOL*</div>
+							<div>
+								<input type="text" class="input_full form-control" id="BRANCH_CODE" name="BRANCH_CODE" value="<?php echo set_value('BRANCH_CODE',$edit['BRANCH_CODE']); ?>" required />
+								<span class="fred"><?php echo form_error('BRANCH_CODE'); ?></span>
+							</div>
+						</div>-->
 						<div class="form-group">
 							<div class="form_label">Lease Name*</div>
 							<div>
@@ -65,8 +72,8 @@
 							<div>
 								<select class="form-control choosen" id="LEASE_TYPE" name="LEASE_TYPE" required>
 									<option value="">Select One</option>
-									<option value="taken" <?php if(set_value('LEASE_TYPE', $edit['LEASE_TYPE']=='taken')){echo 'selected="selected"';} ?>>Taken (ভাড়া নেওয়া) </option>
-									<option value="given" <?php if(set_value('LEASE_TYPE', $edit['LEASE_TYPE']=='given')){echo 'selected="selected"';} ?>>Given (ভাড়া দেওয়া) </option>
+									<option value="receivable" <?php if(set_value('LEASE_TYPE', $edit['LEASE_TYPE']=='receivable')){echo 'selected="selected"';} ?>>Receivable (ভাড়া দেওয়া)</option>
+									<option value="payable" <?php if(set_value('LEASE_TYPE', $edit['LEASE_TYPE']=='payable')){echo 'selected="selected"';} ?>>Payable (ভাড়া নেওয়া)</option>
 								</select>
 							</div>
 						</div>
@@ -83,7 +90,7 @@
 						</div>
 
 						<div class="form-group">
-							<div class="form_label">Vendor / Customer*</div>
+							<div class="form_label">Vendor*</div>
 							<div>
 								<select class="form-control choosen" id="VENDOR_ID" name="VENDOR_ID" required>
 									<option value="">Select One</option>
@@ -95,18 +102,37 @@
 								</select>
 							</div>
 						</div>
+
 						<div class="form-group">
-							<div class="form_label">Tax Rate*</div>
+							<div class="form_label">License No.*</div>
 							<div>
-								<input type="text" class="input_full form-control" id="TAX_RATE" name="TAX_RATE" value="<?php echo set_value('TAX_RATE',$edit['TAX_RATE']); ?>" data-parsley-trigger="keyup" data-parsley-validation-threshold="0" data-parsley-type="number" required />
-								<span class="fred"><?php echo form_error('TAX_RATE'); ?></span>
+								<input type="text" class="input_full form-control" id="LICENSE_NO" name="LICENSE_NO" value="<?php echo set_value('LICENSE_NO',$edit['LICENSE_NO']); ?>" required />
+								<span class="fred"><?php echo form_error('LICENSE_NO'); ?></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<div class="form_label">VAT Rate*</div>
+							<div class="form_label">License Issue Date*</div>
 							<div>
-								<input type="text" class="input_full form-control" id="VAT_RATE" name="VAT_RATE" value="<?php echo set_value('VAT_RATE',$edit['VAT_RATE']); ?>" data-parsley-trigger="keyup" data-parsley-validation-threshold="0" data-parsley-type="number" required />
-								<span class="fred"><?php echo form_error('VAT_RATE'); ?></span>
+								<input type="text" class="input_full form-control date_picker" id="LICENSE_ISSUE_DATE" name="LICENSE_ISSUE_DATE" value="<?php echo set_value('LICENSE_ISSUE_DATE',$edit['LICENSE_ISSUE_DATE']); ?>" autocomplete="off" required />
+								<span class="fred"><?php echo form_error('LICENSE_ISSUE_DATE'); ?></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form_label">Branch Opening Date*</div>
+							<div>
+								<input type="text" class="input_full form-control date_picker" id="BRANCH_OPENING_DATE" name="BRANCH_OPENING_DATE" value="<?php echo set_value('BRANCH_OPENING_DATE',$edit['BRANCH_OPENING_DATE']); ?>" required />
+								<span class="fred"><?php echo form_error('BRANCH_OPENING_DATE'); ?></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form_label">Type</div>
+							<div>
+								<select class="form-control choosen" id="TYPE" name="TYPE" required>
+									<option value="">Select One</option>
+									<option value="urban" <?php if(set_value('TYPE', $edit['TYPE']=='urban')){echo 'selected="selected"';} ?>>Urban</option>
+									<option value="rural" <?php if(set_value('TYPE', $edit['TYPE']=='rural')){echo 'selected="selected"';} ?>>Rural</option>
+									<option value="other" <?php if(set_value('TYPE', $edit['TYPE']=='other')){echo 'selected="selected"';} ?>>Other</option>
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
@@ -116,34 +142,62 @@
 								<span class="fred"><?php echo form_error('ADDRESS'); ?></span>
 							</div>
 						</div>
-						<div class="form-group">
-							<div class="form_label">District</div>
+						<!--<div class="form-group">
+							<div class="form_label">Name of the City Corporation/Pouoshova/Union)*</div>
 							<div>
-								<input type="text" class="input_full form-control" id="DISTRICT" name="DISTRICT" value="<?php echo set_value('DISTRICT',$edit['DISTRICT']); ?>">
+								<input type="text" class="input_full form-control" id="CITY" name="CITY" value="<?php echo set_value('CITY',$edit['CITY']); ?>" required>
+								<span class="fred"><?php echo form_error('CITY'); ?></span>
+							</div>
+						</div>-->
+						<div class="form-group">
+							<div class="form_label">District*</div>
+							<div>
+								<input type="text" class="input_full form-control" id="DISTRICT" name="DISTRICT" value="<?php echo set_value('DISTRICT',$edit['DISTRICT']); ?>" required>
 								<span class="fred"><?php echo form_error('DISTRICT'); ?></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<div class="form_label">Thana/Upzilla</div>
+							<div class="form_label">Thana/Upzilla*</div>
 							<div>
-								<input type="text" class="input_full form-control" id="THANA_UPAZILLA" name="THANA_UPAZILLA" value="<?php echo set_value('THANA_UPAZILLA',$edit['THANA_UPAZILLA']); ?>">
+								<input type="text" class="input_full form-control" id="THANA_UPAZILLA" name="THANA_UPAZILLA" value="<?php echo set_value('THANA_UPAZILLA',$edit['THANA_UPAZILLA']); ?>" required>
 								<span class="fred"><?php echo form_error('THANA_UPAZILLA'); ?></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<div class="form_label">Floor Space (SQFT)</div>
+							<div class="form_label">Floor Space (SQFT)*</div>
 							<div>
-								<input type="text" class="input_full form-control" id="FLOOR_SPACE" name="FLOOR_SPACE" value="<?php echo set_value('FLOOR_SPACE',$edit['FLOOR_SPACE']); ?>">
+								<input type="text" class="input_full form-control" id="FLOOR_SPACE" name="FLOOR_SPACE" value="<?php echo set_value('FLOOR_SPACE',$edit['FLOOR_SPACE']); ?>" required>
 								<span class="fred"><?php echo form_error('FLOOR_SPACE'); ?></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<div class="form_label">Rent per SQFT</div>
+							<div class="form_label">Rent per SQFT*</div>
 							<div>
-								<input type="text" class="input_full form-control" id="RENT_PER_SQFT" name="RENT_PER_SQFT" value="<?php echo set_value('RENT_PER_SQFT',$edit['RENT_PER_SQFT']); ?>" data-parsley-trigger="keyup" data-parsley-validation-threshold="0" data-parsley-type="number">
+								<input type="text" class="input_full form-control" id="RENT_PER_SQFT" name="RENT_PER_SQFT" value="<?php echo set_value('RENT_PER_SQFT',$edit['RENT_PER_SQFT']); ?>" required>
 								<span class="fred"><?php echo form_error('RENT_PER_SQFT'); ?></span>
 							</div>
 						</div>
+						<!--<div class="form-group">
+							<div class="form_label">Contact Person's Name*</div>
+							<div>
+								<input type="text" class="input_full form-control" id="CONTACT_PERSON" name="CONTACT_PERSON" value="<?php echo set_value('CONTACT_PERSON',$edit['CONTACT_PERSON']); ?>" required>
+								<span class="fred"><?php echo form_error('CONTACT_PERSON'); ?></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form_label">Contact Person's Mobile No.*</div>
+							<div>
+								<input type="text" class="input_full form-control" id="CONTACT_MOBILE_NO" name="CONTACT_MOBILE_NO" value="<?php echo set_value('CONTACT_MOBILE_NO',$edit['CONTACT_MOBILE_NO']); ?>" required>
+								<span class="fred"><?php echo form_error('CONTACT_MOBILE_NO'); ?></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form_label">Contact Person's Email Address*</div>
+							<div>
+								<input type="text" class="input_full form-control" id="CONTACT_EMAIL" name="CONTACT_EMAIL" value="<?php echo set_value('CONTACT_EMAIL',$edit['CONTACT_EMAIL']); ?>" required>
+								<span class="fred"><?php echo form_error('CONTACT_EMAIL'); ?></span>
+							</div>
+						</div>-->
 						<div class="form-group">
 							<div class="form_label">Agreement Date*</div>
 							<div>
@@ -170,6 +224,41 @@
 								?>
 							</div>
 						</div>
+						<!--<div class="form-group">
+							<div class="form_label">Total Amount (Loan) <span style="font-size:80%;">No reference linked so far! Only for info.</span></div>
+							<div>
+								<input type="text" class="input_full form-control" id="TOTAL_AMOUINT_LOAN" name="TOTAL_AMOUINT_LOAN" value="<?php echo set_value('TOTAL_AMOUINT_LOAN',$edit['TOTAL_AMOUINT_LOAN']); ?>">
+								<span class="fred"><?php echo form_error('TOTAL_AMOUINT_LOAN'); ?></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form_label">No. of Customer (Loan) <span style="font-size:80%;">No reference linked so far! Only for info.</span></div>
+							<div>
+								<input type="text" class="input_full form-control" id="NO_OF_CUSTOMER_LOAN" name="NO_OF_CUSTOMER_LOAN" value="<?php echo set_value('NO_OF_CUSTOMER_LOAN',$edit['NO_OF_CUSTOMER_LOAN']); ?>">
+								<span class="fred"><?php echo form_error('NO_OF_CUSTOMER_LOAN'); ?></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form_label">Total Amount (Deposit) <span style="font-size:80%;">No reference linked so far! Only for info.</span></div>
+							<div>
+								<input type="text" class="input_full form-control" id="TOTAL_AMOUNT_DEPOSIT" name="TOTAL_AMOUNT_DEPOSIT" value="<?php echo set_value('TOTAL_AMOUNT_DEPOSIT',$edit['TOTAL_AMOUNT_DEPOSIT']); ?>">
+								<span class="fred"><?php echo form_error('TOTAL_AMOUNT_DEPOSIT'); ?></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form_label">No. of Customer (Deposit) <span style="font-size:80%;">No reference linked so far! Only for info.</span></div>
+							<div>
+								<input type="text" class="input_full form-control" id="NO_OF_CUSTOMER_DEPOSIT" name="NO_OF_CUSTOMER_DEPOSIT" value="<?php echo set_value('NO_OF_CUSTOMER_DEPOSIT',$edit['NO_OF_CUSTOMER_DEPOSIT']); ?>">
+								<span class="fred"><?php echo form_error('NO_OF_CUSTOMER_DEPOSIT'); ?></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form_label">Profit/Loss <span style="font-size:80%;">No reference linked so far! Only for info.</span></div>
+							<div>
+								<input type="text" class="input_full form-control" id="PROFIT_LOSS" name="PROFIT_LOSS" value="<?php echo set_value('PROFIT_LOSS',$edit['PROFIT_LOSS']); ?>">
+								<span class="fred"><?php echo form_error('PROFIT_LOSS'); ?></span>
+							</div>
+						</div>-->
 					</div>
 					
 					<div class="item_panel col-lg-6 col-md-6 col-sm-12" id="slab_area">
@@ -178,8 +267,8 @@
 							<table id="item_table">
 								<thead>
 									<tr>
-										<td style="width:50%">Cost Center*</td>
-										<td style="width:35%">Amount (%)*</td>
+										<td style="width:50%">Cost Center</td>
+										<td style="width:35%">Amount (%)</td>
 										<td>&nbsp;</td>
 									</tr>
 								</thead>
@@ -204,7 +293,7 @@
 									<?php endforeach; ?>
 								</select>
 							</td>
-							<td style="width:35%"><input type="text" class="input_full form-control cost_center_amount" data-parsley-type="number" data-parsley-trigger="keyup" name="cost_center_amount[]" value="<?php echo $cv->PERCENTAGE; ?>" required></td>
+							<td style="width:35%"><input type="text" class="input_full form-control cost_center_amount" data-parsley-type="number" data-parsley-trigger="keyup" name="cost_center_amount[]" value="<?php echo $cv->PERCENTAGE; ?>"></td>
 							<td>
 								<a href="javascript:void(0);" class="tr_clone_add" title="Add field">
 									<span class="glyphicon glyphicon-plus"></span>
@@ -225,7 +314,7 @@
 										<?php endforeach; ?>
 									</select>
 								</td>
-								<td style="width:35%"><input type="text" class="input_full form-control cost_center_amount" data-parsley-type="number" data-parsley-trigger="keyup" name="cost_center_amount[]" required></td>
+								<td style="width:35%"><input type="text" class="input_full form-control cost_center_amount" data-parsley-type="number" data-parsley-trigger="keyup" name="cost_center_amount[]"></td>
 								<td>
 									<a href="javascript:void(0);" class="tr_clone_add" title="Add field">
 										<span class="glyphicon glyphicon-plus"></span>
@@ -255,15 +344,19 @@
 						<div class="form-group pnl_slab pnl_rent" id="pnl_rent">
 							<table>
 								<tr>
-									<td>From*</td>
-									<td>To*</td>
-									<td>Amount*</td>
+									<td>From</td>
+									<td>To</td>
+									<td>Amount ex. TAX & VAT</td>
+									<td>Amount with TAX</td>
+									<td>Amount with VAT</td>
 									<td>&nbsp;</td>
 								</tr>
 								<tr>
-									<td><input type="text" class="input_full form-control month_picker_x txt_from_rent" name="txt_from_rent[]" required></td>
-									<td><input type="text" class="input_full form-control month_picker_x txt_to_rent" name="txt_to_rent[]" required></td>
-									<td><input type="text" class="input_full form-control txt_amount_rent" data-parsley-type="number" data-parsley-trigger="keyup" name="txt_amount_rent[]" required></td>
+									<td><input type="text" class="input_full form-control month_picker_x txt_from_rent" name="txt_from_rent[]"></td>
+									<td><input type="text" class="input_full form-control month_picker_x txt_to_rent" name="txt_to_rent[]"></td>
+									<td><input type="text" class="input_full form-control txt_amount_rent" data-parsley-type="number" data-parsley-trigger="keyup" name="txt_amount_rent[]"></td>
+									<td><input type="text" class="input_full form-control txt_amount_rent_with_tax" data-parsley-type="number" data-parsley-trigger="keyup" name="txt_amount_rent_with_tax[]"></td>
+									<td><input type="text" class="input_full form-control txt_amount_rent_with_vat" data-parsley-type="number" data-parsley-trigger="keyup" name="txt_amount_rent_with_vat[]"></td>
 									<td><a class="btn btn-sm btn-danger hide btn_pnl_remove" href="#">X</a></td>
 								</tr>
 							</table>
@@ -278,15 +371,19 @@
 						<div class="form-group pnl_slab pnl_rent <?php if($k===0){echo 'clone_slab_rent';} ?>" id="<?php if($k===0){echo 'pnl_rent';} ?>">
 							<table>
 								<tr>
-									<td>From*</td>
-									<td>To*</td>
-									<td>Amount*</td>
+									<td>From</td>
+									<td>To</td>
+									<td>Amount ex. TAX & VAT</td>
+									<td>Amount with TAX</td>
+									<td>Amount with VAT</td>
 									<td>&nbsp;</td>
 								</tr>
 								<tr>
-									<td><input type="text" class="input_full form-control month_picker_x txt_from_rent" name="txt_from_rent[]" value="<?php echo $v->DATE_FROM; ?>" required></td>
-									<td><input type="text" class="input_full form-control month_picker_x txt_to_rent" name="txt_to_rent[]" value="<?php echo $v->DATE_TO; ?>" required></td>
-									<td><input type="text" class="input_full form-control txt_amount_rent" name="txt_amount_rent[]" data-parsley-type="number" data-parsley-trigger="keyup" value="<?php echo $v->AMOUNT; ?>" required></td>
+									<td><input type="text" class="input_full form-control month_picker_x txt_from_rent" name="txt_from_rent[]" value="<?php echo $v->DATE_FROM; ?>"></td>
+									<td><input type="text" class="input_full form-control month_picker_x txt_to_rent" name="txt_to_rent[]" value="<?php echo $v->DATE_TO; ?>"></td>
+									<td><input type="text" class="input_full form-control txt_amount_rent" name="txt_amount_rent[]" data-parsley-type="number" data-parsley-trigger="keyup" value="<?php echo $v->AMOUNT; ?>"></td>
+									<td><input type="text" class="input_full form-control txt_amount_rent_with_tax" name="txt_amount_rent_with_tax[]" data-parsley-type="number" data-parsley-trigger="keyup" value="<?php echo $v->AMOUNT_WITH_TAX; ?>"></td>
+									<td><input type="text" class="input_full form-control txt_amount_rent_with_vat" name="txt_amount_rent_with_vat[]" data-parsley-type="number" data-parsley-trigger="keyup" value="<?php echo $v->AMOUNT_WITH_VAT; ?>"></td>
 									<td><a class="btn btn-sm btn-danger <?php if($k===0){echo 'hide';} ?> btn_pnl_remove" href="#">X</a></td>
 								</tr>
 							</table>
@@ -296,15 +393,19 @@
 						<div class="form-group pnl_slab pnl_rent" id="pnl_rent">
 							<table>
 								<tr>
-									<td>From*</td>
-									<td>To*</td>
-									<td>Amount*</td>
+									<td>From</td>
+									<td>To</td>
+									<td>Amount ex. TAX & VAT</td>
+									<td>Amount with TAX</td>
+									<td>Amount with VAT</td>
 									<td>&nbsp;</td>
 								</tr>
 								<tr>
-									<td><input type="text" class="input_full form-control month_picker_x txt_from_rent" name="txt_from_rent[]" required></td>
-									<td><input type="text" class="input_full form-control month_picker_x txt_to_rent" name="txt_to_rent[]" required></td>
-									<td><input type="text" class="input_full form-control txt_amount_rent" data-parsley-type="number" data-parsley-trigger="keyup" name="txt_amount_rent[]" required></td>
+									<td><input type="text" class="input_full form-control month_picker_x txt_from_rent" name="txt_from_rent[]"></td>
+									<td><input type="text" class="input_full form-control month_picker_x txt_to_rent" name="txt_to_rent[]"></td>
+									<td><input type="text" class="input_full form-control txt_amount_rent" data-parsley-type="number" data-parsley-trigger="keyup" name="txt_amount_rent[]"></td>
+									<td><input type="text" class="input_full form-control txt_amount_rent_with_tax" data-parsley-type="number" data-parsley-trigger="keyup" name="txt_amount_rent_with_tax[]"></td>
+									<td><input type="text" class="input_full form-control txt_amount_rent_with_vat" data-parsley-type="number" data-parsley-trigger="keyup" name="txt_amount_rent_with_vat[]"></td>
 									<td><a class="btn btn-sm btn-danger hide btn_pnl_remove" href="#">X</a></td>
 								</tr>
 							</table>
@@ -323,13 +424,17 @@
 								<tr>
 									<td>From</td>
 									<td>To</td>
-									<td>Amount</td>
+									<td>Amount ex. TAX & VAT</td>
+									<td>Amount with TAX</td>
+									<td>Amount with VAT</td>
 									<td>&nbsp;</td>
 								</tr>
 								<tr>
 									<td><input type="text" class="input_full form-control month_picker_x txt_from_advance" name="txt_from_advance[]"></td>
 									<td><input type="text" class="input_full form-control month_picker_x txt_to_advance" name="txt_to_advance[]"></td>
-									<td><input type="text" class="input_full form-control txt_amount_advance" name="txt_amount_advance[]" data-parsley-type="number" data-parsley-trigger="keyup"></td>
+									<td><input type="text" class="input_full form-control txt_amount_advance" name="txt_amount_advance[]"></td>
+									<td><input type="text" class="input_full form-control txt_amount_advance_with_tax" name="txt_amount_advance_with_tax[]"></td>
+									<td><input type="text" class="input_full form-control txt_amount_advance_with_vat" name="txt_amount_advance_with_vat[]"></td>
 									<td><a class="btn btn-sm btn-danger hide btn_pnl_remove">X</a></td>
 								</tr>
 							</table>
@@ -344,13 +449,17 @@
 								<tr>
 									<td>From</td>
 									<td>To</td>
-									<td>Amount</td>
+									<td>Amount ex. TAX & VAT</td>
+									<td>Amount with TAX</td>
+									<td>Amount with VAT</td>
 									<td>&nbsp;</td>
 								</tr>
 								<tr>
 									<td><input type="text" class="input_full form-control month_picker_x txt_from_advance" name="txt_from_advance[]" value="<?php echo $v->DATE_FROM; ?>"></td>
 									<td><input type="text" class="input_full form-control month_picker_x txt_to_advance" name="txt_to_advance[]" value="<?php echo $v->DATE_TO; ?>"></td>
-									<td><input type="text" class="input_full form-control txt_amount_advance" name="txt_amount_advance[]" value="<?php echo $v->AMOUNT; ?>" ></td>
+									<td><input type="text" class="input_full form-control txt_amount_advance" name="txt_amount_advance[]" value="<?php echo $v->AMOUNT; ?>"></td>
+									<td><input type="text" class="input_full form-control txt_amount_advance_with_tax" name="txt_amount_advance_with_tax[]" value="<?php echo $v->AMOUNT_WITH_TAX; ?>"></td>
+									<td><input type="text" class="input_full form-control txt_amount_advance_with_vat" name="txt_amount_advance_with_vat[]" value="<?php echo $v->AMOUNT_WITH_VAT; ?>"></td>
 									<td><a class="btn btn-sm btn-danger <?php if($k===0){echo 'hide';} ?> btn_pnl_remove" href="#">X</a></td>
 								</tr>
 							</table>
@@ -362,13 +471,17 @@
 								<tr>
 									<td>From</td>
 									<td>To</td>
-									<td>Amount</td>
+									<td>Amount ex. TAX & VAT</td>
+									<td>Amount with TAX</td>
+									<td>Amount with VAT</td>
 									<td>&nbsp;</td>
 								</tr>
 								<tr>
 									<td><input type="text" class="input_full form-control month_picker_x txt_from_advance" name="txt_from_advance[]"></td>
 									<td><input type="text" class="input_full form-control month_picker_x txt_to_advance" name="txt_to_advance[]"></td>
 									<td><input type="text" class="input_full form-control txt_amount_advance" name="txt_amount_advance[]"></td>
+									<td><input type="text" class="input_full form-control txt_amount_advance_with_tax" name="txt_amount_advance_with_tax[]"></td>
+									<td><input type="text" class="input_full form-control txt_amount_advance_with_vat" name="txt_amount_advance_with_vat[]"></td>
 									<td><a class="btn btn-sm btn-danger hide btn_pnl_remove">X</a></td>
 								</tr>
 							</table>
@@ -379,7 +492,7 @@
 						<div class="p_error_container">&nbsp;</div>
 						
 						<br />
-						<input type="submit" class="btn btn-danger btn-lg btn_submit" value="Submit Data">
+						<input type="button" class="btn btn-danger btn-lg btn_submit" value="Submit Data">
 						<div class="spinner">&nbsp;</div>
 					</div><!--end #slab_area-->
 					
@@ -460,237 +573,106 @@
 				me.closest('.pnl_slab').remove();
 				return false;
 			});
-
-
-		});
-
-		$(document).on('submit',"#frm_lease_onboarding",function(e){
-			var key_value = $('#key').val();
-			e.preventDefault();
-			var cost_center_validation_return = cost_center_validation_check(false);
-			var is_error = false;
-			var temp_from_rent = false;
-			var temp_to_rent = false;
-			var temp_from_advance = false;
-			var temp_to_advance = false;
-			var agreement_document = $('#agreement_document').get(0).files.length;
-
-			$('.pnl_rent input').each(function(){
-				if( !$(this).val() ){
-					alert('You must fill-up all slab information.');
-					is_error = true;
-					return false;
-				}
-				
-				if( $(this).hasClass("txt_from_rent") ){
-					var tmp_from = $(this).val();
-					var tmp_to = $(this).parent().parent().find('.txt_to_rent').val();
-
-					if( temp_from_rent && tmp_from <= temp_to_rent ){
-						alert("From date must be greater than previous slab's (Rent) To date.");
-						is_error = true;
-						return false;
-					}
-					
-					temp_from_rent = tmp_from;
-					temp_to_rent = tmp_to;
-					
-					if( tmp_from > tmp_to ){
-						alert("To date must be greater than From date in a slab (Rent).");
-						is_error = true;
-						return false;
-					}
-					
-				}else if( $(this).hasClass("txt_from_advance") ){
-					var tmp_from = $(this).val();
-					var tmp_to = $(this).parent().parent().find('.txt_to_advance').val();
-					
-					if( temp_from_advance && tmp_from <= temp_to_advance ){
-						alert("From date must be greater than previous slab's (Advance) To date.");
-						is_error = true;
-						return false;
-					}
-					
-					temp_from_advance = tmp_from;
-					temp_to_advance = tmp_to;
-					
-					if( tmp_from > tmp_to ){
-						alert("To date must be greater than From date in a slab (Advance).");
-						is_error = true;
-						return false;
-					}
-				}
-				
-			});
-
-			$('.pnl_slab input').each(function(){
-				/*if( !$(this).val() ){
-					alert('You must fill-up all slab information.');
-					is_error = true;
-					return false;
-				}*/
-				
-				if( $(this).hasClass("txt_from_advance") ){
-					var tmp_from = $(this).val();
-					var tmp_to = $(this).parent().parent().find('.txt_to_advance').val();
-					
-					if( temp_from_advance && tmp_from <= temp_to_advance ){
-						alert("From date must be greater than previous slab's (Advance) To date.");
-						is_error = true;
-						return false;
-					}
-					
-					temp_from_advance = tmp_from;
-					temp_to_advance = tmp_to;
-					
-					if( tmp_from > tmp_to ){
-						alert("To date must be greater than From date in a slab (Advance).");
-						is_error = true;
-						return false;
-					}
-				}
-			});
-
-			if(!cost_center_validation_return){
-				return false;
-			}
-
-			if(!is_error){
-				if(!agreement_document && !key_value){
-					alert('Please attach Agreement Document!');
-					return false;
-				}	
-			}
-			var me = $(this);
-			var myFormData = new FormData($(this)[0]);
-			//myFormData.append('EmployeeID', UserID);
-			var data = myFormData;
-
-			var route = $(this).attr('form-route');
-			if (!data || !route) {
-				Swal.fire({
-					icon: 'error',
-					title: "ERROR!",
-					text: 'Invalid Request!',
-					type: "error"
-				}).then((result) => {
-					return false;
-				});
-			}
-
-			if (!$(this).parsley().validate()) {
-				//alert('Parsley Error!');
-				return false;
-			}
-
-			var me = $(this);
-			var token = $('#token').val();
-			var spinner = me.find('.spinner');
-			spinner.show();
-
-			var jqxhr = $.ajax({
-				type: "POST",
-				url: url_prefix + route,
-				cache: false,
-				processData: false, // important
-				contentType: false, // important
-				data: data
-			}).done(function (msg) {
-				//example - update_success, update_success:manage_author -- after : the value will be treated as route
-				var identifier = '';
-				var param = msg.trim().split(":");
-				if (param[0]) { identifier = param[0]; }
-
-				switch (identifier.trim()) {
-					case 'error':
-						Swal.fire({
-							icon: 'warning',
-							title: "SORRY!",
-							text: "System could not execute your request! Please report to Admin.",
-							type: "warning"
-						}).then((result) => {
-							spinner.hide();
-						});
-						break;
-
-					case 'denied':
-						Swal.fire({
-							icon: 'warning',
-							title: "SORRY!",
-							text: "Unauthorized Access!",
-							type: "warning"
-						}).then((result) => {
-							spinner.hide();
-						});
-						break;
-
-					case 'success':
-						Swal.fire({
-							icon: 'success',
-							title: "Success!",
-							text: "Your request has been executed successfully!",
-							type: "success"
-						}).then((result) => {
-							if (param[1]) { location.href = url_prefix + param[1]; return false; }
-							location.href = location.href;
-						});
-						break;
-
-					case 'update_success':
-						Swal.fire({
-							icon: 'success',
-							title: "Updated!",
-							text: "Your record has been updated successfully!",
-							type: "success"
-						}).then((result) => {
-							if (param[1]) { location.href = url_prefix + param[1]; return false; }
-							location.href = location.href;
-						});
-						break;
-
-					case 'insert_success':
-						Swal.fire({
-							icon: 'success',
-							title: "Saved!",
-							text: 'New record has been created successfully!',
-							type: "success"
-						}).then((result) => {
-							// Reload the Page
-							if (param[1]) { location.href = url_prefix + param[1]; return false; }
-							location.href = location.href;
-						});
-						break;
-
-					case 'request':
-						if (param[1]) { location.href = url_prefix + param[1]; return false; }
-						location.href = location.href;
-						break;
-
-					default:
-						Swal.fire({
-							icon: 'info',
-							title: "",
-							text: msg,
-							type: "info"
-						}).then((result) => {
-							spinner.hide();
-						});
-						break;
-				}
-			}).fail(function () {
-				Swal.fire({
-					icon: 'error',
-					title: "SORRY!",
-					text: "We could not execute your request. Please try again later or report to authority.",
-					type: "error"
-				}).then((result) => {
-					spinner.hide();
-				});
-
-			});
-
-			return false;
 			
+			$('.btn_submit').click(function(e){
+				e.preventDefault();
+				var cost_center_validation_return = cost_center_validation_check(false);
+				var is_error = false;
+				var temp_from_rent = false;
+				var temp_to_rent = false;
+				var temp_from_advance = false;
+				var temp_to_advance = false;
+				var agreement_document = $('#agreement_document').get(0).files.length;
+
+				$('.pnl_rent input').each(function(){
+					if( !$(this).val() ){
+						alert('You must fill-up all slab information.');
+						is_error = true;
+						return false;
+					}
+					
+					if( $(this).hasClass("txt_from_rent") ){
+						var tmp_from = $(this).val();
+						var tmp_to = $(this).parent().parent().find('.txt_to_rent').val();
+	
+						if( temp_from_rent && tmp_from <= temp_to_rent ){
+							alert("From date must be greater than previous slab's (Rent) To date.");
+							is_error = true;
+							return false;
+						}
+						
+						temp_from_rent = tmp_from;
+						temp_to_rent = tmp_to;
+						
+						if( tmp_from > tmp_to ){
+							alert("To date must be greater than From date in a slab (Rent).");
+							is_error = true;
+							return false;
+						}
+						
+					}else if( $(this).hasClass("txt_from_advance") ){
+						var tmp_from = $(this).val();
+						var tmp_to = $(this).parent().parent().find('.txt_to_advance').val();
+						
+						if( temp_from_advance && tmp_from <= temp_to_advance ){
+							alert("From date must be greater than previous slab's (Advance) To date.");
+							is_error = true;
+							return false;
+						}
+						
+						temp_from_advance = tmp_from;
+						temp_to_advance = tmp_to;
+						
+						if( tmp_from > tmp_to ){
+							alert("To date must be greater than From date in a slab (Advance).");
+							is_error = true;
+							return false;
+						}
+					}
+					
+				});
+
+				$('.pnl_slab input').each(function(){
+					/*if( !$(this).val() ){
+						alert('You must fill-up all slab information.');
+						is_error = true;
+						return false;
+					}*/
+					
+					if( $(this).hasClass("txt_from_advance") ){
+						var tmp_from = $(this).val();
+						var tmp_to = $(this).parent().parent().find('.txt_to_advance').val();
+						
+						if( temp_from_advance && tmp_from <= temp_to_advance ){
+							alert("From date must be greater than previous slab's (Advance) To date.");
+							is_error = true;
+							return false;
+						}
+						
+						temp_from_advance = tmp_from;
+						temp_to_advance = tmp_to;
+						
+						if( tmp_from > tmp_to ){
+							alert("To date must be greater than From date in a slab (Advance).");
+							is_error = true;
+							return false;
+						}
+					}
+				});
+
+				if(!cost_center_validation_return){
+					return false;
+				}
+
+				if(!is_error){
+					if(!agreement_document && !key_value){
+						alert('Please attach Agreement Document!');
+						return false;
+					}	
+					$('.form_post_ajax').submit();
+				}
+				return false;
+			});
 		});
 
 		function cost_center_validation_check(return_type){

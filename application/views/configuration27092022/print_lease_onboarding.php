@@ -3,7 +3,7 @@ $url_prefix = $this->webspice->settings()->site_url_prefix;
 $site_url = $this->webspice->settings()->site_url;
 $domain_name = $this->webspice->settings()->domain_name;
 $site_title = $this->webspice->settings()->site_title;
-$total_column = 30;
+$total_column = 33;
 $report_name = 'Lease Information';
 
 # don't edit the below area (csv)
@@ -81,22 +81,33 @@ if( $this->uri->segment(2)=='csv' ){
 					<th>ID</th>
 					<th>Region</th>
 					<th>Branch Name</th>
+					<!--<th>Branch Code/SOL</th>-->
 					<th>Lease Name</th>
 					<th>Lease Type</th>
 					<th>Lease Term</th>
-					<th>Vendor/ Customer</th>
-					<th>Tax Rate</th>
-					<th>VAT Rate</th>
+					<th>Vendor</th>
+					<th>License No.</th>
+					<th>License Issue Date</th>
+					<th>Branch Opening Date</th>
+					<th>Type</th>
 					<th>Address</th>
+					<th>City</th>
 					<th>District</th>
 					<th>Thana/Upzilla</th>
 					<th>Floor Space (SQFT)</th>
 					<th>Rent per SQFT</th>
+					<!--<th>Contact Person</th>
+					<th>Contact Mobile</th>
+					<th>Contact Email</th>-->
 					<th>Agreement Date</th>
 					<th>Agreement Expiry</th>
 					<th>Agreement Document</th>
-					<th>Cost Center Info.</th>
 					<th>Rent & Advance</th>
+					<!--<th>Total Amount (Loan)</th>
+					<th>No. of Customer (Loan)</th>
+					<th>Total Amount (Deposit)</th>
+					<th>No. of Customer (Deposit)</th>
+					<th>Profit/Loss (Crore)</th>-->
 					<th>Created By</th>
 					<th>Created Date</th>
 					<th>Updated By</th>
@@ -110,45 +121,52 @@ if( $this->uri->segment(2)=='csv' ){
 					</td>
 					<td><?php echo $v->REGION_NAME; ?></td>
 					<td><?php echo $this->customcache->option_maker($v->BRANCH_ID, 'OPTION_VALUE'); ?></td>
+					<!--<td><?php echo $v->BRANCH_CODE; ?></td>-->
 					<td><?php echo $v->LEASE_NAME; ?></td>
 					<td><?php echo ucfirst($v->LEASE_TYPE); ?></td>
 					<td><?php echo ucwords(str_replace('_',' ',$v->LEASE_TERM)); ?></td>
 					<td><?php echo $v->VENDOR_NAME.' &raquo; '.$v->EMAIL; ?></td>
-					<td><?php echo $v->TAX_RATE; ?></td>
-					<td><?php echo $v->VAT_RATE; ?></td>
+					<td><?php echo $v->LICENSE_NO; ?></td>
+					<td><?php echo $v->LICENSE_ISSUE_DATE; ?></td>
+					<td><?php echo $v->BRANCH_OPENING_DATE; ?></td>
+					<td><?php echo ucwords($v->TYPE); ?></td>
 					<td><?php echo $v->ADDRESS; ?></td>
+					<td><?php echo $v->CITY; ?></td>
 					<td><?php echo $v->DISTRICT; ?></td>
 					<td><?php echo $v->THANA_UPAZILLA; ?></td>
 					<td><?php echo $v->FLOOR_SPACE; ?></td>
 					<td><?php echo $v->RENT_PER_SQFT; ?></td>
+					<!--<td><?php echo $v->CONTACT_PERSON; ?></td>
+					<td><?php echo $v->CONTACT_MOBILE_NO; ?></td>
+					<td><?php echo $v->CONTACT_EMAIL; ?></td>-->
 					<td><?php echo $v->AGREEMENT_DATE; ?></td>
 					<td><?php echo $v->AGREEMENT_EXPIRY; ?></td>
 					<td><?php echo $v->AGREEMENT_DOCUMENT; ?></td>
 					<td>
-						<?php
-							$get_slab = $this->db->query("
-							SELECT TBL_COST_CENTER_DETAILS.*,TBL_OPTION.OPTION_VALUE as COST_CENTER
-							FROM TBL_COST_CENTER_DETAILS 
-							LEFT JOIN TBL_OPTION on TBL_OPTION.OPTION_ID = TBL_COST_CENTER_DETAILS.COST_CENTER_ID
-							WHERE LEASE_ID = ?
-							", 
-							array(
-							$v->ID
-							))->result();
-							
-							echo '<table class="table table-borderd table-striped" style="margin-bottom:0px;">';
-								echo '<tr>';
-									echo '<th>Cost Center</th>';
-									echo '<th>Amount (%)</th>';
-								echo '</tr>';
-								foreach($get_slab as $k1=>$v1){
-								echo '<tr>';
-									echo '<td>'.ucwords($v1->COST_CENTER).'</td>';
-									echo '<td>'.$v1->PERCENTAGE.'</td>';
-								echo '</tr>';
-								}
-							echo '</table>';
-							?>
+							<?php
+								$get_slab = $this->db->query("
+								SELECT TBL_COST_CENTER_DETAILS.*,TBL_OPTION.OPTION_VALUE as COST_CENTER
+								FROM TBL_COST_CENTER_DETAILS 
+								LEFT JOIN TBL_OPTION on TBL_OPTION.OPTION_ID = TBL_COST_CENTER_DETAILS.COST_CENTER_ID
+								WHERE LEASE_ID = ?
+								", 
+								array(
+								$v->ID
+								))->result();
+								
+								echo '<table class="table table-borderd table-striped" style="margin-bottom:0px;">';
+									echo '<tr>';
+										echo '<th>Cost Center</th>';
+										echo '<th>Amount (%)</th>';
+									echo '</tr>';
+									foreach($get_slab as $k1=>$v1){
+									echo '<tr>';
+										echo '<td>'.ucwords($v1->COST_CENTER).'</td>';
+										echo '<td>'.$v1->PERCENTAGE.'</td>';
+									echo '</tr>';
+									}
+								echo '</table>';
+								?>
 					</td>
 					<td>
 						<?php
@@ -175,14 +193,19 @@ if( $this->uri->segment(2)=='csv' ){
 								echo '<td>'.$v1->DATE_FROM.'</td>';
 								echo '<td>'.$v1->DATE_TO.'</td>';
 								echo '<td>'.ucfirst($v1->TYPE).'</td>';
-								echo '<td>'.number_format($v1->AMOUNT,2).'</td>';
-								echo '<td>'.number_format($v1->AMOUNT_WITH_TAX,2).'</td>';
-								echo '<td>'.number_format($v1->AMOUNT_WITH_VAT,2).'</td>';
+								echo '<td>'.$v1->AMOUNT.'</td>';
+								echo '<td>'.$v1->AMOUNT_WITH_TAX.'</td>';
+								echo '<td>'.$v1->AMOUNT_WITH_VAT.'</td>';
 							echo '</tr>';
 							}
 						echo '</table>';
 						?>
 					</td>
+					<!--<td><?php echo $v->TOTAL_AMOUINT_LOAN; ?></td>
+					<td><?php echo $v->NO_OF_CUSTOMER_LOAN; ?></td>
+					<td><?php echo $v->TOTAL_AMOUNT_DEPOSIT; ?></td>
+					<td><?php echo $v->NO_OF_CUSTOMER_DEPOSIT; ?></td>
+					<td><?php echo $v->PROFIT_LOSS; ?></td>-->
 					<td><?php echo $this->customcache->user_maker($v->CREATED_BY,'USER_NAME'); ?></td>
 					<td><?php echo $this->webspice->formatted_date($v->CREATED_DATE, null, 'full'); ?></td>
 					<td><?php echo $this->customcache->user_maker($v->UPDATED_BY,'USER_NAME'); ?></td>

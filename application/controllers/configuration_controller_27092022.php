@@ -614,20 +614,32 @@ class Configuration_controller extends CI_Controller {
 				'ID'=>null,
 				'REGION'=>null,
 				'BRANCH_ID'=>null,
+				'BRANCH_CODE'=>null,
 				'LEASE_NAME'=>null,
+				'LICENSE_NO'=>null,
+				'LICENSE_ISSUE_DATE'=>null,
+				'BRANCH_OPENING_DATE'=>null,
+				'TYPE'=>null,
 				'ADDRESS'=>null,
+				'CITY'=>null,
 				'DISTRICT'=>null,
 				'THANA_UPAZILLA'=>null,
 				'FLOOR_SPACE'=>null,
 				'RENT_PER_SQFT'=>null,
+				'CONTACT_PERSON'=>null,
+				'CONTACT_MOBILE_NO'=>null,
+				'CONTACT_EMAIL'=>null,
 				'AGREEMENT_DATE'=>null,
 				'AGREEMENT_EXPIRY'=>null,
 				'AGREEMENT_DOCUMENT'=>null,
+				'TOTAL_AMOUINT_LOAN'=>null,
+				'NO_OF_CUSTOMER_LOAN'=>null,
+				'TOTAL_AMOUNT_DEPOSIT'=>null,
+				'NO_OF_CUSTOMER_DEPOSIT'=>null,
+				'PROFIT_LOSS'=>null,
 				'VENDOR_ID'=>null,
 				'LEASE_TYPE'=>null,
 				'LEASE_TERM'=>null,
-				'TAX_RATE'=>null,
-				'VAT_RATE'=>null,
 				'STATUS'=>null
 			);
 		}
@@ -637,20 +649,33 @@ class Configuration_controller extends CI_Controller {
 
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('REGION','REGION','required|trim');
-		$this->form_validation->set_rules('BRANCH_ID','BRANCH','required|trim|integer');
+		$this->form_validation->set_rules('BRANCH_ID','BRANCH','required|trim');
+		#$this->form_validation->set_rules('BRANCH_CODE','BRANCH_CODE','required|trim');
 		$this->form_validation->set_rules('LEASE_NAME','Lease Name','required|trim|max_length[100]');
 		$this->form_validation->set_rules('LEASE_TYPE','LEASE TYPE','required|trim|max_length[100]');
 		$this->form_validation->set_rules('LEASE_TERM','LEASE TERM','required|trim|max_length[100]');
 		$this->form_validation->set_rules('VENDOR_ID','VENDOR','required|trim|integer');
+		$this->form_validation->set_rules('LICENSE_NO','LICENSE_NO','required|trim|max_length[100]');
+		$this->form_validation->set_rules('LICENSE_ISSUE_DATE','LICENSE_ISSUE_DATE','required|trim');
+		$this->form_validation->set_rules('BRANCH_OPENING_DATE','BRANCH_OPENING_DATE','required|trim');
+		$this->form_validation->set_rules('TYPE','TYPE','required|trim');
 		$this->form_validation->set_rules('ADDRESS','ADDRESS','required|trim|min_length[1]|max_length[255]');
-		$this->form_validation->set_rules('TAX_RATE','Tax Rate','required|trim|max_length[255]|numeric');
-		$this->form_validation->set_rules('VAT_RATE','VAT Rate','required|trim|max_length[255]|numeric');
-		$this->form_validation->set_rules('DISTRICT','DISTRICT','trim|max_length[50]');
-		$this->form_validation->set_rules('THANA_UPAZILLA','THANA_UPAZILLA','trim|max_length[50]');
-		$this->form_validation->set_rules('FLOOR_SPACE','FLOOR_SPACE','trim|max_length[100]');
-		$this->form_validation->set_rules('RENT_PER_SQFT','RENT_PER_SQFT','trim');
+		#$this->form_validation->set_rules('CITY','CITY','required|trim|max_length[100]');
+		$this->form_validation->set_rules('DISTRICT','DISTRICT','required|trim|max_length[50]');
+		$this->form_validation->set_rules('THANA_UPAZILLA','THANA_UPAZILLA','required|trim|max_length[50]');
+		$this->form_validation->set_rules('FLOOR_SPACE','FLOOR_SPACE','required|trim|max_length[100]');
+		$this->form_validation->set_rules('RENT_PER_SQFT','RENT_PER_SQFT','required|trim');
+		#$this->form_validation->set_rules('CONTACT_PERSON','CONTACT_PERSON','required|trim|max_length[100]');
+		#$this->form_validation->set_rules('CONTACT_MOBILE_NO','CONTACT_MOBILE_NO','required|trim|max_length[100]');
+		#$this->form_validation->set_rules('CONTACT_EMAIL','CONTACT_EMAIL','required|trim|max_length[100]');
 		$this->form_validation->set_rules('AGREEMENT_DATE','AGREEMENT_DATE','required|trim|required');
 		$this->form_validation->set_rules('AGREEMENT_EXPIRY','AGREEMENT_EXPIRY','required|trim|required');
+
+		#$this->form_validation->set_rules('TOTAL_AMOUINT_LOAN','TOTAL_AMOUINT_LOAN','trim');
+		#$this->form_validation->set_rules('NO_OF_CUSTOMER_LOAN','NO_OF_CUSTOMER_LOAN','trim');
+		#$this->form_validation->set_rules('TOTAL_AMOUNT_DEPOSIT','TOTAL_AMOUNT_DEPOSIT','trim');
+		#$this->form_validation->set_rules('NO_OF_CUSTOMER_DEPOSIT','NO_OF_CUSTOMER_DEPOSIT','trim');
+		#$this->form_validation->set_rules('PROFIT_LOSS','PROFIT_LOSS','trim');
 		
 		$this->form_validation->set_rules('cost_center_id[]','Cost Center','trim');
 		$this->form_validation->set_rules('cost_center_amount[]','Amount','trim');
@@ -658,10 +683,14 @@ class Configuration_controller extends CI_Controller {
 		$this->form_validation->set_rules('txt_from_rent[]','from_rent','trim');
 		$this->form_validation->set_rules('txt_to_rent[]','to_rent','trim');
 		$this->form_validation->set_rules('txt_amount_rent[]','amount_rent','trim');
+		$this->form_validation->set_rules('txt_amount_rent_with_tax[]','amount_rent_with_tax','trim');
+		$this->form_validation->set_rules('txt_amount_rent_with_vat[]','amount_rent_with_vat','trim');
 		
 		$this->form_validation->set_rules('txt_from_advance[]','from_advance','trim');
 		$this->form_validation->set_rules('txt_to_advance[]','to_advance','trim');
 		$this->form_validation->set_rules('txt_amount_advance[]','amount_advance','trim');
+		$this->form_validation->set_rules('txt_amount_advance_with_tax[]','amount_advance_with_tax','trim');
+		$this->form_validation->set_rules('txt_amount_advance_with_vat[]','amount_advance_with_vat','trim');
 		if( !$this->form_validation->run() ){
 			# for ajax call
 			if( validation_errors() ){
@@ -674,8 +703,6 @@ class Configuration_controller extends CI_Controller {
 
 		# get input post
 		$input = $this->webspice->get_input('key');
-		(float)$tax_rate = $input->TAX_RATE;
-		(float)$vat_rate = $input->VAT_RATE;
 		
 		# duplicate test
 		$this->webspice->db_field_duplicate_test("SELECT * FROM TBL_LEASE_ONBOARDING WHERE BRANCH_ID=? AND LEASE_NAME=?", array($input->BRANCH_ID, $input->LEASE_NAME), 'You are not allowed to enter duplicate Lease Name under a Branch', 'ID', $input->key, $data, 'configuration/lease_onboarding');
@@ -708,20 +735,20 @@ class Configuration_controller extends CI_Controller {
 			UPDATE TBL_LEASE_ONBOARDING SET 
 			REGION=?, LEASE_NAME=?, 
 			LEASE_TYPE=?, LEASE_TERM=?, VENDOR_ID=?,
+			LICENSE_NO=?, LICENSE_ISSUE_DATE=?, BRANCH_OPENING_DATE=?, TYPE=?,
 			ADDRESS=?, DISTRICT=?, THANA_UPAZILLA=?,
 			FLOOR_SPACE=?, RENT_PER_SQFT=?,
 			AGREEMENT_DATE=?, AGREEMENT_EXPIRY=?, AGREEMENT_DOCUMENT=?,
-			VAT_RATE=?, TAX_RATE=?,
 			UPDATED_BY=?, UPDATED_DATE=?
 			WHERE ID=?";
 			$this->db->query($sql,
 			array(
 			$input->REGION, $input->LEASE_NAME, 
 			$input->LEASE_TYPE, $input->LEASE_TERM, $input->VENDOR_ID, 
+			$input->LICENSE_NO, $input->LICENSE_ISSUE_DATE, $input->BRANCH_OPENING_DATE, $input->TYPE,
 			$input->ADDRESS, $input->DISTRICT, $input->THANA_UPAZILLA,
 			$input->FLOOR_SPACE, $input->RENT_PER_SQFT,
 			$input->AGREEMENT_DATE, $input->AGREEMENT_EXPIRY, $doc,
-			$vat_rate, $tax_rate, 
 			$this->webspice->get_user_id(), $this->webspice->now('datetime24'),
 			$input->key
 			));
@@ -748,40 +775,36 @@ class Configuration_controller extends CI_Controller {
 			if(isset($input->txt_from_rent)){
 				foreach($input->txt_from_rent as $k=>$v){
 					if($v==''){continue;}
-					$amount_with_tax = $input->txt_amount_rent[$k]+($input->txt_amount_rent[$k]*($tax_rate/100));
-					$amount_with_vat = $input->txt_amount_rent[$k]+($input->txt_amount_rent[$k]*($vat_rate/100));
 					$this->db->query("
 					INSERT INTO TBL_LEASE_AGREEMENT 
 					(LEASE_ID, DATE_FROM, DATE_TO, TYPE, AMOUNT, AMOUNT_WITH_TAX, AMOUNT_WITH_VAT) 
 					VALUES
 					(?, ?, ?, ?, ?, ?, ?)",
-					array($input->key, $v, $input->txt_to_rent[$k], 'rent', $input->txt_amount_rent[$k], $amount_with_tax, $amount_with_vat)
+					array($input->key, $v, $input->txt_to_rent[$k], 'rent', $input->txt_amount_rent[$k], $input->txt_amount_rent_with_tax[$k], $input->txt_amount_rent_with_vat[$k])
 					);
 				}
 			}else{
 				$input->txt_from_rent = array();
 				$input->txt_to_rent = array();
-				$amount_with_tax = array();
+				$input->txt_amount_rent_with_tax = array();
 			}
 
 			
 			if(isset($input->txt_from_advance)){
 				foreach($input->txt_from_advance as $k=>$v){
 					if($v==''){continue;}
-					$amount_with_tax = $input->txt_amount_advance[$k]+($input->txt_amount_advance[$k]*($tax_rate/100));
-					$amount_with_vat = $input->txt_amount_advance[$k]+($input->txt_amount_advance[$k]*($vat_rate/100));
 					$this->db->query("
 					INSERT INTO TBL_LEASE_AGREEMENT 
 					(LEASE_ID, DATE_FROM, DATE_TO, TYPE, AMOUNT, AMOUNT_WITH_TAX, AMOUNT_WITH_VAT) 
 					VALUES
 					(?, ?, ?, ?, ?, ?, ?)",
-					array($input->key, $v, $input->txt_to_advance[$k], 'advance', $input->txt_amount_advance[$k], $amount_with_tax, $amount_with_vat)
+					array($input->key, $v, $input->txt_to_advance[$k], 'advance', $input->txt_amount_advance[$k], $input->txt_amount_advance_with_tax[$k], $input->txt_amount_advance_with_vat[$k])
 					);
 				}
 			}else{
 				$input->txt_from_advance = array();
 				$input->txt_to_advance = array();
-				$amount_with_tax = array();
+				$input->txt_amount_advance_with_tax = array();
 			}
 
 			# delete Cost Center details
@@ -806,9 +829,9 @@ class Configuration_controller extends CI_Controller {
 			}
 			
 			# process data and store in table for faster access for report
-			/*if($amount_with_tax OR $amount_with_tax){
+			if($input->txt_amount_rent_with_tax OR $input->txt_amount_advance_with_tax){
 				$this->process_present_value($lease_id=$input->key, $rent_from=$input->txt_from_rent, $rent_to=$input->txt_to_rent, $rent_amount=$input->txt_amount_rent_with_tax, $advance_from=$input->txt_from_advance, $advance_to=$input->txt_to_advance, $advance_amount=$input->txt_amount_advance_with_tax);
-			}*/
+			}
 
 			$this->webspice->log_me('configuration_updated - '.$input->key); # log activities
 			exit('update_success');
@@ -825,20 +848,20 @@ class Configuration_controller extends CI_Controller {
 		INSERT INTO TBL_LEASE_ONBOARDING(
 		REGION, BRANCH_ID, LEASE_NAME, 
 		LEASE_TYPE, LEASE_TERM, VENDOR_ID,
+		LICENSE_NO, LICENSE_ISSUE_DATE, BRANCH_OPENING_DATE, TYPE,
 		ADDRESS, DISTRICT, THANA_UPAZILLA,
 		FLOOR_SPACE, RENT_PER_SQFT,
 		AGREEMENT_DATE, AGREEMENT_EXPIRY, AGREEMENT_DOCUMENT,
-		VAT_RATE, TAX_RATE,
 		CREATED_BY, CREATED_DATE, 
 		STATUS
 		)
 		VALUES(
 		?, ?, ?,
 		?, ?, ?,
+		?, ?, ?, ?,
 		?, ?, ?, 
 		?, ?,
 		?, ?, ?,
-		?, ?, 
 		?, ?, 
 		?
 		)
@@ -848,10 +871,10 @@ class Configuration_controller extends CI_Controller {
 		array(
 		$input->REGION, $input->BRANCH_ID, $input->LEASE_NAME, 
 		$input->LEASE_TYPE, $input->LEASE_TERM, $input->VENDOR_ID, 
+		$input->LICENSE_NO, $input->LICENSE_ISSUE_DATE, $input->BRANCH_OPENING_DATE, $input->TYPE,
 		$input->ADDRESS, $input->DISTRICT, $input->THANA_UPAZILLA,
 		$input->FLOOR_SPACE, $input->RENT_PER_SQFT,
 		$input->AGREEMENT_DATE, $input->AGREEMENT_EXPIRY, $doc,
-		$vat_rate, $tax_rate, 
 		$this->webspice->get_user_id(), $this->webspice->now('datetime24'),
 		7
 		));
@@ -876,32 +899,28 @@ class Configuration_controller extends CI_Controller {
 		# insert lease slab
 		foreach($input->txt_from_rent as $k=>$v){
 			if($v==''){continue;}
-			$amount_with_tax = $input->txt_amount_rent[$k] + ($input->txt_amount_rent[$k]*($tax_rate/100));
-			$amount_with_vat = $input->txt_amount_rent[$k] + ($input->txt_amount_rent[$k]*($vat_rate/100));
 			$this->db->query("
 			INSERT INTO TBL_LEASE_AGREEMENT 
 			(LEASE_ID, DATE_FROM, DATE_TO, TYPE, AMOUNT, AMOUNT_WITH_TAX, AMOUNT_WITH_VAT) 
 			VALUES
 			(?, ?, ?, ?, ?, ?, ?)",
-			array($lease_id, $v, $input->txt_to_rent[$k], 'rent', $input->txt_amount_rent[$k], $amount_with_tax, $amount_with_vat)
+			array($lease_id, $v, $input->txt_to_rent[$k], 'rent', $input->txt_amount_rent[$k], $input->txt_amount_rent_with_tax[$k], $input->txt_amount_rent_with_vat[$k])
 			);
 		}
 		
 		foreach($input->txt_from_advance as $k=>$v){
 			if($v==''){continue;}
-			$amount_with_tax = $input->txt_amount_advance[$k]+($input->txt_amount_advance[$k]*($tax_rate/100));
-			$amount_with_vat = $input->txt_amount_advance[$k]+($input->txt_amount_advance[$k]*($vat_rate/100));
 			$this->db->query("
 			INSERT INTO TBL_LEASE_AGREEMENT 
 			(LEASE_ID, DATE_FROM, DATE_TO, TYPE, AMOUNT, AMOUNT_WITH_TAX, AMOUNT_WITH_VAT) 
 			VALUES
 			(?, ?, ?, ?, ?, ?, ?)",
-			array($lease_id, $v, $input->txt_to_advance[$k], 'advance', $input->txt_amount_advance[$k], $amount_with_tax, $amount_with_vat)
+			array($lease_id, $v, $input->txt_to_advance[$k], 'advance', $input->txt_amount_advance[$k], $input->txt_amount_advance_with_tax[$k], $input->txt_amount_advance_with_vat[$k])
 			);
 		}
 
 		# process data and store in table for faster access for report
-		#$this->process_present_value($lease_id=$lease_id, $rent_from=$input->txt_from_rent, $rent_to=$input->txt_to_rent, $rent_amount=$input->txt_amount_rent_with_tax, $advance_from=$input->txt_from_advance, $advance_to=$input->txt_to_advance, $advance_amount=$input->txt_amount_advance_with_tax);
+		$this->process_present_value($lease_id=$lease_id, $rent_from=$input->txt_from_rent, $rent_to=$input->txt_to_rent, $rent_amount=$input->txt_amount_rent_with_tax, $advance_from=$input->txt_from_advance, $advance_to=$input->txt_to_advance, $advance_amount=$input->txt_amount_advance_with_tax);
 			
 		$this->webspice->log_me('created_lease'); # log
 		exit('insert_success');
